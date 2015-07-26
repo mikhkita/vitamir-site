@@ -48,6 +48,7 @@ $(document).ready(function(){
             bindTinymce();
             bindAutocomplete();
             bindTooltip();
+            bindDoubleList();
             if( $form.attr("data-beforeShow") && customHandlers[$form.attr("data-beforeShow")] ){
                 customHandlers[$form.attr("data-beforeShow")]($form);
             }
@@ -131,18 +132,11 @@ $(document).ready(function(){
 
     function bindForm($form){
         $form.validate({
-            ignore: "",
-            rules: {
-                "Engine[horsepower]": {
-                    number: true
-                }
-            },
-            messages: {
-                "Engine[horsepower]": {
-                    number: "Поле заполнено неверно"
-                }
-            }
+            ignore: ""
         });
+
+        $(".numeric").numericInput({ allowFloat: true, allowNegative: true });
+
         $form.submit(function(e,a){
             tinymce.triggerSave();
             if( $(this).valid() && !$(this).find("input[type=submit]").hasClass("blocked") ){
@@ -543,6 +537,49 @@ $(document).ready(function(){
         }
     }
     /* Variants ------------------------------------ Variants */
+
+    /* Double-list --------------------------------- Double-list */
+    function bindDoubleList(){
+        if( $(".double-list").length ){
+            $("#sortable1").sortable({
+                connectWith: ".connectedSortable",
+                update: function( event, ui ) {
+                    customHandlers["sortList"]();
+                }
+            }).disableSelection();
+            $("#sortable2").sortable({
+                update: function( event, ui ) {
+                    $("#sortable2 span").remove();
+                    $("#sortable2 li").append("<span></span>");
+                }
+            }).disableSelection();
+            customHandlers["sortList"]();
+        }
+    }
+    $("body").on("click",".double-list li span",function(){
+        $("#sortable1").prepend($(this).parents("li"));
+        customHandlers["sortList"]();
+    });
+
+    customHandlers["attributesAjax"] = function($form){
+        $("#sortable1 input").remove();
+    }
+
+    customHandlers["sortList"] = function(){
+        var min = "&";
+        $("#sortable1 li").each(function(){
+            var max = "№";
+            $("#sortable1 li").each(function(){
+                var curId = $(this).attr("data-id");
+                if(curId < max && curId > min){
+                    max = curId;
+                }
+            });
+            min = max;
+            $("#sortable1").append($("#sortable1 li[data-id='"+min+"']"));
+        });
+    }
+    /* Double-list --------------------------------- Double-list */
 
     function transition(el,dur){
         el.css({
