@@ -39,19 +39,6 @@
 
 		<div class="clearfix">
 			<div class="row mt row-half">
-				<?php echo $form->labelEx($model,'calories'); ?>
-				<?php echo $form->textField($model,'calories',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'calories'); ?>
-			</div>
-			<div class="row mt row-half">
-				<?php echo $form->labelEx($model,'price'); ?>
-				<?php echo $form->textField($model,'price',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'price'); ?>
-			</div>
-		</div>
-
-		<div class="clearfix">
-			<div class="row mt row-half">
 				<?php echo $form->labelEx($model,'daytime_id'); ?>
 				<?php echo $form->dropDownList($model, 'daytime_id', CHtml::listData(Daytime::model()->findAll(), 'id', 'name')); ?>
 				<?php echo $form->error($model,'daytime_id'); ?>
@@ -60,6 +47,19 @@
 				<?php echo $form->labelEx($model,'category_id'); ?>
 				<?php echo $form->dropDownList($model, 'category_id', CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
 				<?php echo $form->error($model,'category_id'); ?>
+			</div>
+		</div>
+
+		<div class="clearfix">
+			<div class="row mt row-half">
+				<?php echo $form->labelEx($model,'calories'); ?>
+				<?php echo $form->textField($model,'calories',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
+				<?php echo $form->error($model,'calories'); ?>
+			</div>
+			<div class="row mt row-half">
+				<?php echo $form->labelEx($model,'price'); ?>
+				<?php echo $form->textField($model,'price',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
+				<?php echo $form->error($model,'price'); ?>
 			</div>
 		</div>
 	</div>
