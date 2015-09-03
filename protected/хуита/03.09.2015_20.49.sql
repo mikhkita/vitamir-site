@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 26 2015 г., 01:30
+-- Время создания: Сен 03 2015 г., 20:49
 -- Версия сервера: 5.6.22
--- Версия PHP: 5.4.38
+-- Версия PHP: 5.4.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,110 @@ SET time_zone = "+00:00";
 --
 -- База данных: `vitamir`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Рыба и морепродукты'),
+(2, 'Курица и мясо'),
+(3, 'Вегитарианское');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `daytime`
+--
+
+CREATE TABLE IF NOT EXISTS `daytime` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `daytime`
+--
+
+INSERT INTO `daytime` (`id`, `name`) VALUES
+(1, 'На утро'),
+(2, 'На день'),
+(3, 'На вечер');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `dish`
+--
+
+CREATE TABLE IF NOT EXISTS `dish` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `m_1` int(11) NOT NULL,
+  `m_2` int(11) NOT NULL,
+  `m_3` int(11) NOT NULL,
+  `w_1` int(11) NOT NULL,
+  `w_2` int(11) NOT NULL,
+  `w_3` int(11) NOT NULL,
+  `fat` int(11) NOT NULL,
+  `protein` int(11) NOT NULL,
+  `carbohydrate` int(11) NOT NULL,
+  `calories` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `action` int(11) DEFAULT '0',
+  `category_id` int(11) unsigned NOT NULL,
+  `daytime_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `dish`
+--
+
+INSERT INTO `dish` (`id`, `name`, `image`, `description`, `m_1`, `m_2`, `m_3`, `w_1`, `w_2`, `w_3`, `fat`, `protein`, `carbohydrate`, `calories`, `price`, `action`, `category_id`, `daytime_id`) VALUES
+(1, 'Омлет с хреновиной', 'upload/images/p19r3h6ff56piupu1s0u1i9pjkc4.jpg', 'Описание омлета с хреновиной', 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 0, 3, 2),
+(2, 'Яйца в смятку', 'upload/images/p19r3h8d9i1cra13joe7c94p1pek4.jpg', 'sadfsafsaf', 123, 123, 123, 12313, 312323, 3123123, 123123, 123, 123, 123, 123, 0, 3, 1),
+(3, 'Компотик', '', 'safsdf', 3123123, 3123123, 312313, 33123, 312313, 31231, 1323123, 12123, 3123123, 123, 123, 0, 3, 1),
+(4, 'Картофель фри', '', 'фывфывфыв', 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 0, 3, 2),
+(5, 'Винегрет', '', 'фывфывфы', 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 0, 3, 3),
+(6, 'Свинина в каучуке', '', 'фывфыв', 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 0, 2, 3),
+(7, 'Баранина с овощами', '', 'фывфывфыв', 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 123, 0, 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `dish_set`
+--
+
+CREATE TABLE IF NOT EXISTS `dish_set` (
+  `set_id` int(10) unsigned NOT NULL,
+  `dish_id` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `dish_set`
+--
+
+INSERT INTO `dish_set` (`set_id`, `dish_id`) VALUES
+(3, 1),
+(3, 2),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 6),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -47,18 +151,19 @@ CREATE TABLE IF NOT EXISTS `model_names` (
   `rod_name` varchar(128) NOT NULL,
   `admin_menu` tinyint(1) NOT NULL DEFAULT '0',
   `sort` smallint(6) DEFAULT '9999'
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `model_names`
 --
 
 INSERT INTO `model_names` (`id`, `code`, `name`, `vin_name`, `rod_name`, `admin_menu`, `sort`) VALUES
-(1, 'mark', 'Марки', 'Марку', 'Марки', 1, 100),
+(1, 'set', 'Наборы', 'Набор', 'Набора', 1, 100),
 (8, 'text', 'Тексты', 'Текст', 'Текста', 0, NULL),
 (9, 'settings', 'Настройки', 'Параметр', 'Параметра', 1, 200),
 (10, 'user', 'Пользователи', 'Пользователя', 'Пользователя', 0, NULL),
-(11, 'import', 'Импорт', 'Импорт', 'Импорта', 1, 300);
+(11, 'import', 'Импорт', 'Импорт', 'Импорта', 1, 300),
+(12, 'dish', 'Блюда', 'Блюдо', 'Блюда', 1, 150);
 
 -- --------------------------------------------------------
 
@@ -80,6 +185,25 @@ INSERT INTO `role` (`id`, `code`, `name`) VALUES
 (1, 'root', 'Создатель'),
 (2, 'admin', 'Администратор'),
 (3, 'manager', 'Контент-менеджер');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `set`
+--
+
+CREATE TABLE IF NOT EXISTS `set` (
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `sort` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `set`
+--
+
+INSERT INTO `set` (`id`, `name`, `sort`) VALUES
+(3, 'Первый набор', 100);
 
 -- --------------------------------------------------------
 
@@ -139,6 +263,26 @@ INSERT INTO `text` (`id`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `tmp_192d6a2d8d7a8baf1b51eaa51794d776`
+--
+
+CREATE TABLE IF NOT EXISTS `tmp_192d6a2d8d7a8baf1b51eaa51794d776` (
+  `set_id` int(11) NOT NULL,
+  `dish_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `tmp_192d6a2d8d7a8baf1b51eaa51794d776`
+--
+
+INSERT INTO `tmp_192d6a2d8d7a8baf1b51eaa51794d776` (`set_id`, `dish_id`) VALUES
+(3, 1),
+(3, 2),
+(3, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -164,6 +308,30 @@ INSERT INTO `user` (`usr_id`, `usr_login`, `usr_password`, `usr_name`, `usr_emai
 --
 
 --
+-- Индексы таблицы `category`
+--
+ALTER TABLE `category`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `daytime`
+--
+ALTER TABLE `daytime`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `dish`
+--
+ALTER TABLE `dish`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `dish_set`
+--
+ALTER TABLE `dish_set`
+ ADD PRIMARY KEY (`set_id`,`dish_id`);
+
+--
 -- Индексы таблицы `mark`
 --
 ALTER TABLE `mark`
@@ -182,6 +350,12 @@ ALTER TABLE `role`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `set`
+--
+ALTER TABLE `set`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `settings`
 --
 ALTER TABLE `settings`
@@ -194,6 +368,12 @@ ALTER TABLE `text`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `tmp_192d6a2d8d7a8baf1b51eaa51794d776`
+--
+ALTER TABLE `tmp_192d6a2d8d7a8baf1b51eaa51794d776`
+ ADD PRIMARY KEY (`set_id`,`dish_id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -204,6 +384,21 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `category`
+--
+ALTER TABLE `category`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `daytime`
+--
+ALTER TABLE `daytime`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `dish`
+--
+ALTER TABLE `dish`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT для таблицы `mark`
 --
 ALTER TABLE `mark`
@@ -212,11 +407,16 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT для таблицы `model_names`
 --
 ALTER TABLE `model_names`
-MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
 ALTER TABLE `role`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `set`
+--
+ALTER TABLE `set`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `settings`
