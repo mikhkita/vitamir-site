@@ -19,9 +19,31 @@
 			<?php echo $form->textField($model,'sort',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
 			<?php echo $form->error($model,'sort'); ?>
 		</div>
+		<div class="row row-select">
+			<div class="dish-list clearfix"></div>
+			<label>Утро</label>
+			<?php $daytime = 1; $model=Dish::model()->find("daytime_id=".$daytime); echo CHtml::textField("Set[morning]",$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($daytime) )); ?>
+			<input type="button" class="dish-btn" value="Добавить">	
+		</div>
+
+		<div class="row row-select">
+			<div class="dish-list clearfix"></div>
+			<label>Утро</label>
+			<?php $daytime = 2; $model=Dish::model()->find("daytime_id=".$daytime); echo CHtml::textField("Set[day]",$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($daytime) )); ?>
+			<input type="button" class="dish-btn" value="Добавить">	
+		</div>
+
+		<div class="row row-select last">
+			<div class="dish-list clearfix"></div>
+			<label>Утро</label>
+			<?php $daytime = 3; $model=Dish::model()->find("daytime_id=".$daytime); echo CHtml::textField("Set[night]",$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($daytime) )); ?>
+			<input type="button" class="dish-btn" value="Добавить">	
+		</div>
+
+		
 	</div>
 
-	<div class="row double-list clearfix">
+	<!-- <div class="row double-list clearfix">
         <div class="left">
             <label for="">Все атрибуты</label>
             <ul id="sortable1" class="sortable connectedSortable">
@@ -38,7 +60,7 @@
                 <? endforeach; ?>
             </ul>
         </div>
-    </div>
+    </div> -->
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить'); ?>

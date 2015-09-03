@@ -88,7 +88,7 @@ class DishController extends Controller
             }
         }
 
-        $criteria->order = 'daytime_id ASC';
+        // $criteria->order = 'daytime_id ASC';
 
         $model = Dish::model()->findAll($criteria);
 

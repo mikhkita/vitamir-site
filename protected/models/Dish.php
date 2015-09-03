@@ -8,18 +8,18 @@
  * @property string $name
  * @property string $image
  * @property string $description
- * @property integer $m_1
- * @property integer $m_2
- * @property integer $m_3
- * @property integer $w_1
- * @property integer $w_2
- * @property integer $w_3
- * @property integer $fat
- * @property integer $protein
- * @property integer $carbohydrate
- * @property integer $calories
- * @property integer $price
- * @property integer $action
+ * @property double $m_1
+ * @property double $m_2
+ * @property double $m_3
+ * @property double $w_1
+ * @property double $w_2
+ * @property double $w_3
+ * @property double $fat
+ * @property double $protein
+ * @property double $carbohydrate
+ * @property double $calories
+ * @property double $price
+ * @property double $action
  * @property string $category_id
  * @property string $daytime_id
  */
@@ -41,8 +41,8 @@ class Dish extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, category_id, daytime_id', 'required'),
-			array('m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, action', 'numerical', 'integerOnly'=>true),
+			array('name, image, description, m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, category_id, daytime_id', 'required'),
+			array('m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, action', 'numerical'),
 			array('name, image', 'length', 'max'=>255),
 			array('category_id', 'length', 'max'=>11),
 			array('daytime_id', 'length', 'max'=>10),
@@ -82,11 +82,11 @@ class Dish extends CActiveRecord
 			'w_1' => 'Для похудения',
 			'w_2' => 'Для набора массы',
 			'w_3' => 'Для поддержания формы',
-			'fat' => 'Жиры на 100 гр.',
-			'protein' => 'Белки на 100 гр.',
-			'carbohydrate' => 'Углеводы на 100 гр.',
-			'calories' => 'Килокалории на 100 гр.',
-			'price' => 'Цена за 100 гр.',
+			'fat' => 'Жиры в порции',
+			'protein' => 'Белки в порции',
+			'carbohydrate' => 'Углеводы в порции',
+			'calories' => 'Килокалории в порции',
+			'price' => 'Цена за порцию',
 			'action' => 'Акция',
 			'category_id' => 'Категория',
 			'daytime_id' => 'Время суток',

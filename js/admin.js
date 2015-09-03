@@ -49,6 +49,7 @@ $(document).ready(function(){
             bindAutocomplete();
             bindTooltip();
             bindDoubleList();
+            bindDishList();
             if( $form.attr("data-beforeShow") && customHandlers[$form.attr("data-beforeShow")] ){
                 customHandlers[$form.attr("data-beforeShow")]($form);
             }
@@ -580,6 +581,23 @@ $(document).ready(function(){
         });
     }
     /* Double-list --------------------------------- Double-list */
+
+    /* Dish-list --------------------------------- Dish-list */
+    function bindDishList(){
+        if($(".dish-btn").length ) {
+
+            $("body").on("click",".dish-btn",function(){
+                var type = $(this).parent().find(".dish-select").attr("name");
+                var label = $(this).parent().find("input.label").val();
+                var val =  $(this).parent().find(".dish-select").val();
+                $(this).parent().find(".dish-list").append('<div><p>'+label+'</p><span></span><input type="hidden" name="'+type+'[]" value="'+val+'"></div>');
+            });
+            $("body").on("click",".dish-list span",function(){
+                $(this).parent().remove();
+            });
+        }   
+    }
+    /* Dish-list --------------------------------- Dish-list */
 
     function transition(el,dur){
         el.css({

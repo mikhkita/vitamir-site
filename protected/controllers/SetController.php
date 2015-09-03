@@ -22,6 +22,16 @@ class SetController extends Controller
 		);
 	}
 
+	public function getDishes($daytime){
+		$model = Dish::model()->findAll("daytime_id LIKE :match", array(":match" => "%$daytime%"));
+		$arr = array();
+
+		foreach ($model as $item) 
+		$arr[] = array("label"=>$item->name,"val"=>$item->id);
+
+		return json_encode($arr);
+	}
+
 	public function getFields(){
 		$model = Dish::model()->findAll(array("order"=>"daytime_id ASC"));
 		$dishes = array();
@@ -75,6 +85,7 @@ class SetController extends Controller
 		if(isset($_POST['Set']))
 		{
 			$this->setAttr($model);
+			
 		}else{
 			$attr = array();
 			$allAttr = $this->getFields();
