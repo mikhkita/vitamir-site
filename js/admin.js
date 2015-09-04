@@ -587,10 +587,11 @@ $(document).ready(function(){
         if($(".dish-btn").length ) {
 
             $("body").on("click",".dish-btn",function(){
-                var type = $(this).parent().find(".dish-select").attr("name");
-                var label = $(this).parent().find("input.label").val();
-                var val =  $(this).parent().find(".dish-select").val();
-                $(this).parent().find(".dish-list").append('<div><p>'+label+'</p><span></span><input type="hidden" name="'+type+'[]" value="'+val+'"></div>');
+                var type = $(this).parent().find(".dish-select").attr("name"),
+                label = $(this).parent().find("input.label").val(),
+                val =  $(this).parent().find(".dish-select").val(),
+                count = $(this).parent().find(".dish-list div").length;
+                $(this).parent().find(".dish-list").append('<div><p>'+label+'</p><span></span><input type="hidden" name="'+type+'['+count+']" value="'+val+'"></div>');
             });
             $("body").on("click",".dish-list span",function(){
                 $(this).parent().remove();

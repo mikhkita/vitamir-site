@@ -84,7 +84,8 @@ class SetController extends Controller
 
 		if(isset($_POST['Set']))
 		{
-			$this->setAttr($model);
+			// $this->setAttr($model);
+			print_r($_POST['Set']);
 			
 		}else{
 			$attr = array();
