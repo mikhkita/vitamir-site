@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'dish_set':
  * @property string $set_id
  * @property string $dish_id
+ * @property string $daytime_id
  */
 class DishSet extends CActiveRecord
 {
@@ -25,11 +26,11 @@ class DishSet extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('set_id, dish_id', 'required'),
-			array('set_id, dish_id', 'length', 'max'=>10),
+			array('set_id, dish_id, daytime_id', 'required'),
+			array('set_id, dish_id, daytime_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('set_id, dish_id', 'safe', 'on'=>'search'),
+			array('set_id, dish_id, daytime_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +44,7 @@ class DishSet extends CActiveRecord
 		return array(
 			'set' => array(self::BELONGS_TO, 'Set', 'set_id'),
 			'dish' => array(self::BELONGS_TO, 'Dish', 'dish_id'),
+			'daytime' => array(self::HAS_MANY, 'Daytime', 'daytime_id'),
 		);
 	}
 
@@ -54,6 +56,7 @@ class DishSet extends CActiveRecord
 		return array(
 			'set_id' => 'Set',
 			'dish_id' => 'Dish',
+			'daytime_id' => 'Daytime',
 		);
 	}
 
@@ -77,6 +80,7 @@ class DishSet extends CActiveRecord
 
 		$criteria->compare('set_id',$this->set_id,true);
 		$criteria->compare('dish_id',$this->dish_id,true);
+		$criteria->compare('daytime_id',$this->daytime_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

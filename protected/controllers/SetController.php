@@ -65,11 +65,13 @@ class SetController extends Controller
 		if( isset($_POST["dishes"]) ){
 			$tableName = DishSet::tableName();
 
-			$sql = "INSERT INTO `$tableName` (`set_id`,`dish_id`) VALUES ";
+			$sql = "INSERT INTO `$tableName` (`set_id`,`dish_id`,`daytime_id`) VALUES ";
 
 			$values = array();
-			foreach ($_POST["dishes"] as $key => $value) {
-				$values[] = "('".$model->id."','".$key."')";
+			foreach ($_POST["dishes"] as $daytime => $item) {
+				foreach ($item as $dish => $value) {
+					$values[] = "('".$model->id."','".$dish."','".$daytime."')";
+				}
 			}
 
 			$sql .= implode(",", $values);
@@ -84,17 +86,17 @@ class SetController extends Controller
 
 		if(isset($_POST['Set']))
 		{
-			// $this->setAttr($model);
-			print_r($_POST['Set']);
+			$this->setAttr($model);
 			
 		}else{
-			$attr = array();
-			$allAttr = $this->getFields();
+			$daytime = DayTime::model()->findAll('id IN (1,2,3)');
+			// $attr = array();
+			// $allAttr = $this->getFields();
 
 			$this->renderPartial('adminCreate',array(
 				'model'=>$model,
-				'attr'=> $attr,
-				'allAttr'=>$allAttr
+				'daytime'=>$daytime
+				// 'allAttr'=>$allAttr
 			));
 		}
 	}
@@ -107,13 +109,14 @@ class SetController extends Controller
 		{
 			$this->setAttr($model);
 		}else{
-			$attr = $this->getModelFields($model);
-			$allAttr = array_diff_key($this->getFields(), $attr);
-
+			$daytime = DayTime::model()->findAll('id IN (1,2,3)');
+			print_r($daytime[0]->dishSet);
+			// $attr = $this->getModelFields($model);
+			// $allAttr = array_diff_key($this->getFields(), $attr);
 			$this->renderPartial('adminUpdate',array(
 				'model'=>$model,
-				'allAttr'=>$allAttr,
-				'attr'=>$attr
+				'daytime'=>$daytime
+				// 'attr'=>$attr
 			));
 		}
 	}
