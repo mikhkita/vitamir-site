@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/reset.css" type="text/css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/jquery.fancybox.css" type="text/css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/KitAnimate.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/land.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/layout.css" type="text/css">
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
 
     <meta name="viewport" content="width=1000">
@@ -20,7 +20,7 @@
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jssor.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jssor.slider.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/TweenMax.min.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/swipe.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/carousel.lite.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/css3-mediaqueries.js"></script>
@@ -54,7 +54,7 @@
             </div>
             <div class="percent right clearfix">
                 <a class="fancy right" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
-                <img class="right" src="i/percent.png">
+                <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/percent.png">
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <div class="b-block clearfix">
                 <a href="#" class="logo left">
                     <!-- <h3>Клубы здорового питания в Москве</h3> -->
-                    <img src="i/logo.png" width="175">
+                    <img src="<?php echo Yii::app()->request->baseUrl;?>/i/logo.png" width="175">
                 </a>
                 <ul class="left clearfix">
                     <li class="left">
@@ -118,7 +118,7 @@
             <h2>Индивидуальные наборы<br>здорового питания на весь день от 390 руб.<br>с доставкой по ЮЗАО</h2>
             <div class="title">
                 <h3>Новый сервис для тех, кто занимается фигурой</h3>
-                <img src="i/arrow-1.png">
+                <img src="<?php echo Yii::app()->request->baseUrl;?>/i/arrow-1.png">
             </div>
             <div class="content clearfix">
                 <div class="circle left">
@@ -147,7 +147,7 @@
                 <div class="center clearfix">
                     <h2>Правильное питание + <span class="water">в<span class="h2O">.</span>да</span></h2>
                     <h3>Это 80% результата достижения Ваших целей</h3>
-                    <img src="i/central.png">
+                    <img src="<?php echo Yii::app()->request->baseUrl;?>/i/central.png">
                 </div>
                 <div class="left-part left">
                     <div class="left-block grey-1">
@@ -292,7 +292,7 @@
                             </div>
                             <ul class="b-eat">
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
-                                    <div class="left"><img src="i/b-3/menu/1.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/1.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -318,7 +318,7 @@
                                     </div>
                                 </li>
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
-                                    <div class="left"><img src="i/b-3/menu/2.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/2.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -344,7 +344,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на утро</a></div>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на утро</a></div>
                         </div>
                         <div class="b-time b-time-day" id="day">
                             <div class="b-header clearfix">
@@ -353,7 +353,7 @@
                             </div>
                             <ul class="b-eat">
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="90">
-                                    <div class="left"><img src="i/b-3/menu/3.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/3.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -379,7 +379,7 @@
                                     </div>
                                 </li>
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="40">
-                                    <div class="left"><img src="i/b-3/menu/4.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/4.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -405,7 +405,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на день</a></div>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на день</a></div>
                         </div>
                         <div class="b-time b-time-evening" id="evening">
                             <div class="b-header clearfix">
@@ -414,7 +414,7 @@
                             </div>
                             <ul class="b-eat">
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="30">
-                                    <div class="left"><img src="i/b-3/menu/5.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/5.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -440,7 +440,7 @@
                                     </div>
                                 </li>
                                 <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="50">
-                                    <div class="left"><img src="i/b-3/menu/6.png" alt=""></div>
+                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/6.png" alt=""></div>
                                     <div class="left">
                                         <h4>Оладьи с апельсиновым соком</h4>
                                         <a href="#" class="b-more">Подробнее</a>
@@ -466,7 +466,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на вечер</a></div>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на вечер</a></div>
                         </div>
                     </div>
                     <div class="b-green-bottom b-time-all clearfix">
@@ -483,17 +483,17 @@
                 <div class="b-block">
                     <div class="b-advantages clearfix">
                         <li>
-                            <img src="i/b-3/1.png" alt="">
+                            <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/1.png" alt="">
                             <h3>Вакуумная<br>упаковка</h3>
                             <p>Еда хранится 3-5 дней благодаря отсутствию воздуха</p>
                         </li>
                         <li>
-                            <img src="i/b-3/2.png" alt="">
+                            <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/2.png" alt="">
                             <h3>Свежее. Доставляем<br>в день приготовления</h3>
                             <p>Вся еда приготавливается ночью и хранится у нас не более суток</p>
                         </li>
                         <li>
-                            <img src="i/b-3/3.png" alt="">
+                            <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/3.png" alt="">
                             <h3>Вкусно. Разнообразная еда каждый день</h3>
                             <p>95 вариантов блюд!</p>
                         </li>
@@ -655,14 +655,14 @@
                     <h4>Способы доставки:</h4>
                     <ul>
                         <li class="clearfix">
-                            <img class="left" src="i/b-6/1.png">
+                            <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-6/1.png">
                             <div class="left">
                                 <h5>Самовывоз</h5>
                                 <p>(Адрес ниже)</p>
                             </div>
                         </li>
                         <li class="clearfix">
-                            <img class="left" src="i/b-6/2.png">
+                            <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-6/2.png">
                             <div class="left">
                                 <h5>Доставка</h5>
                                 <p>от 2900р. - бесплатно<br>до 2900р. - 300руб.</p>
@@ -720,14 +720,14 @@
             <div class="left">
                 <a href="#" class="logo left">
                     <!-- <h3>Клубы здорового питания в Москве</h3> -->
-                    <img src="i/logo.png" width="175">
+                    <img src="<?php echo Yii::app()->request->baseUrl;?>/i/logo.png" width="175">
                 </a>
             </div>
             <div class="right question">
                 <h3>Есть вопрос? Звоните - поможем!</h3>
                 <div class="clearfix">
                     <p class="right">+7 495 12 345 67</p>
-                    <img class="right" src="i/tel-2.png">
+                    <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/tel-2.png">
                 </div>
                 <a class="fancy" href="#" data-block="#b-popup-callback">Заказать звонок</a>
             </div>
@@ -852,21 +852,24 @@
             <div class="b-popup menu">
                 <h2>Полное меню</h2>
                 <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
-                <div class="menu-cont">
+                <div class="menu-cont clearfix">
                     <div class="filter left">
-                        <a href="#">Корзина (2120 руб.)</a>
                         <div class="filter-item">
                             <h5>Показывать:</h5>
-                            <ul>
-                                <li>
-                                    <input type="checkbox" id="f1328" name="arr7[]" value="1328">
-                                    <label class="clearfix" for="f1328">
-                                        <span class="checked"></span>
-                                        <span class="default"></span>   
-                                        <h4>На утро</h4>
-                                    </label>
-                                </li>
-                            </ul>
+                            <div class="b-inputs radio">
+                                <div class="clearfix">
+                                    <input id="daytime-1" type="radio" name="daytime" value="1">
+                                    <label for="daytime-1">На утро</label>
+                                </div>
+                                <div class="clearfix">
+                                    <input id="daytime-2" type="radio" name="daytime" value="2">
+                                    <label for="daytime-2">На день</label>
+                                </div>
+                                <div class="clearfix">
+                                    <input id="daytime-3" type="radio" name="daytime" value="3">
+                                    <label for="daytime-3">На вечер</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="right">
