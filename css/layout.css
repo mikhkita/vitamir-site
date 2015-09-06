@@ -222,6 +222,7 @@ input.error,textarea.error{
 	}
 .fancybox-inner{
 	overflow: visible !important;
+	padding-bottom: 30px !important;
 }
 .underline{
 	text-decoration: underline;
@@ -354,8 +355,9 @@ textarea{
 		}
 .b-popup.menu{
 	background-image: url("../i/popup-pattern-2.jpg");
-	width: 830px;
+	width: 780px;
 	padding: 25px;
+	margin-bottom: 30px;
 }
 	.b-popup.menu h2{
 		padding-top: 0;
@@ -364,7 +366,7 @@ textarea{
 		color: #8ec535;
 	}
 	.b-popup.menu .menu-cont{
-
+		margin-top: 40px;
 	}
 		.b-popup.menu .filter{
 			text-align: left;
@@ -389,9 +391,9 @@ textarea{
 
 					}
 		.b-popup .radio{
-			margin-left: 5px;
+			margin-left: 2px;
 			margin-top: 1px;
-			margin-bottom: 22px;
+			margin-bottom: 10px;
 		}
 		.b-popup .radio label{
 			display: inline-block;
@@ -433,7 +435,169 @@ textarea{
 				border: 3px solid #FFF;
 				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
 			}
+		.b-popup .checkbox{
+			margin-left: 2px;
+			margin-top: 1px;
+			margin-bottom: 10px;
+		}
+		.b-popup .checkbox label{
+			display: inline-block;
+			cursor: pointer;
+			position: relative;
+			color: #473E42;
+			font-family: "latobold";
+			font-size: 14px;
+			padding-left: 20px;
+			margin-right: 24px;
+		}
+		.b-popup .checkbox input[type="checkbox"]{
+			display: none;
+		}
+			.b-popup .checkbox label:before{
+				content: "";
+			    display: inline-block;
+			    width: 12px;
+				height: 12px;
+				background-color: #FFF;
+				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
+			    margin-right: 10px;
+			    position: absolute;
+			    left: 0;
+			    bottom: 3px;
+			    background-color: #FFF;
+			    border-radius: 3px;
+			}
+			.b-popup .checkbox input[type=checkbox]:checked + label:before {
+				background-position: 50% 52%;
+				background-repeat: no-repeat;
+				background-image: url('../i/checkbox.png');
+				background-size: 10px;
+			}
+	.b-menu-items{
+		width: 570px;
+	}
+		.b-menu-items .b-page{
 
+		}
+			.b-menu-items .b-page ul{
+				text-align: left;
+				font-size: 0px;
+			}
+				.b-menu-items .b-page ul li{
+					text-align: left;
+					width: 170px;
+					/*float: left;*/
+					display: inline-block;
+					margin-right: 29px;
+					margin-bottom: 20px;
+				}
+				.b-menu-items .b-page ul li:nth-child(3n){
+					margin-right: 0;
+				}
+					.b-menu-items .b-page ul li h3{
+						width: 170px;
+						line-height: 18px;
+						margin-bottom: 10px;
+						font-size: 16px;
+						font-family: "latobold";
+						color: #333333;
+					}
+					.b-menu-items .b-page ul li .b-image-cont{
+						margin-bottom: 8px;
+						position: relative;
+					}
+						.b-menu-items .b-page ul li .b-image-cont .b-image{
+							width: 170px;
+							height: 170px;
+							background-position: 50% 50%;
+							background-repeat: no-repeat;
+						}
+						.b-menu-items .b-page ul li .b-image-cont .b-sale{
+							background-position: 0% 50%;
+							background-repeat: no-repeat;
+							background-image: url('../i/sale.png');
+							width: 65px;
+							height: 35px;
+							position: absolute;
+							right: -11px;
+							top: 10px;
+							color: #FFF;
+							font-size: 14px;
+							font-family: "latobold";
+							text-align: center;
+							line-height: 39px;
+						}
+					.b-menu-items .b-page ul li .b-price-cont{
+						margin-bottom: 10px;
+					}
+						.b-menu-items .b-page ul li .b-price-cont .left{
+							font-size: 20px;
+							font-family: "latobold";
+							color: #606060;
+						}
+						.b-menu-items .b-page ul li .b-price-cont a{
+							font-size: 12px;
+							display: inline-block;
+							margin-top: 7px;
+							color: #748285;
+							text-decoration: underline;
+						}
+							.b-menu-items .b-page ul li .b-price-cont a:hover{
+								text-decoration: none;
+							}
+					.b-menu-items .b-page ul li .b-add-cart{
+						display: inline-block;
+						border-radius: 50px;
+						background-color: #c0d155;
+						text-transform: uppercase;
+						font-family: "latobold";
+						font-size: 12px;
+						color: #FFF;
+						padding: 8px 15px;
+						text-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+					}
+						.b-menu-items .b-page ul li .b-add-cart:hover{
+							background-color: #B6C74D;
+						}
+						.b-menu-items .b-page ul li .b-add-cart:active{
+							position: relative;
+							top: 1px;
+						}
+		.b-menu-nav{
+			margin-top: 20px;
+			margin-bottom: 10px;
+			cursor: default;
+		}
+			.b-menu-nav .b-menu-pages{
+				font-size: 14px;
+				color: #473e42;
+				font-family: "latosemibold";
+			}
+				.b-menu-nav .b-menu-pages a{
+					font-size: 14px;
+					color: #473e42;
+					margin-left: 5px;
+				}
+				.b-menu-nav .b-menu-pages a:hover{
+					text-decoration: underline;
+				}
+				.b-menu-nav .b-menu-pages a.active{
+					font-family: "latobold";
+					cursor: default;
+					color: #ef623d;
+					font-size: 16px;
+				}
+				.b-menu-nav .b-menu-pages a.active:hover{
+					text-decoration: none;
+				}
+			.b-find-items{
+				font-size: 14px;
+				color: #473e42;
+				font-family: "latosemibold";
+			}
+				.b-find-items span{
+					font-family: "latobold";
+				}
 	.pass{
 
 	}
@@ -1099,14 +1263,14 @@ margin-bottom: 6px;
 						margin-bottom: 39px;
 					}
 .b-3{
-	height: 1357px;
+	/*height: 1357px;*/
 	margin-top: 30px;
 }
 	.b-3>.b-block{
 
 	}
 	.b-3 .b-back{
-		height: 1218px;
+		/*height: 1218px;*/
 		width: 100%;
 		margin-top: 80px;
 		background-position: 50% 50%;
@@ -1117,7 +1281,7 @@ margin-bottom: 6px;
 
 		}
 		.b-3 .b-calc-cont{
-			height: 900px;
+			/*height: 900px;*/
 			width: 1000px;
 			/*padding-left: 30px;*/
 			padding-top: 30px;
@@ -1472,6 +1636,8 @@ margin-bottom: 6px;
 			}
 				.b-3 .b-triangles .b-advantages{
 					display: inline-block;
+					margin-top: 50px;
+					margin-bottom: 40px;
 				}
 					.b-3 .b-triangles .b-advantages li{
 						float: left;

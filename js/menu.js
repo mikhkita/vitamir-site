@@ -4,12 +4,10 @@ $(document).ready(function(){
 
     calculateMenu();
 
-    $(".b-add-butt").eq(0).click();
 });
 
 function calculateMenu(){
     type = $(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val();
-    console.log(type);
 
     $(".b-time").each(function(){
         calculateDaytime("#"+$(this).attr("id"),$(this).attr("id"),type);
@@ -37,5 +35,4 @@ function calculateDaytime(daytime,daytime1,type){
     for( i in sum ){
         $(".b-time-"+daytime1+" ."+i).text(sum[i]);
     }
-
 }
