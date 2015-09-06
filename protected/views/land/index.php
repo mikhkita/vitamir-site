@@ -788,6 +788,7 @@
                 <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
                 <div class="menu-cont clearfix">
                     <div class="filter left">
+                        <form action="">
                         <div class="filter-item">
                             <h5>Показывать:</h5>
                             <div class="b-inputs checkbox">
@@ -852,6 +853,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                     <div class="right b-menu-items">
                         <div class="b-page">
