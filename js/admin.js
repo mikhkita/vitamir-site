@@ -592,7 +592,7 @@ $(document).ready(function(){
                 val =  $(this).parent().find(".dish-select").val();
                 $(this).parent().find(".dish-list").append('<div><p>'+label+'</p><span></span><input type="hidden" name="dishes['+type+']['+val+']"></div>');
             });
-            $(".dish-list span").bind("click",function(){
+            $("body").on("click",".dish-list span",function(){
                 $(this).parent().remove();
             });
         }   

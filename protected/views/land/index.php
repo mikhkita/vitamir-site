@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/reset.css" type="text/css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/jquery.fancybox.css" type="text/css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/KitAnimate.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/land-admin.css" type="text/css">
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/land.css" type="text/css">
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
 
@@ -21,6 +20,7 @@
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jssor.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jssor.slider.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/swipe.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/carousel.lite.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/css3-mediaqueries.js"></script>
@@ -30,165 +30,865 @@
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/KitAnimate.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/device.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/KitSend.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/land-admin.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/land.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/menu.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/main.js"></script>
     <?php foreach ($this->scripts AS $script): ?><script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/<?php echo $script?>.js"></script><? endforeach; ?>
 </head>
 <body>
-    <?=$this->topMenu();?>
     <ul class="ps-lines">
-        <li class="v" style="margin-left:-501px"></li>
-        <li class="v" style="margin-left:500px"></li>
+        <li class="v" style="margin-left:-586px"></li>
+        <li class="v" style="margin-left:585px"></li>
         <li class="v" ></li>
     </ul>
+    <div class="b b-0">
+        <div class="b-block clearfix">
+            <div class="cabinet right">
+                <ul class="clearfix">
+                    <li class="right">
+                        <a class="fancy" href="#"  data-block="#b-popup-system"><p>Войти</p></a>
+                    </li>
+                    <li class="right">
+                        <a class="fancy" href="#" data-block="#b-popup-registration"><p>Зарегистрироваться</p></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="percent right clearfix">
+                <a class="fancy right" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
+                <img class="right" src="i/percent.png">
+            </div>
+        </div>
+    </div>
     <div class="b b-1">
-        <div class="b-video-cont">
-           <!--  <video class="b-video" autoplay loop muted id="bgvideo">
-                <source src="<?php echo Yii::app()->request->baseUrl;?>/video/5.mp4" type="video/mp4"></source>
-            </video> -->
+        <div class="header">
+            <div class="b-block clearfix">
+                <a href="#" class="logo left">
+                    <!-- <h3>Клубы здорового питания в Москве</h3> -->
+                    <img src="i/logo.png" width="175">
+                </a>
+                <ul class="left clearfix">
+                    <li class="left">
+                        <a href="#">
+                            <div class="pict"></div>
+                            <div class="text">
+                                <p>выбрать еду</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="left">
+                        <a href="#">
+                            <div class="pict"></div>
+                            <div class="text">
+                                <p>100% здоровая пища</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="left">
+                        <a href="#">
+                            <div class="pict"></div>
+                            <div class="text">
+                                <p>составить режим питания</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="left">
+                        <a href="#">
+                            <div class="pict"></div>
+                            <div class="text">
+                                <p>доставка</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="left">
+                        <a href="#">
+                            <div class="pict"></div>
+                            <div class="text">
+                                <p>адреса клубов</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="back-call right">
+                    <h3>Есть вопрос?</h3>
+                    <h4>Звоните - поможем!</h4>
+                    <p><span>+7(499)</span>399-35-09</p>
+                </div>
+            </div>
+        </div>
+        <div class="b-block">
+            <h2>Индивидуальные наборы<br>здорового питания на весь день от 390 руб.<br>с доставкой по ЮЗАО</h2>
+            <div class="title">
+                <h3>Новый сервис для тех, кто занимается фигурой</h3>
+                <img src="i/arrow-1.png">
+            </div>
+            <div class="content clearfix">
+                <div class="circle left">
+                    
+                </div>
+                <div class="green-block right">
+                    <h2>Получите персональную программу питания</h2>
+                    <h3>Наши специалисты составят ее под <b>Ваши цели и особенности</b></h3>
+                        <form method="POST" action="kitsend.php" id="b-form-1" data-block="#b-popup-2" class="clearfix">
+                            <input type="hidden" name="subject" value="Заявка на персональную программу питания"/>
+                            <label for="phone-1">Введите Ваш телефон:</label>
+                            <div class="clearfix">
+                                <div class="left phone-img"></div>
+                                <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                            </div>
+                            <button class="ajax b-orange-butt rectangle" type="submit">Получить программу питания!</button>     
+                        </form>
+                    <p>Сегодня мы составили уже <span>&nbsp;17 </span>&nbsp;программ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-2">
+        <div class="b-block">
+            <div class="content clearfix">
+                <div class="center clearfix">
+                    <h2>Правильное питание + <span class="water">в<span class="h2O">.</span>да</span></h2>
+                    <h3>Это 80% результата достижения Ваших целей</h3>
+                    <img src="i/central.png">
+                </div>
+                <div class="left-part left">
+                    <div class="left-block grey-1">
+                        <div class="inside">
+                            <div class="clearfix">
+                                <h3 class="right">Доступные цены от 90 руб. за обед</h3>
+                                <div class="screen right"></div>
+                            </div>
+                            <p>Мы закупаем продукты по оптовым ценам. Поэтому даже с доставкой наш обед стоит примерно столько же, как если бы Вы готовили дома.</p>
+                        </div>
+                    </div>
+                    <div class="left-block white">
+                        <div class="inside">
+                            <div class="clearfix">
+                                <h3 class="right">Огромная экономия вашего времени</h3>
+                                <div class="screen right"></div>
+                            </div>
+                            <p>До 4 часов в день мы тратим на закупку продуктов, готовку, мойку и уборку посуды. Это 2 месяца в год!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-part right">
+                    <div class="left-block white clearfix">
+                        <div class="inside left">
+                            <div class="clearfix">
+                                <h3 class="right">100% здоровье<br> и полезные блюда</h3>
+                                <div class="screen right three"></div>
+                            </div>
+                            <p>Большинство продуктов готовится на пару. Никаких вредных соусов и добавок. Пищу мы доставляем день в день с Вашим заказом</p>
+                        </div>
+                    </div>
+                    <div class="left-block clearfix">
+                        <div class="inside left grey-2">
+                            <div class="clearfix">
+                                <h3 class="right">Соблюдайте режим питания</h3>
+                                <div class="screen right four"></div>
+                            </div>
+                            <p>Вам легко соблюдать режим<br> питания, потому что у Вас всегда есть готовый комплект еды</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-3">
+        <div class="b-block">
+            <h2>6-разовое питание</h2>
         </div>
         <div class="b-back">
-            <div class="b-block">
-                <div class="head clearfix">
-                    <a href="<?php echo Yii::app()->request->baseUrl;?>">
-                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-1/motors.png">
-                    </a>
-                    <p><?=$this->getText(1)?></p>
-                    <div class="clearfix right tel">
-                        <h2><?=$this->getText(2)?></h2>
-                        <div class="clearfix">
-                            <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-1/tel.png">
-                            <h3 class="right"><?=$this->getText(3)?></h3>
-                        </div>
-                        <div class="clearfix">
-                            <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-1/tel.png">
-                            <h3 class="right"><?=$this->getText(16)?></h3>
-                        </div>
-                        <a href="#" class="fancy" data-block="#callback">Заказать звонок</a>
+            <div class="b-block b-calc-cont">
+                <div class="b-filter left">
+                    <div class="radio">
+                        <input id="male-2" type="radio" name="sex-2" checked value="m">
+                        <label for="male-2">Мужской</label>
+                        <input id="female-2" type="radio" name="sex-2" value="w">
+                        <label for="female-2">Женский</label>
                     </div>
-                </div>
-                <div class="content">
-                    <p><?=$this->getText(4,array("class"=>"inline"))?> <b id="title-name"><?=$images['name']?></b> <?=$this->getText(5,array("class"=>"inline"))?></p>
-                    <h2><?=$this->getText(6)?></h2>
-                </div>
-                <div class="clearfix bot">
-                    <div class="car-wrap left">
-                        <div class="car">
-                            <h2>
-                                <?=$this->replaceToSpan($this->getText(15,array("reload"=>true)))?>
-                            </h2>
-                            <p><?=$this->getText(8)?></p>
-                        </div>
-                        <img id="car-img" src="<?=$images['car']?>">
+                    <div class="b-toggle">
+                        <input id="id-1" type="radio" name="for" checked value="1">
+                        <label for="id-1">Для похудения</label>
+                        <input id="id-2" type="radio" name="for" value="2">
+                        <label for="id-2">Для набора массы</label>
+                        <input id="id-3" type="radio" name="for" value="3">
+                        <label for="id-3">Для поддержания формы</label>
                     </div>
-                    
-                    <div class="clearfix right typecar">
-                        <div>
-                            <div class="tc">
-                                <h2 class="<? if( $images['logo'] == "" ) echo "no-logo"?>"><?=$this->getText(9,array("class"=>"inline"))?> <?if($images['name'] == "автомобиль"):echo "вашего автомобиля"?><?else: echo $images['name']?><?endif;?> <?=$this->getText(10,array("class"=>"inline"))?></h2>
+                    <h3>Текущий набор БЖУ:</h3>
+                    <ul class="b-attr">
+                        <li class="clearfix b-time-morning">
+                            <h4 class="left">Утро:</h4>
+                            <div class="right">
+                                <ul class="dark clearfix">
+                                    <li>Белки</li>
+                                    <li>Жиры</li>
+                                    <li>Углеводы</li>
+                                </ul>
+                                <ul class="light clearfix">
+                                    <li class="pro"></li>
+                                    <li class="fat"></li>
+                                    <li class="car"></li>
+                                </ul>
                             </div>
-                            <div class="tc <? if( $images['logo'] == '' ) echo 'hidden'?>">
-                                <img id="logo-img" src="<?=$images['logo']?>">
+                        </li>
+                        <li class="clearfix b-time-day">
+                            <h4 class="left">День:</h4>
+                            <div class="right">
+                                <ul class="dark clearfix">
+                                    <li>Белки</li>
+                                    <li>Жиры</li>
+                                    <li>Углеводы</li>
+                                </ul>
+                                <ul class="light clearfix">
+                                    <li class="pro"></li>
+                                    <li class="fat"></li>
+                                    <li class="car"></li>
+                                </ul>
                             </div>
-                        </div>
-                        <form action="<?php echo Yii::app()->request->baseUrl;?>/kitsend.php" method="post" data-block="#b-popup-2">
-                            <select name="1" data-brand="<?if( $images['name'] != 'автомобиль' ) echo $images['name']?>" required>
-                                <option value="" disabled selected>Марка</option>
-                                <?php foreach ($model as $mark): ?>
-                                    <option value="<?=$mark->name?>"><?=$mark->name?></option>
-                                <? endforeach; ?>
-                                <option value="другое">Другое</option>
-                            </select>
-                            <input type="hidden" name="1-name" value="Марка"/>
-                            <select name="2" required>
-                                <option value="" disabled selected>Модель</option>
-                            </select>
-                            <input type="hidden" name="2-name" value="Модель"/>
-                            <select name="3" required>
-                                <option value="" disabled selected>Двигатель</option>
-                            </select>
-                            <input type="hidden" name="3-name" value="Двигатель"/>
-                            <input type="text" name="phone" placeholder="Введите ваш телефон" required>
-
-                            <input type="hidden" name="subject" value="Заявка на чип-тюнинг"/>
-                            <input type="submit" class="b-green-button ajax" value="Рассчитать прирост">
-                        </form>
-                        <p><?=$this->getText(11)?></p>
-                    </div>                  
+                        </li>
+                        <li class="clearfix b-time-evening">
+                            <h4 class="left">Вечер:</h4>
+                            <div class="right">
+                                <ul class="dark clearfix">
+                                    <li>Белки</li>
+                                    <li>Жиры</li>
+                                    <li>Углеводы</li>
+                                </ul>
+                                <ul class="light clearfix">
+                                    <li class="pro"></li>
+                                    <li class="fat"></li>
+                                    <li class="car"></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="clearfix b-time-all">
+                            <h4 class="left" style="margin-top: 0px;">Всего за<br>сутки:</h4>
+                            <div class="right">
+                                <ul class="dark clearfix">
+                                    <li>Белки</li>
+                                    <li>Жиры</li>
+                                    <li>Углеводы</li>
+                                </ul>
+                                <ul class="light clearfix">
+                                    <li class="pro"></li>
+                                    <li class="fat"></li>
+                                    <li class="car"></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <h5 class="b-time-all"><font class="cal">2450</font> кКал. <span>+ 1,8 л воды</span></h5>
+                    <a href="#" class="ajax b-orange-butt rounded fancy" href="#" data-block="#b-popup-programm">Получить персональную<br>программу питания</a>
                 </div>
-                <div class="sale-cont">
-                    <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-1/triangle.png">
-                    <div class="sale clearfix">
-                        <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-1/key.png">
+                <div class="b-menu right">
+                    <div class="b-padding">
+                        <div class="clearfix b-header">
+                            <h3 class="left">Меню на день</h3>
+                            <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a>
+                        </div>
+                        <div class="b-time b-time-morning" id="morning">
+                            <div class="b-header clearfix">
+                                <h3 class="left">Утро</h3>
+                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
+                            </div>
+                            <ul class="b-eat">
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
+                                    <div class="left"><img src="i/b-3/menu/1.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
+                                    <div class="left"><img src="i/b-3/menu/2.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на утро</a></div>
+                        </div>
+                        <div class="b-time b-time-day" id="day">
+                            <div class="b-header clearfix">
+                                <h3 class="left">День</h3>
+                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
+                            </div>
+                            <ul class="b-eat">
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="90">
+                                    <div class="left"><img src="i/b-3/menu/3.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="40">
+                                    <div class="left"><img src="i/b-3/menu/4.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на день</a></div>
+                        </div>
+                        <div class="b-time b-time-evening" id="evening">
+                            <div class="b-header clearfix">
+                                <h3 class="left">Вечер</h3>
+                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
+                            </div>
+                            <ul class="b-eat">
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="30">
+                                    <div class="left"><img src="i/b-3/menu/5.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="50">
+                                    <div class="left"><img src="i/b-3/menu/6.png" alt=""></div>
+                                    <div class="left">
+                                        <h4>Оладьи с апельсиновым соком</h4>
+                                        <a href="#" class="b-more">Подробнее</a>
+                                    </div>
+                                    <div class="right clearfix">
+                                        <div class="left">
+                                            <span>Кол-во:</span>
+                                        </div>
+                                        <div class="right">
+                                            <select name="count" id="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt">Добавить на вечер</a></div>
+                        </div>
+                    </div>
+                    <div class="b-green-bottom b-time-all clearfix">
                         <div class="left">
-                            <h2><?=$this->getText(12)?></h2>
-                            <h3><?=$this->getText(13)?></h3>
+                            <h3>Цена: <span class="pri">1202</span> руб.</h3>
+                        </div>
+                        <div class="right">
+                            <a href="#" class="ajax b-orange-butt rounded">Заказать набор на 1 месяц</a>
                         </div>
                     </div>
                 </div>
             </div>
-         </div>
-    </div>
-    <div class="b b-1-1">
-        <div class="clearfix b-block">
-            <div>
-                <img class="lock left" src="<?php echo Yii::app()->request->baseUrl;?>/i/lock.png">
-                <p class="left"><?=$this->getText(14)?></p>
+            <div class="b-triangles">
+                <div class="b-block">
+                    <div class="b-advantages clearfix">
+                        <li>
+                            <img src="i/b-3/1.png" alt="">
+                            <h3>Вакуумная<br>упаковка</h3>
+                            <p>Еда хранится 3-5 дней благодаря отсутствию воздуха</p>
+                        </li>
+                        <li>
+                            <img src="i/b-3/2.png" alt="">
+                            <h3>Свежее. Доставляем<br>в день приготовления</h3>
+                            <p>Вся еда приготавливается ночью и хранится у нас не более суток</p>
+                        </li>
+                        <li>
+                            <img src="i/b-3/3.png" alt="">
+                            <h3>Вкусно. Разнообразная еда каждый день</h3>
+                            <p>95 вариантов блюд!</p>
+                        </li>
+                    </div>
+                </div>
             </div>
-            <!-- <img class="arrow left" src="<?php echo Yii::app()->request->baseUrl; ?>/i/b-1/arrow.png"> -->
+        </div>
+    </div>
+    <div class="b b-4">
+        <div class="b-block">
+            <h2>Простые и здоровые блюда 
+            для отличных результатов<br> 
+            в зале</h2>
+            <div class="green clearfix">
+                <div class="coffee left"></div>
+                <div class="green-block left">
+                    <h3>Получите Ваш промокод на скидку 5%</h3>
+                    <h4>Введите свой номер телефона и получите персональный промокод на <b>5% скидку</b></h4>
+                    <form method="POST" action="kitsend.php" id="b-form-2" data-block="#b-popup-2" class="clearfix">
+                        <input type="hidden" name="subject" value="Заявка на промокод"/>
+                        <div class="clearfix">
+                            <div class="left phone-img"></div>
+                            <input class="left" type="text" id="phone-2" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        </div>
+                        <button class="ajax b-orange-butt rectangle" type="submit">Получить промокод</button>
+                    </form>
+                </div>
+                <div class="cloud">
+                    <p>По самой низкой на рынке цене. Мы не тратимся на масла, соусы и неоправданно дорогие специи</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-5">
+        <div class="b-block">
+            <h2>Узнайте, сколько Вам нужно есть и пить воды в день</h2>
+            <h3>Рассчитайте суточную норму воды, калорий, белков, 
+            жиров и углеводов под Ваши цели</h3>
+            <div class="b-calk clearfix">
+                <form action="#" method="POST" id="calc">
+                    <div class="b-left-side left">
+                        <h4>Ваш пол:</h4>
+                        <div class="radio left">
+                            <input id="male" type="radio" name="sex" value="male">
+                            <label for="male">Мужской</label>
+                            <input id="female" type="radio" name="sex" checked value="female">
+                            <label for="female">Женский</label>
+                        </div>
+                        <div class="b-dimensions">
+                            <label class="for-form" for="age">Введите Ваш возраст (лет):</label>
+                            <input type="text" id="age" name="age" placeholder="Например, 21"required/>
+                            <label class="for-form" for="weight">Введите Ваш вес, кг:</label>
+                            <input type="text" id="weight" name="weight" placeholder="Например, 63"required/>
+                            <label class="for-form" for="growth">Введите Ваш рост, см:</label>
+                            <input type="text" id="growth" name="growth" placeholder="Например, 180"required/>
+                            <label class="for-form" for="lifestyle">Выберите Ваш образ жизни</label>
+                            <select name="lifestyle">
+                                <option value="1.2" selected>Сидячий, малоподвижный</option>
+                                <option value="1.4">Легкая активность (упражнения 1-3 раза в неделю)</option>
+                                <option value="1.6">Средняя активность (тренировки 3-5 раз в неделю)</option>
+                                <option value="1.8">Высокая активность (высокие нагрузки каждый день)</option>
+                                <option value="1.9">Экстремально высокая активность</option>
+                            </select>
+                            <div class="b-form-radio">
+                                <h5>Ваша цель:</h5>
+                                <div class="radio">
+                                    <div><input id="decrease" type="radio" name="goal" value="decrease" checked>
+                                    <label for="decrease">Сбросить вес</label></div>
+                                    <div><input id="increase" type="radio" name="goal" value="increase">
+                                    <label for="increase">Набрать массу</label></div>
+                                    <div><input id="normal" type="radio" name="goal" value="normal">
+                                    <label for="normal">Поддерживать форму</label></div>
+                                </div>
+                            </div>
+                            <input type="submit" class="ajax b-orange-butt rounded" value="Получить расчет">    
+                        </div>
+                    </div>
+                </form>
+                <div class="b-right-side left">
+                    <h4>Ваша суточная норма будет показана здесь</h4>
+                    <div class="mass">
+                        <h5>Суточная норма калорий:</h5>
+                        <table class="blue">
+                            <tr>
+                                <td><p>По формуле Харриса-Бенедикта</p></td>
+                                <td><span id="HB">&mdash;</span></td>
+                            </tr>
+                            <tr>
+                                <td><p>По формуле Миффлина - Сан Жеора</p></td>
+                                <td><span id="MG">&mdash;</span></td>
+                            </tr>
+                            <!-- <tr>
+                                <td><p>Диапазон калорий</p></td>
+                                <td><span>2298-2507</span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Суточная норма белка</p></td>
+                                <td><span>172-92 гр</span></td>
+                            </tr> -->
+                            <tr>
+                                <td><p>Идельное количество воды в день:</p></td>
+                                <td><span id="water">&mdash;</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="cal">
+                        <h5>Суточная норма калорий:</h5>
+                        <table>
+                            <tr>
+                                <td><p>Диапазон калорий</p></td>
+                                <td><span><span id="cal">&mdash;</span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Суточная норма белка</p></td>
+                                <td><span id="protein">&mdash;</span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Суточная норма жиров</p></td>
+                                <td><span id="fat">&mdash;</span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Суточная норма углеводов</p></td>
+                                <td><span id="carbo">&mdash;</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- <a href="#">Отправить на почту</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-6">
+        <div class="b-block">
+            <h2>Доставка в ЮЗАО за 30 минут</h2>
+            <h3>Бесплатно при заказе от 2900р. Всю еду доставляем в день приготовления</h3> 
+            <div class="content clearfix">
+                <div class="pay right">
+                    <h2>Способы оплаты:</h2>
+                    <ul class="clearfix">
+                        <li class="left">
+                            <div></div>
+                            <p>Наличные</p>
+                        </li>
+                        <li class="left">
+                            <div></div>
+                            <p>Безналичный расчет</p>
+                        </li>
+                        <li class="left">
+                            <div></div>
+                            <p>Кредитная<br> карта</p>
+                        </li>
+                        <li class="left">
+                            <div></div>
+                            <p>Электронные деньги</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="delivery right">
+                    <h4>Способы доставки:</h4>
+                    <ul>
+                        <li class="clearfix">
+                            <img class="left" src="i/b-6/1.png">
+                            <div class="left">
+                                <h5>Самовывоз</h5>
+                                <p>(Адрес ниже)</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img class="left" src="i/b-6/2.png">
+                            <div class="left">
+                                <h5>Доставка</h5>
+                                <p>от 2900р. - бесплатно<br>до 2900р. - 300руб.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-7">
+        <div class="b-block">
+            <div class="clearfix">
+                <div class="menu left">
+                    <h2>Заходите к нам 
+                    и попробуйте 
+                    наше меню
+                    </h2>
+                    <h3>г. Москва, улица тестовая, д 1 к 4</h3>
+                </div>
+                <div class="cloud left">
+                    <p>Скоро мы открываемся на Парке культуры и Проспекте Мира</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b b-8">
+        <div class="b-white"></div>
+        <div class="b-map" id="map_canvas"></div>
+        <div class="info">
+            <h2>Контактная информация</h2>
+            <ul>
+                <li class="clearfix">
+                    <div class="left"></div>
+                    <p class="left">Ул. Здоровой Еды 50 дом 13, 21555</p>
+                </li>
+                <li class="clearfix">
+                    <div class="left"></div>
+                    <p class="left">+7 495 12 345 67</p>
+                </li>
+            </ul>
+            <a href="mailto:zdorovaya.eda@eda.ru">zdorovaya.eda@eda.ru</a>
+        </div>
+    </div>
+    <div class="b b-9">
+        <div class="b-block">
+            <div>
+                <h2>Остались вопросы?</h2>
+            </div>
+            <a class="b-orange-butt rounded fancy" href="#" data-block="#b-popup-question">Задайте их менеджеру</a>
+        </div>
+    </div>
+    <div class="b b-10">
+        <div class="b-block clearfix">
+            <div class="left">
+                <a href="#" class="logo left">
+                    <!-- <h3>Клубы здорового питания в Москве</h3> -->
+                    <img src="i/logo.png" width="175">
+                </a>
+            </div>
+            <div class="right question">
+                <h3>Есть вопрос? Звоните - поможем!</h3>
+                <div class="clearfix">
+                    <p class="right">+7 495 12 345 67</p>
+                    <img class="right" src="i/tel-2.png">
+                </div>
+                <a class="fancy" href="#" data-block="#b-popup-callback">Заказать звонок</a>
+            </div>
+            <div class="right copyright">
+                <p>Copyright © 1993-2015. Компания Здоровье. Все права защищены.</p>
+            </div>
         </div>
     </div>
     <div style="display:none;">
-        <div id="callback">
-            <div class="b-popup">
-                <div class="clearfix">
-                    <h2>Заказать обратный звонок</h2>
-                </div>
-                <form action="<?php echo Yii::app()->request->baseUrl;?>/kitsend.php" method="post" data-block="#b-popup-2">
-                    <input type="text" name="name" placeholder="Введите ваше имя" required>
-                    <input type="text" name="phone" placeholder="Введите ваш телефон" required>
-                    <input type="hidden" name="subject" value="Обратный звонок"/>
-                    <input type="submit" class="b-green-button ajax" value="Заказать звонок">
+        <div id="b-popup-question">
+            <div class="b-popup" >
+                <h2>Задайте вопрос нашему менеджеру</h2>
+                <h3>В форме ниже, и мы ответим на него в течение 40 минут</h3>
+                <form action="kitsend.php" method="POST" id="b-form-3" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Вопрос менеджеру"/>
+                        <label for="email-1">Введите Ваш e-mail:</label>
+                        <input type="text" id="email-1" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                        <label for="question">Чем мы можем Вам помочь?</label>
+                        <p><textarea id="question" name="1" required></textarea></p>
+                        <input type="hidden" name="1-name" value="Вопрос" required/>
+                        <input type="submit" class="ajax b-orange-butt rounded" value="Отправить запрос!">
+                    </div>
                 </form>
-                <!-- <p>Сегодня рассчитали уже <b>132</b> варианта чип-тюнинга</p> -->
+                <p>Или позвоните нам по телефону<br>
+                <b>+7 (495) 542-60-01</b></p>
+            </div>
+        </div>
+        <div id="b-popup-system">
+            <div class="b-popup" >
+                <h2>Войдите в систему</h2>
+                <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+                <form action="kitsend.php" method="POST" id="b-form-4" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Вход в систему"/>
+                        <label for="email-2">Введите Ваш e-mail:</label>
+                        <input type="text" id="email-2" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                        <label for="password-1">Ваш пароль:</label>
+                        <input type="text" id="password-1" class="pass" name="password" required/>
+                        <input type="submit" class="ajax b-orange-butt rounded sys" value="войти">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="b-popup-registration">
+            <div class="b-popup" >
+                <h2>Зарегистрируйтесь в системе</h2>
+                <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+                <form action="kitsend.php" method="POST" id="b-form-5" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Регистрация в системе"/>
+                        <label for="email-3">Введите Ваш e-mail:</label>
+                        <input type="text" id="email-3" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                        <label for="password-2">Придумайте пароль:</label>
+                        <input type="text" id="password-2" class="pass" name="password" required/>
+                        <input type="submit" class="ajax b-orange-butt rounded sys" value="зарегистрироваться">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="b-popup-callback">
+            <div class="b-popup" >
+                <h2>Заказать обратный звонок</h2>
+                <h3>Оставьте Ваши данные, и наш менеджер свяжется с Вами в течение 10 минут</h3>
+                <form action="kitsend.php" method="POST" id="b-form-6" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Обратный звонок"/>
+                        <label for="email-4">Введите Ваше имя:</label>
+                        <input type="text" id="email-4" class="write" name="email" placeholder="Иванов Иван"required/>
+                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                        <label for="phone-3">Введите Ваш телефон:</label>
+                        <div class="clearfix">
+                            <div class="left phone-img"></div>
+                            <input class="left" type="text" id="phone-3" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        </div>
+                        <input type="submit" class="ajax b-orange-butt rounded sys" value="Заказать звонок">
+                    </div>
+                </form>
+                <p>Или позвоните нам по телефону<br>
+                <b>+7 (495) 542-60-01</b></p>
+            </div>
+        </div>
+        <div id="b-popup-programm">
+        <div class="b-popup" >
+                <h2>Получите персональную программу питания</h2>
+                <h4>под Ваши цели и с учетом Ваших пожеланий</h4>
+                <h3>Оставьте заявку, и наши специалисты перезвонят Вам в течение 10 минут</h3>
+                <form action="kitsend.php" method="POST" id="b-form-7" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Персональная программа питания"/>
+                        <label for="phone-4">Введите Ваш телефон:</label>
+                        <div class="clearfix">
+                            <div class="left phone-img"></div>
+                            <input class="left" type="text" id="phone-4" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        </div>
+                        <input type="submit" class="ajax b-orange-butt rounded sys" value="получить программу питания">
+                    </div>
+                </form>
+                <p>Сегодня мы составили уже <span>&nbsp;17&nbsp;</span> программ<br>
+            </div>
+        </div>
+        <div id="b-popup-code">
+            <div class="b-popup" >
+                <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
+                <h3>Введите телефон, и промокод автоматически будет выслан</h3>
+                <form action="kitsend.php" method="POST" id="b-form-8" data-block="#b-popup-2">
+                    <div class="b-popup-form">
+                        <input type="hidden" name="subject" value="Заявка на промокод"/>
+                        <label for="phone-5">Введите Ваш телефон:</label>
+                        <div class="clearfix">
+                            <div class="left phone-img"></div>
+                            <input class="left" type="text" id="phone-5" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        </div>
+                        <input type="submit" class="ajax b-orange-butt rounded sys" value="получить промокод">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="b-popup-menu">
+            <div class="b-popup menu">
+                <h2>Полное меню</h2>
+                <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
+                <div class="menu-cont">
+                    <div class="filter left">
+                        <a href="#">Корзина (2120 руб.)</a>
+                        <div class="filter-item">
+                            <h5>Показывать:</h5>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="f1328" name="arr7[]" value="1328">
+                                    <label class="clearfix" for="f1328">
+                                        <span class="checked"></span>
+                                        <span class="default"></span>   
+                                        <h4>На утро</h4>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right">
+                        
+                    </div>
+                </div>
             </div>
         </div>
         <div id="b-popup-2">
             <div class="b-thanks b-popup">
-                <h2>Спасибо!</h2>
-                <p>Ваша заявка успешно отправлена.<br/>Наш менеджер свяжется с Вами в течение часа.</p>
-                <input type="submit" class="b-green-button" onclick="$.fancybox.close(); return false;" value="Закрыть">
+                <h3>Спасибо!</h3>
+                <h4>Ваша заявка успешно отправлена.<br/>Наш менеджер свяжется с Вами в течение часа.</h4>
+                <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
             </div>
         </div>
         <div id="b-popup-error">
             <div class="b-thanks b-popup">
-                <h2>Ошибка отправки!</h2>
-                <p>Приносим свои извинения. Пожалуйста, попробуйте отправить Вашу заявку позже.</p>
-                <input type="submit" class="b-green-button" onclick="$.fancybox.close(); return false;" value="Закрыть">
+                <h3>Ошибка отправки!</h3>
+                <h4>Приносим свои извинения. Пожалуйста, попробуйте отправить Вашу заявку позже.</h4>
+                <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
             </div>
         </div>
-        <?php foreach ($model as $mark): ?>
-            <select name="<?=$mark->name?>" data-car="<?if( $mark->car != '' ) echo $mark->car?>" data-logo="<?if( $mark->logo != '' ) echo $mark->logo?>">
-                <option value="" disabled selected>Модель</option>
-            <?php foreach ($mark->models as $car_model): ?>  
-                <option value="<?=$car_model->name?>"><?=$car_model->name?></option>
-            <? endforeach; ?>
-            <option value="другое">Другое</option>
-            </select>
-            <img src="<?=$mark->car?>">
-            <img src="<?=$mark->logo?>">
-        <? endforeach; ?>
-        <?php foreach ($model as $mark): ?>
-            <?php foreach ($mark->models as $car_model): ?> 
-                <select name="<?=$car_model->name?>">
-                    <option value="" disabled selected>Двигатель</option>
-                    <?php foreach ($car_model->engines as $engine): ?>  
-                        <option value="<?=$engine['name']." (".$engine['horsepower'].")"?>"><?=$engine['name']." (".$engine['horsepower'].")"?></option>
-                    <? endforeach; ?>
-                    <option value="другое">Другое</option>
-                </select>
-            <? endforeach; ?>
-        <? endforeach; ?>
     </div>
 </body>
 </html>

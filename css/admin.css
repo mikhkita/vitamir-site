@@ -597,7 +597,7 @@ h1{
                 .row-select input[type='button'] {
                     float: left;
                     width: 110px;
-                    margin-left: 30px;
+                    margin-left: 20px;
                 }
 
                 .b-full-width .row-half:nth-child(1),
@@ -817,12 +817,19 @@ h1{
                                 }
                 .dish-list {
                     height: auto;
-                    margin: 15px 0;
+                    padding: 0;
                     background: none;
+                    border-radius: 0;
                     border:none !important;
                 }
                 .dish-list > div {
                     cursor: default;
+                }
+                .dish-list > div:nth-child(1) {
+                    margin-top: 10px;
+                }
+                 .dish-list > div:last-child {
+                    margin-bottom: 15px;
                 }
                 
         .autocomplete{

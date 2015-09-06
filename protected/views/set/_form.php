@@ -22,16 +22,16 @@
 		<? foreach ($daytime as $time => $dish): ?>
 			<? if ( $model=Dish::model()->find("daytime_id LIKE :match", array(":match" => "%$time%")) ): ?>
 				<div class="row row-select">
+					<label for="daytime-<?=$time?>"><?=$dish[0]?></label>
 					<div class="dish-list clearfix">
-							<? $i=0; foreach ($dish as $id => $value):  ?>
-								<? if ($i): ?>
-									<div><p><?=$value?></p><span></span><input type="hidden" name="dishes[<?=$time?>][<?=$id?>]"></div>
-								<? endif; $i++; ?>
-							<? endforeach; ?>
+						<? $i=0; foreach ($dish as $id => $value):  ?>
+							<? if ($i): ?>
+								<div><p><?=$value?></p><span></span><input type="hidden" name="dishes[<?=$time?>][<?=$id?>]"></div>
+							<? endif; $i++; ?>
+						<? endforeach; ?>
 					</div>
-						<label><?=$dish[0]?></label>
-						<?php echo CHtml::textField("daytime-".$time,$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-name'=> $time,'data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($time) )); ?>
-						<input type="button" class="dish-btn" value="Добавить">	
+					<?php echo CHtml::textField("daytime-".$time,$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-name'=> $time,'data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($time) )); ?>
+					<input type="button" class="dish-btn" value="Добавить">	
 				</div>
 			<? endif; ?>
 		<? endforeach; ?>
