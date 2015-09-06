@@ -19,26 +19,25 @@
 			<?php echo $form->textField($model,'sort',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
 			<?php echo $form->error($model,'sort'); ?>
 		</div>
-		<? foreach ($daytime as $time): ?>
-			<div class="row row-select">
-				<div class="dish-list clearfix">
-					<? if( is_array($time->dishSet)): ?>
-						<? foreach ($time->dishSet as $value):  ?>
-							<div><p><?=$value->dish->name?></p><span></span><input type="hidden" name="dishes[<?=$time->id?>][<?=$value->dish_id?>]"></div>
-						<? endforeach; ?>
-					<? endif; ?>
+		<? foreach ($daytime as $time => $dish): ?>
+			<? if ( $model=Dish::model()->find("daytime_id LIKE :match", array(":match" => "%$time%")) ): ?>
+				<div class="row row-select">
+					<div class="dish-list clearfix">
+							<? $i=0; foreach ($dish as $id => $value):  ?>
+								<? if ($i): ?>
+									<div><p><?=$value?></p><span></span><input type="hidden" name="dishes[<?=$time?>][<?=$id?>]"></div>
+								<? endif; $i++; ?>
+							<? endforeach; ?>
+					</div>
+						<label><?=$dish[0]?></label>
+						<?php echo CHtml::textField("daytime-".$time,$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-name'=> $time,'data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($time) )); ?>
+						<input type="button" class="dish-btn" value="Добавить">	
 				</div>
-				<label><?=$time->name?></label>
-				<?php $model=Dish::model()->find("daytime_id LIKE :match", array(":match" => "%$time->id%")); echo CHtml::textField("daytime-".$time->id,$model->id, array('class'=>'dish-select autocomplete','required'=>'required','data-name'=> $time->id,'data-label'=>( $model )?$model->name:'Выбрать блюдо','data-values'=>$this->getDishes($time->id) )); ?>
-				<input type="button" class="dish-btn" value="Добавить">	
-			</div>
+			<? endif; ?>
 		<? endforeach; ?>
 		
 	</div>
-
-	
-
-	<div class="row buttons">
+	<div class="row buttons set">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить'); ?>
 		<input type="button" onclick="$.fancybox.close(); return false;" value="Отменить">
 	</div>

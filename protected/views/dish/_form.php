@@ -38,11 +38,19 @@
 		</div>
 
 		<div class="clearfix">
-			<div class="row mt row-half">
-				<?php echo $form->labelEx($model,'daytime_id'); ?>
-				<?php echo $form->dropDownList($model, 'daytime_id', CHtml::listData(Daytime::model()->findAll(), 'id', 'name')); ?>
-				<?php echo $form->error($model,'daytime_id'); ?>
-			</div>
+		 	<?php if(isset($model->daytime_id)): ?>
+				<div class="row mt row-half">
+					<?php echo $form->labelEx($model,'daytime_id'); ?>
+					<?php echo $form->dropDownList($model, 'daytime_id', CHtml::listData(Daytime::model()->findAll(), 'id', 'name'), array("disabled" => "disabled") ); ?>
+					<?php echo $form->error($model,'daytime_id'); ?>
+				</div>
+			<? else: ?>
+				<div class="row mt row-half">
+					<?php echo $form->labelEx($model,'daytime_id'); ?>
+					<?php echo $form->dropDownList($model, 'daytime_id', CHtml::listData(Daytime::model()->findAll(), 'id', 'name')); ?>
+					<?php echo $form->error($model,'daytime_id'); ?>
+				</div>
+			<? endif; ?>
 			<div class="row mt row-half">
 				<?php echo $form->labelEx($model,'category_id'); ?>
 				<?php echo $form->dropDownList($model, 'category_id', CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>

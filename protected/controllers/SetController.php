@@ -89,7 +89,10 @@ class SetController extends Controller
 			$this->setAttr($model);
 			
 		}else{
-			$daytime = DayTime::model()->findAll('id IN (1,2,3)');
+			$daytime = array();
+			$daytime[1][0] = "Утро";
+			$daytime[2][0] = "День";
+			$daytime[3][0] = "Вечер";
 			// $attr = array();
 			// $allAttr = $this->getFields();
 
@@ -109,8 +112,13 @@ class SetController extends Controller
 		{
 			$this->setAttr($model);
 		}else{
-			$daytime = DayTime::model()->findAll('id IN (1,2,3)');
-			print_r($daytime[0]->dishSet);
+			$daytime = array();
+			$daytime[1][0] = "Утро";
+			$daytime[2][0] = "День";
+			$daytime[3][0] = "Вечер";
+			foreach ($model->dishes as $dish) {
+				$daytime[$dish['daytime_id']][$dish['dish_id']] = $dish->dish->name;
+			}
 			// $attr = $this->getModelFields($model);
 			// $allAttr = array_diff_key($this->getFields(), $attr);
 			$this->renderPartial('adminUpdate',array(

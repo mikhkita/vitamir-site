@@ -426,6 +426,7 @@ h1{
 }
 .fancybox-inner,.fancybox-outer {
     height: auto !important;
+    overflow: visible !important;
 }
     .fancybox-close{
         background: #452716 url('../images/close.png') center center no-repeat;
@@ -441,6 +442,9 @@ h1{
         text-align: left;
         margin-top: 15px;
         padding: 0px 5px;
+    }
+    .fancybox-skin .row.buttons.set {
+        margin-top: 45px;
     }
 .b-section{
     margin-top: 15px;

@@ -356,7 +356,7 @@ $(document).ready(function(){
                         select: function( event, ui ) {
                             $clone.val(ui.item.label);
                             $label.show().val(ui.item.label);
-                            $this.val(ui.item.val).trigger("change");
+                            $this.val(ui.item.val).trigger("change");  
                             return false;
                         }
                     });
