@@ -285,189 +285,123 @@
                             <h3 class="left">Меню на день</h3>
                             <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a>
                         </div>
+                        <? if(isset($daytime[1])): ?>
                         <div class="b-time b-time-morning" id="morning">
                             <div class="b-header clearfix">
                                 <h3 class="left">Утро</h3>
                                 <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
                             </div>
                             <ul class="b-eat">
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/1.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
+                                <? foreach($daytime[1] as $item): ?>
+                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
+                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
                                         <div class="left">
-                                            <span>Кол-во:</span>
+                                            <h4><?=$item['name']?></h4>
+                                            <a href="#" class="b-more">Подробнее</a>
                                         </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
+                                        <div class="right clearfix">
+                                            <div class="left">
+                                                <span>Кол-во:</span>
+                                            </div>
+                                            <div class="right">
+                                                <select name="count" id="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="80">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/2.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
-                                        <div class="left">
-                                            <span>Кол-во:</span>
-                                        </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                <? endforeach; ?>
                             </ul>
                             <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на утро</a></div>
                         </div>
+                        <? endif; ?>   
+                        <? if(isset($daytime[2])): ?>
                         <div class="b-time b-time-day" id="day">
                             <div class="b-header clearfix">
                                 <h3 class="left">День</h3>
                                 <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
                             </div>
                             <ul class="b-eat">
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="90">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/3.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
+                                <? foreach($daytime[2] as $item): ?>
+                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
+                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
                                         <div class="left">
-                                            <span>Кол-во:</span>
+                                            <h4><?=$item['name']?></h4>
+                                            <a href="#" class="b-more">Подробнее</a>
                                         </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
+                                        <div class="right clearfix">
+                                            <div class="left">
+                                                <span>Кол-во:</span>
+                                            </div>
+                                            <div class="right">
+                                                <select name="count" id="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="40">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/4.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
-                                        <div class="left">
-                                            <span>Кол-во:</span>
-                                        </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                <? endforeach; ?>
                             </ul>
                             <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на день</a></div>
                         </div>
+                        <? endif; ?>   
+                        <? if(isset($daytime[3])): ?>
                         <div class="b-time b-time-evening" id="evening">
                             <div class="b-header clearfix">
                                 <h3 class="left">Вечер</h3>
                                 <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
                             </div>
                             <ul class="b-eat">
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="30">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/5.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
+                                <? foreach($daytime[3] as $item): ?>
+                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
+                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
                                         <div class="left">
-                                            <span>Кол-во:</span>
+                                            <h4><?=$item['name']?></h4>
+                                            <a href="#" class="b-more">Подробнее</a>
                                         </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
+                                        <div class="right clearfix">
+                                            <div class="left">
+                                                <span>Кол-во:</span>
+                                            </div>
+                                            <div class="right">
+                                                <select name="count" id="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix" data-m-1="1" data-m-2="1.5" data-m-3="2" data-w-1="0.5" data-w-2="0.8" data-w-3="1.2" data-fat="10" data-pro="15" data-car="20" data-cal="5" data-pri="50">
-                                    <div class="left"><img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/menu/6.png" alt=""></div>
-                                    <div class="left">
-                                        <h4>Оладьи с апельсиновым соком</h4>
-                                        <a href="#" class="b-more">Подробнее</a>
-                                    </div>
-                                    <div class="right clearfix">
-                                        <div class="left">
-                                            <span>Кол-во:</span>
-                                        </div>
-                                        <div class="right">
-                                            <select name="count" id="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                <? endforeach; ?>
                             </ul>
                             <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на вечер</a></div>
                         </div>
+                        <? endif; ?>
                     </div>
                     <div class="b-green-bottom b-time-all clearfix">
                         <div class="left">

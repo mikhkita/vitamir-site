@@ -114,15 +114,19 @@ class DishController extends Controller
 	}
 
 	public function renameImages($model){
-		if($_POST['Dish']['image']!=$model->image) {
-			if(file_exists($model->image) && $model->image!="upload/images/default.jpg" ) unlink($model->image);
-			if($_POST['Dish']['image']!="") {
-				$from = $_POST['Dish']['image'];
-				$_POST['Dish']['image'] = str_replace(Yii::app()->params['tempFolder'], Yii::app()->params['imageFolder'], $from);
-				rename($from,$_POST['Dish']['image']);
-			} else {
-				$_POST['Dish']['image'] = "upload/images/default.jpg";
+		if(isset($model->image)) {
+			if($_POST['Dish']['image']!=$model->image) {
+				if(file_exists($model->image) && $model->image!="upload/images/default.jpg" ) unlink($model->image);
+				if($_POST['Dish']['image']!="") {
+					$from = $_POST['Dish']['image'];
+					$_POST['Dish']['image'] = str_replace(Yii::app()->params['tempFolder'], Yii::app()->params['imageFolder'], $from);
+					rename($from,$_POST['Dish']['image']);
+				} else {
+					$_POST['Dish']['image'] = "upload/images/default.jpg";
+				}
 			}
+		} else {
+			$_POST['Dish']['image'] = "upload/images/default.jpg";
 		}
 	}
 }

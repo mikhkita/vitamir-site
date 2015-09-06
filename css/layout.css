@@ -2210,6 +2210,72 @@ margin-bottom: 6px;
 		width: 200px;
   		padding: 12px;
 	}
+.b-basket {
+	background: #fff;
+}
+.b-basket .basket-cont {
+	width: 970px;
+	margin-top: 50px;
+}
+	.b-basket .basket-cont .back-link {
+		font-size: 14px;
+		font-family: "latoregular";
+		color: rgba(51, 51, 51, 0.702);
+		line-height: 1;
+		position: relative;
+		display: block;
+		text-align: left;
+		margin-left: 26px;
+	}
+		.b-basket .basket-cont .back-link:before {
+			content: ".";
+			font-size: 0px;
+			background-image: url("../i/back.png");
+			width: 21px;
+			height: 22px;
+			position: absolute;
+			top: -3px;
+			left: -28px;
+		}
+	.b-basket .basket-cont .navigate {
+		margin-top: 50px;
+		margin-left: 3px;
+	}	
+		.b-basket .basket-cont .navigate ul li{
+			float: left;
+			position: relative;
+		}
+		.b-basket .basket-cont .navigate ul li:nth-child(n+2) {
+			margin-left: 70px;
+		}
+			.b-basket .basket-cont .navigate ul li:nth-child(n+2):before{
+				content: ".";
+				font-size: 0px;
+				background-image: url("../i/way.png");
+				width: 7px;
+				height: 14px;
+				position: absolute;
+				top: 0px;
+				left: -39px;
+			}
+			.b-basket .basket-cont .navigate ul li{
+				font-size: 16px;
+				font-family: "latobold";
+				color: #818181;
+				line-height: 0.875;
+			}
+			.b-basket .basket-cont .navigate ul li.active{
+				color: #00ba22;
+			}
+				.b-basket .basket-cont .navigate ul li span {
+					margin-right: 10px;
+				}
+	.b-basket .basket-cont .shipping {
+		font-size: 14px;
+		font-family: "latobold";
+		color: rgb(51, 51, 51);
+		line-height: 1;
+	}
 
 
 form div.error div{
