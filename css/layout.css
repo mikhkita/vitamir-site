@@ -2518,6 +2518,8 @@ margin-bottom: 6px;
 				text-align: left;
 				padding-top: 6px;
 				padding-bottom: 9px;
+				background-image: url("../i/green-pattern.jpg");
+				background-position: 50% 50%;
 			}
 				.b-basket .basket-cont .table .tr .th:nth-child(1){
 					width: 300px;
@@ -2604,10 +2606,13 @@ margin-bottom: 6px;
 				margin-top: 17px;
 				margin-left: 27px;
 				text-transform: uppercase;
-				padding: 4px 28px;
+				padding: 4px 31px;
 				border-radius: 500px;
+				font-family: "latoregular";
+				font-size: 15px;
 			}
-			.b-basket span{
+			.b-basket b{
+				font-weight: 300;
 				font-family: "latoregular";
 				font-size: 21px;
 				color: #ff9329;
@@ -2630,8 +2635,10 @@ margin-bottom: 6px;
 			margin-top: 40px;
 			border-radius: 100px;
 			text-transform: uppercase;
-			padding: 7px 41px;
+			padding: 8px 71px;
 			margin-bottom: 20px;
+			font-family: "latoregular";
+			font-size: 12px;
 		}
 		.b-basket .b-question{
 			text-align: center;
@@ -2660,7 +2667,7 @@ margin-bottom: 6px;
 				color: #ed1f24;
 				text-decoration: underline;
 				display: inline-block;
-				margin-bottom: 10px;			
+				margin-bottom: 76px;			
 			}
 			.b-basket .b-question a:hover{
 				text-decoration: none;
