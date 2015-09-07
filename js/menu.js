@@ -3,7 +3,8 @@ $(document).ready(function(){
     $(".b-filter input,select[name='count']").change(calculateMenu);
 
     calculateMenu();
-
+    menuFilter();
+    $("#fullmenu input").eq(0).change();
 });
 
 function calculateMenu(){
@@ -35,4 +36,28 @@ function calculateDaytime(daytime,daytime1,type){
     for( i in sum ){
         $(".b-time-"+daytime1+" ."+i).text(sum[i]);
     }
+}
+function menuFilter() {
+    var form = $("#fullmenu");
+    $('body').on('click',".b-menu-pages a",function() {
+        alert();
+        $(".b-menu-pages a").removeClass("active");
+        $(this).addClass('active');
+        // $(".b-page").hide();
+        $(".b-page[data-page="+$(this).text()+"]").fadeIn();
+    });
+
+    $("#fullmenu input").change(function(){
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data:  form.serialize(),
+            success: function(msg){
+               $(".b-menu-items").empty().append(msg);
+               $(".b-menu-pages a").eq(0).click();
+            }
+        });
+    });
+
+   
 }

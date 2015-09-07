@@ -788,20 +788,20 @@
                 <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
                 <div class="menu-cont clearfix">
                     <div class="filter left">
-                        <form action="">
+                        <form action="/land/fullMenu" id="fullmenu">
                         <div class="filter-item">
                             <h5>Показывать:</h5>
                             <div class="b-inputs checkbox">
                                 <div class="clearfix">
-                                    <input id="daytime-1" type="checkbox" checked name="daytime" value="1">
+                                    <input id="daytime-1" type="checkbox" checked name="daytime[]" value="1">
                                     <label for="daytime-1">На утро</label>
                                 </div>
                                 <div class="clearfix">
-                                    <input id="daytime-2" type="checkbox" checked name="daytime" value="2">
+                                    <input id="daytime-2" type="checkbox" checked name="daytime[]" value="2">
                                     <label for="daytime-2">На день</label>
                                 </div>
                                 <div class="clearfix">
-                                    <input id="daytime-3" type="checkbox" checked name="daytime" value="3">
+                                    <input id="daytime-3" type="checkbox" checked name="daytime[]" value="3">
                                     <label for="daytime-3">На вечер</label>
                                 </div>
                             </div>
@@ -827,154 +827,22 @@
                             <h5>Состав:</h5>
                             <div class="b-inputs checkbox">
                                 <div class="clearfix">
-                                    <input id="type-1" type="checkbox" checked name="type" value="1">
+                                    <input id="type-1" type="checkbox" checked name="type[]" value="1">
                                     <label for="type-1">Рыба и морепродукты</label>
                                 </div>
                                 <div class="clearfix">
-                                    <input id="type-2" type="checkbox" checked name="type" value="2">
+                                    <input id="type-2" type="checkbox" checked name="type[]" value="2">
                                     <label for="type-2">Курица и мясо</label>
                                 </div>
                                 <div class="clearfix">
-                                    <input id="type-3" type="checkbox" checked name="type" value="3">
+                                    <input id="type-3" type="checkbox" checked name="type[]" value="3">
                                     <label for="type-3">Вегетарианское</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item">
-                            <h5>Кому:</h5>
-                            <div class="b-inputs radio">
-                                <div class="clearfix">
-                                    <input id="who-1" type="radio" checked name="who" value="1">
-                                    <label for="who-1">Мужчине</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="who-2" type="radio" name="who" value="2">
-                                    <label for="who-2">Женщине</label>
                                 </div>
                             </div>
                         </div>
                         </form>
                     </div>
-                    <div class="right b-menu-items">
-                        <div class="b-page">
-                            <ul class="clearfix">
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                        <span class="b-sale">-20%</span>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                                <li>
-                                    <h3>Оладьи на пару с рисом и капустой</h3>
-                                    <div class="b-image-cont">
-                                        <div class="b-image" style="background-image: url('i/menu-item.jpg');" ></div>
-                                    </div>
-                                    <div class="clearfix b-price-cont">
-                                        <div class="left">1190 руб.</div>
-                                        <a href='#' class="right">Подробнее</a>
-                                    </div>
-                                    <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="b-menu-nav clearfix">
-                            <div class="b-menu-pages left">
-                                Страницы:
-                                <a href="#" class="active">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                            </div>
-                            <div class="b-find-items right">
-                                Найдено товаров: <span>123</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="right b-menu-items"></div>
                 </div>
             </div>
         </div>
