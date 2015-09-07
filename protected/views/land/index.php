@@ -283,6 +283,11 @@
                     <div class="b-padding">
                         <div class="clearfix b-header">
                             <h3 class="left">Меню на день</h3>
+                            <a href="#" class="right b-add-day fancy">Добавить еще день</a>
+                            <select class="right" name="day" id="day-select">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                            </select>
                             <!-- <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
                         </div>
                         <? if(isset($daytime[1])): ?>
@@ -314,7 +319,6 @@
                                                     <option value="7">7</option>
                                                     <option value="8">8</option>
                                                     <option value="9">9</option>
-                                                    <option value="10">10</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -353,7 +357,7 @@
                                                     <option value="7">7</option>
                                                     <option value="8">8</option>
                                                     <option value="9">9</option>
-                                                    <option value="10">10</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -392,7 +396,7 @@
                                                     <option value="7">7</option>
                                                     <option value="8">8</option>
                                                     <option value="9">9</option>
-                                                    <option value="10">10</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>

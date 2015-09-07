@@ -3,7 +3,7 @@
         <div class="b-page" data-page="<?=$page?>">
             <ul class="clearfix">
     <? endif; ?>
-                <li>
+                <li class="clearfix" data-img="<?=$item['image']?>" data-name="<?=$item['price']?>" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['protein']?>" data-car="<?=$item['carbohydrate']?>" data-cal="<?=$item['calories']?>" data-pri="<?=$item['price']?>">
                     <h3><?=$item['name']?></h3>
                     <div class="b-image-cont">
                         <div class="b-image" style="background-image: url('<?=$item['image']?>');" ></div>

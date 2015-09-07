@@ -23,7 +23,7 @@ class LandController extends Controller
 
 	public function actionIndex($partial = false)
 	{	
-		$model = DishSet::model()->findAll("set_id=3");
+		$model = DishSet::model()->findAll("set_id=1");
 		$daytime = array();
 		foreach ($model as $dish) {
 			$temp = array();
