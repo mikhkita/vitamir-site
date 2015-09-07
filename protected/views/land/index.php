@@ -283,7 +283,7 @@
                     <div class="b-padding">
                         <div class="clearfix b-header">
                             <h3 class="left">Меню на день</h3>
-                            <!-- <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
+                            <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a>
                         </div>
                         <? if(isset($daytime[1])): ?>
                         <div class="b-time b-time-morning" id="morning">
@@ -294,7 +294,7 @@
                             <ul class="b-eat">
                                 <? foreach($daytime[1] as $item): ?>
                                     <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
+                                        <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
                                         <div class="left">
                                             <h4><?=$item['name']?></h4>
                                             <a href="#" class="b-more">Подробнее</a>
@@ -333,7 +333,7 @@
                             <ul class="b-eat">
                                 <? foreach($daytime[2] as $item): ?>
                                     <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
+                                       <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
                                         <div class="left">
                                             <h4><?=$item['name']?></h4>
                                             <a href="#" class="b-more">Подробнее</a>
@@ -372,7 +372,7 @@
                             <ul class="b-eat">
                                 <? foreach($daytime[3] as $item): ?>
                                     <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                        <div class="left"><img src="<?=$item['img']?>" alt=""></div>
+                                        <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
                                         <div class="left">
                                             <h4><?=$item['name']?></h4>
                                             <a href="#" class="b-more">Подробнее</a>

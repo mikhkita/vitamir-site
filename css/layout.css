@@ -1495,7 +1495,12 @@ margin-bottom: 6px;
 							.b-time ul.b-eat li .left{
 								
 							}	
-								.b-time ul.b-eat li img{
+								.b-time ul.b-eat li .b-image{
+									background-position: 50% 50%;
+									background-repeat: no-repeat;
+									background-size: cover;
+									width: 82px;
+									height: 56px;
 									margin-right: 20px;
 								}
 								.b-time ul.b-eat li h4{
