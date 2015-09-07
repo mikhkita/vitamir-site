@@ -17,7 +17,6 @@
     <script type="text/javascript" src="js/jssor.js"></script>
     <script type="text/javascript" src="js/jssor.slider.js"></script>
     <script type="text/javascript" src="js/TweenMax.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="js/swipe.js"></script>
     <script type="text/javascript" src="js/carousel.lite.js"></script>
     <script type="text/javascript" src="js/css3-mediaqueries.js"></script>
@@ -111,24 +110,24 @@
             </div>
         </div>
         <div class="b-block basket-cont">
-            <a class="back-link" href="#">Вернуться к выбору</a>
+            <!-- <a class="back-link" href="#">Вернуться к выбору</a> -->
             <div class="navigate clearfix">
                 <ul class="left clearfix">
-                    <li class="active"><span>1.</span>Ваш заказ</li>
-                    <li><span>2.</span>Оформление заказа</li>
+                    <li><span>1.</span>Ваш заказ</li>
+                    <li class="active"><span>2.</span>Оформление заказа</li>
                 </ul>
                 <h3 class="shipping right">Бесплатная доставка при заказе от 2900 руб</h3>
             </div>
-            <form action="">
+            <form action="" id="b-order-form">
             <div class="b-sale">
                 <div class="b-sale-block">
                     <h3 class="edit">Введите Ваши контактные данные:</h3>
                     <label for="sale-name">Введите Ваше имя:</label>
                     <input type="text" id="sale-name" class="write" name="name" placeholder="Иванов Иван" required/>
-                    <label for="sale-phone">Введите Ваш телефон:</label>
+                    <label for="phone-1">Введите Ваш телефон:</label>
                     <div class="clearfix phone-cont">
                         <div class="left phone-img"></div>
-                        <input class="left" type="text" id="sale-phone" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required/>
                     </div>
                     <label for="sale-email">Введите Ваш e-mail:</label>
                     <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
@@ -158,7 +157,7 @@
             </div>
             <a href="#" class="ajax" style="display:none;"></a>
             </form>
-            <div class="clearfix">
+            <div class="clearfix" style="text-align: right;">
                 <div class="clearfix b-sum">
                     <div class="left">
                         <h4>Стоимость доставки:</h4>
@@ -168,15 +167,15 @@
                         <h4><span>0</span> руб.</h4>
                         <h5><span>2900</span> руб.</h5>
                     </div>
+                    <button type="submit" class="right b-orange-butt b-order-butt" onclick="$('#b-order-form').submit();">оформить заказ</button>
                 </div>
-                <button type="submit" class="right b-orange-butt b-order-butt">оформить заказ</button>
             </div>
         </div>
         <div class="b-question">
         	<h3>Возник вопрос?</h3>
         	<h4>Звоните - с удовольствием поможем!</h4>
         	<h5>+7 495 12 345 67</h5>
-        	<a href="#">Заказать звонок</a>
+        	<a class="fancy" href="#" data-block="#b-popup-callback">Заказать звонок</a>
         </div>
     </div>
     

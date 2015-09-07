@@ -2603,13 +2603,14 @@ margin-bottom: 6px;
 			border-bottom: 1px solid #d4d4d4;
 		}
 			.b-basket .basket-cont .b-order button{
-				margin-top: 17px;
+				margin-top: 15px;
 				margin-left: 27px;
 				text-transform: uppercase;
 				padding: 4px 31px;
 				border-radius: 500px;
 				font-family: "latoregular";
 				font-size: 15px;
+				padding: 7px 31px;
 			}
 			.b-basket b{
 				font-weight: 300;
@@ -2635,10 +2636,11 @@ margin-bottom: 6px;
 			margin-top: 40px;
 			border-radius: 100px;
 			text-transform: uppercase;
-			padding: 8px 71px;
+			padding: 12px 71px;
 			margin-bottom: 20px;
 			font-family: "latoregular";
 			font-size: 12px;
+			margin-bottom: 70px;
 		}
 		.b-basket .b-question{
 			text-align: center;
@@ -2797,26 +2799,30 @@ margin-bottom: 6px;
 				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
 			}
 .b-sum{
-
+	width: 280px;
+	display: inline-block;
+	margin-top: 40px;
+	font-family: "latobold";
 }
 	.b-sum .left{
-
+		margin-left: 30px;
+		text-align: left;
 	}
-		.b-sum .left h4{
-
+		.b-sum h4{
+			font-size: 14px;
+			color: #473e42;
+			opacity: 0.7;
 		}
-		.b-sum .left h5{
-
+		.b-sum h5{
+			font-size: 18px;
+			color: #333333;
 		}
 	.b-sum .right{
-
+		text-align: left;
 	}
-		.b-sum .right h4{
-
-		}
-		.b-sum .right h5{
-
-		}
+	.b-sum .b-order-butt{
+		margin-top: 15px;
+	}
 
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
