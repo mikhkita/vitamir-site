@@ -222,7 +222,15 @@ input.error,textarea.error{
 	}
 .fancybox-inner{
 	overflow: visible !important;
-	padding-bottom: 30px !important;
+	/*padding-bottom: 30px !important;*/
+}
+.fancybox-skin {
+	background: none;
+}
+.fancybox-opened .fancybox-skin {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
 }
 .underline{
 	text-decoration: underline;
@@ -356,7 +364,7 @@ textarea{
 .b-popup.menu{
 	background-image: url("../i/popup-pattern-2.jpg");
 	width: 780px;
-	padding: 25px;
+	padding: 25px 40px 25px 25px;
 	margin-bottom: 30px;
 }
 	.b-popup.menu h2{
@@ -473,11 +481,18 @@ textarea{
 				background-image: url('../i/checkbox.png');
 				background-size: 10px;
 			}
+		.b-popup.menu form {
+			margin-top: 0;
+		}
+			.b-popup.menu form>div{
+				display: block;
+				margin-top: 0;
+			}
 	.b-menu-items{
 		width: 570px;
 	}
 		.b-menu-items .b-page{
-
+			display: none;
 		}
 			.b-menu-items .b-page ul{
 				text-align: left;

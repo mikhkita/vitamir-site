@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','basket'),
+				'actions'=>array('index','basket','fullMenu'),
 				'users'=>array('*'),
 			),
 		);
@@ -23,7 +23,7 @@ class LandController extends Controller
 
 	public function actionIndex($partial = false)
 	{	
-		$model = DishSet::model()->findAll("set_id=1");
+		$model = DishSet::model()->findAll("set_id=3");
 		$daytime = array();
 		foreach ($model as $dish) {
 			$temp = array();
@@ -42,19 +42,54 @@ class LandController extends Controller
 			$temp['img'] = $dish->dish->image;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
 		}
-
+		
+		
 		$this->render('index',array(
 			'daytime'=>$daytime
 		));
 	}
 
+	public function actionFullMenu($partial = false)
+	{	
+		$criteria = new CDbCriteria();
+		$criteria->condition ="";
+		if($_POST['order'] == 2) {
+			$criteria->order = 'price ASC';
+		}
+		if(!empty($_POST['daytime'])) {
+			$criteria->condition .="(";
+			foreach ($_POST['daytime'] as $item) {	
+				$criteria->condition .= "daytime_id LIKE '%".$item."%' OR ";
+			}
+			$criteria->condition = substr($criteria->condition,0,-3);
+			$criteria->condition .=")";
+		}
+		if(!empty($_POST['type'])) {
+			if($criteria->condition) $criteria->condition .=" AND ("; else $criteria->condition .="(";
+			foreach ($_POST['type'] as $item) {	
+				$criteria->condition .= "category_id = ".$item." OR ";
+			}
+			$criteria->condition = substr($criteria->condition,0,-3);
+			$criteria->condition .=")";
+		}
+		$dishes = Dish::model()->findAll($criteria);
+		$count = count($dishes);
+		$pages = $count/9;
+		$this->renderPartial('dishes',array(
+			'dishes'=>$dishes,
+			'count' => $count,
+			'pages' => $pages
+		));
+	}
+
 	public function actionBasket($partial = false)
 	{
+
 		$this->render('basket',array(
 			
 		));
 	}
-			
+
 	public function loadModel($id)
 	{
 		$model=Good::model()->findByPk($id);

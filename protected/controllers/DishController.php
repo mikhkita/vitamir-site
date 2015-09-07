@@ -120,7 +120,10 @@ class DishController extends Controller
 				if($_POST['Dish']['image']!="") {
 					$from = $_POST['Dish']['image'];
 					$_POST['Dish']['image'] = str_replace(Yii::app()->params['tempFolder'], Yii::app()->params['imageFolder'], $from);
-					rename($from,$_POST['Dish']['image']);
+					$resizeObj = new Resize($from);
+					$resizeObj -> resizeImage(300, 300, 'crop');
+					$resizeObj -> saveImage($_POST['Dish']['image'], 100);
+					unlink($from);
 				} else {
 					$_POST['Dish']['image'] = "upload/images/default.jpg";
 				}
