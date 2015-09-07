@@ -39,11 +39,10 @@ function calculateDaytime(daytime,daytime1,type){
 }
 function menuFilter() {
     var form = $("#fullmenu");
-    $('body').on('click',".b-menu-pages a",function() {
-        alert();
-        $(".b-menu-pages a").removeClass("active");
+    $('body').on('click',".b-menu-pages a:not(.active)",function() {
+        $(".b-menu-pages a.active").removeClass("active");
         $(this).addClass('active');
-        // $(".b-page").hide();
+        $(".b-page").hide();
         $(".b-page[data-page="+$(this).text()+"]").fadeIn();
     });
 
@@ -59,5 +58,9 @@ function menuFilter() {
         });
     });
 
+    $("#fullmenu input[type=checkbox]:checked").click(function(){
+        $(this).change();
+    });
+    
    
 }

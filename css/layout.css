@@ -481,6 +481,13 @@ textarea{
 				background-image: url('../i/checkbox.png');
 				background-size: 10px;
 			}
+		.b-popup.menu form {
+			margin-top: 0;
+		}
+			.b-popup.menu form>div{
+				display: block;
+				margin-top: 0;
+			}
 	.b-menu-items{
 		width: 570px;
 	}

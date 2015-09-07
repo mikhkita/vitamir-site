@@ -56,7 +56,7 @@ class LandController extends Controller
 		if($_POST['order'] == 2) {
 			$criteria->order = 'price ASC';
 		}
-		if(isset($_POST['daytime'])) {
+		if(!empty($_POST['daytime'])) {
 			$criteria->condition .="(";
 			foreach ($_POST['daytime'] as $item) {	
 				$criteria->condition .= "daytime_id LIKE '%".$item."%' OR ";
@@ -64,8 +64,8 @@ class LandController extends Controller
 			$criteria->condition = substr($criteria->condition,0,-3);
 			$criteria->condition .=")";
 		}
-		if(isset($_POST['type'])) {
-			$criteria->condition .=" AND (";
+		if(!empty($_POST['type'])) {
+			if($criteria->condition) $criteria->condition .=" AND ("; else $criteria->condition .="(";
 			foreach ($_POST['type'] as $item) {	
 				$criteria->condition .= "category_id = ".$item." OR ";
 			}

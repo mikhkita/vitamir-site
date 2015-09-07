@@ -24,7 +24,7 @@
     <div class="b-menu-pages left">
         Страницы:
         <? for ($i=1; $i < $pages+1; $i++): ?> 
-            <a href="#"><?=$i?></a>
+            <a href="#" onclick="return false;"><?=$i?></a>
         <? endfor; ?>
     </div>
     <div class="b-find-items right">
