@@ -2665,6 +2665,152 @@ margin-bottom: 6px;
 			.b-basket .b-question a:hover{
 				text-decoration: none;
 			}
+
+.b-sale{
+	text-align: left;
+	color: #333333;
+	margin-top: 30px;
+}
+	.b-sale-block{
+		padding-left: 30px;
+		padding-top: 25px;
+		border-bottom: 1px solid #d4d4d4;
+		padding-bottom: 20px;
+	}
+		.b-sale-block h3{
+			font-family: "latobold";
+			margin-bottom: 15px;
+		}
+		.b-sale-block h3.edit{
+			margin-bottom: 20px;
+		}
+		.b-sale-block label{
+			display: block;
+			font-size: 14px;
+			font-family: "latobold";
+			color: #473e42;
+			margin-bottom: 5px;
+		}
+		.b-sale-block>input[type="text"],
+		.b-sale-block>.left>input[type="text"]{
+			display: block;
+			width: 272px;
+			background-color: #FFF;
+			border: 1px solid rgba(156, 139, 145, 0.49);
+			border-radius: 5px;
+			color: #818181;
+			font-family: "latobold";
+			font-size: 15px;
+			margin-top: 3px;
+			margin-bottom: 20px;
+			padding: 9px 15px;
+			color: #473E42;
+		}
+		.b-sale-block>.left{
+			width: 350px;
+		}
+		.b-sale-block .right{
+			width: 350px;
+		}
+		.phone-cont{
+			display: inline-block;
+			margin-top: 12px;
+		}
+		.phone-cont .phone-img{
+			width: 40px;
+			height: 40px;
+			background-color: #FFF;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			border-radius: 5px 0px 0px 5px;
+			background-image: url('../i/phone.png');
+			border: 1px solid rgba(168, 168, 168, 0.5);
+			border-right: 0px;
+		}
+		.phone-cont input{
+			border: 1px solid rgba(168, 168, 168, 0.5);
+			height: 40px;
+			width: 251px;
+			font-size: 15px;
+			border-radius: 0px 5px 5px 0px;
+			padding-left: 10px;
+			margin-bottom: 17px;
+			letter-spacing: 2px;
+		}
+		.b-sale .radio{
+			margin-left: 2px;
+			margin-top: 1px;
+			margin-bottom: 10px;
+		}
+		.b-sale .radio label{
+			display: inline-block;
+			cursor: pointer;
+			position: relative;
+			color: #473E42;
+			font-family: "latobold";
+			font-size: 14px;
+			padding-left: 20px;
+			margin-right: 24px;
+			margin-bottom: 15px;
+		}
+		.b-sale .radio label span{
+			color: #473e42;
+			font-family: "latobold";
+			opacity: 0.6;
+			font-size: 14px;
+		}
+		.b-sale .radio input[type="radio"]{
+			display: none;
+		}
+			.b-sale .radio label:before{
+				content: "";
+			    display: inline-block;
+			    width: 12px;
+				height: 12px;
+				background-color: #FFF;
+				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
+			    margin-right: 10px;
+			    position: absolute;
+			    left: 0;
+			    bottom: 3px;
+			    background-color: #FFF;
+			}
+			.b-sale .radio label:before {
+		    	border-radius: 50%;
+			}
+			.b-sale .radio input[type=radio]:checked + label:before {
+				font-size: 58px;
+				text-align: center;
+				line-height: 20px;
+				display: block;
+				width: 6px;
+				height: 6px;
+				background-color: #9C8B91;
+				border: 3px solid #FFF;
+				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
+			}
+.b-sum{
+
+}
+	.b-sum .left{
+
+	}
+		.b-sum .left h4{
+
+		}
+		.b-sum .left h5{
+
+		}
+	.b-sum .right{
+
+	}
+		.b-sum .right h4{
+
+		}
+		.b-sum .right h5{
+
+		}
+
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;
