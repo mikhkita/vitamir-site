@@ -1477,8 +1477,20 @@ margin-bottom: 6px;
 						font-size: 11px;
 						text-decoration: underline;
 					}
-						.b-3 .b-menu .b-blue-link:hover{
-							text-decoration: none;
+					.b-3 .b-menu .b-add-day {
+					    display: inline-block;
+					    border-radius: 50px;
+					    background-color: #c0d155;
+					    text-transform: uppercase;
+					    font-family: "latobold";
+					    font-size: 12px;
+					    color: #FFF;
+					    padding: 8px 15px;
+					    text-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+					    margin-left: 20px;
+					}
+						.b-3 .b-menu .b-add-day:hover{
+							background-color: #B6C74D;
 						}
 				.b-time{
 					margin-top: 20px;
@@ -1517,6 +1529,7 @@ margin-bottom: 6px;
 									width: 82px;
 									height: 56px;
 									margin-right: 20px;
+									max-width: 82px;
 								}
 								.b-time ul.b-eat li h4{
 									line-height: 18px;
@@ -1547,8 +1560,8 @@ margin-bottom: 6px;
   									margin-right: 13px;
   									display: inline-block;
 								}
-								.b-time ul.b-eat li>.right select{
-								    background-color: #FFF;
+								.b-menu select {
+									background-color: #FFF;
 								    border: 2px solid rgba(84,56,67,.5);
 								    border-radius: 5px;
 								    color: #212121;
@@ -1556,13 +1569,17 @@ margin-bottom: 6px;
 								    background-position: 64% 50%;
 								    background-repeat: no-repeat;
 								    background-image: url('../i/del-select.png');
-								    font-size: 12px;
-								    margin-top: 3px;
-								    margin-bottom: 13px;
+								    font-size: 12px; 
 								    height: 33px;
 								    width: 52px;
 								    padding: 0px 8px;
     								box-sizing: border-box;
+    								display: none;
+								}
+								.b-time ul.b-eat li>.right select{
+								    margin-top: 3px;
+								    margin-bottom: 13px;
+								    display: block;
 								}
 				.b-time .b-add-butt-cont{
 					position: relative;
