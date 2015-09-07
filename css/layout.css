@@ -2461,9 +2461,155 @@ margin-bottom: 6px;
 		font-family: "latobold";
 		color: rgb(51, 51, 51);
 		line-height: 1;
+		display: block;
+		border: 1px solid #d9d9d9;
+		padding: 13px 39px 13px 95px;
+		margin-top: -12px;
+		border-radius: 5px;
+		position: relative;
 	}
+		.b-basket .basket-cont .shipping:after{
+			font-size: 0px;
+			content: ".";
+			position: absolute;
+			width: 34px;
+			height: 23px;
+			top: 9px;
+			left: 37px;
+			background: url("../images/car.png");	
+		}
+.b-basket .basket-cont .table{
+	width: 970px;
+	border: 2px solid #96bf0b;
+	margin-top: 62px;
+	border-radius: 5px;
+}
+	.b-basket .basket-cont table tbody{
 
-
+	}
+		.b-basket .basket-cont .table .tr{
+			text-align: left;
+		}
+		.b-basket .basket-cont .table .td{
+			padding-top: 18px;
+		}
+			.b-basket .basket-cont .table .tr .th{
+				background-color: #96bf0b;
+				font-size: 14px;
+				color: #ffffff;
+				font-family: "latobold";
+				text-align: left;
+				padding-top: 6px;
+				padding-bottom: 9px;
+			}
+				.b-basket .basket-cont .table .tr .th:nth-child(1){
+					width: 300px;
+					padding-left: 26px;
+				}
+				.b-basket .basket-cont .table .tr .th:nth-child(2){
+					width: 195px;
+				}
+				.b-basket .basket-cont .table .tr .th:nth-child(3){
+					width: 449px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(1){
+					width: 300px;
+					padding-left: 26px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(2){
+					width: 195px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(3){
+					width: 449px;
+				}
+				.b-basket .basket-cont .table h2{
+					font-size: 19px;
+					font-family: "latobold";
+					text-align: left;
+				}
+				.b-basket .basket-cont .table h4{
+					font-size: 20px;
+					font-family: "latobold";
+					color: #555555;
+				}
+				.b-basket .basket-cont .table h5{
+					font-size: 12px;
+					font-family: "latobold";
+					color: #97c10b;
+				}
+				.b-basket .basket-cont .table h6{
+					font-size: 12px;
+					font-family: "latobold";
+					color: #c5c5c5;
+					width: 190px;
+					margin-bottom: 15px;
+				}
+				.b-basket .basket-cont .table .b-arrow{
+					font-size: 16px;
+					font-family: "latobold";
+					color: #616161;
+					border: 2px solid #a99ba1;
+					border-radius: 5px;
+					margin-top: 22px;
+					display: inline-block;
+ 				   	padding: 3px 17px;
+				}
+				.b-basket .basket-cont .table a{
+					font-size: 12px;
+					font-family: "latoregular";
+					color: #748285;
+					text-decoration: underline;
+				}
+					.b-basket .basket-cont .table a:hover{
+						text-decoration: none;
+					}
+		.b-basket .basket-cont .b-order>h4{
+			font-family: "latoregular";
+			font-size: 18px;
+			color: #333333;
+			text-align: left;
+			margin-top: 35px;
+		}			
+		.b-basket .basket-cont .b-order input{
+			font-family: "latobold";
+			font-size: 14px;
+			color: #918b8e;
+			margin-top: 14px;
+			border: none;
+			border: 1px solid #cec6c9;
+			border-radius: 5px;
+			padding: 7px 92px 7px 12px;
+		}
+		.b-basket .basket-cont .b-order{
+			border-bottom: 1px solid #d4d4d4;
+		}
+			.b-basket .basket-cont .b-order button{
+				margin-top: 17px;
+				margin-left: 27px;
+				text-transform: uppercase;
+				padding: 4px 28px;
+				border-radius: 500px;
+			}
+			.b-basket .sale{
+				font-family: "latoregular";
+				font-size: 12px;
+				text-decoration: underline;
+				color: #b0b7b8;
+				text-align: left;
+				margin-top: 18px;
+				margin-left: 21px;
+				margin-bottom: 39px;
+			}
+				.b-basket .sale:hover{
+					text-decoration: none;
+				}
+		.b-order-butt{
+			margin-top: 40px;
+			border-radius: 100px;
+			text-transform: uppercase;
+			padding: 7px 41px;
+			margin-bottom: 20px;
+		}
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;
