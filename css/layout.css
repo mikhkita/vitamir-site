@@ -2565,8 +2565,8 @@ margin-bottom: 6px;
 					font-size: 16px;
 					font-family: "latobold";
 					color: #616161;
-					border: 2px solid #a99ba1;
-					border-radius: 5px;
+				/*	border: 2px solid #a99ba1;
+					border-radius: 5px;*/
 					margin-top: 22px;
 					display: inline-block;
  				   	padding: 3px 17px;
@@ -2607,6 +2607,12 @@ margin-bottom: 6px;
 				padding: 4px 28px;
 				border-radius: 500px;
 			}
+			.b-basket span{
+				font-family: "latoregular";
+				font-size: 21px;
+				color: #ff9329;
+				margin-top: 11px;
+			}
 			.b-basket .sale{
 				font-family: "latoregular";
 				font-size: 12px;
@@ -2614,7 +2620,7 @@ margin-bottom: 6px;
 				color: #b0b7b8;
 				text-align: left;
 				margin-top: 18px;
-				margin-left: 21px;
+				margin-left: 5px;
 				margin-bottom: 39px;
 			}
 				.b-basket .sale:hover{
@@ -2627,6 +2633,38 @@ margin-bottom: 6px;
 			padding: 7px 41px;
 			margin-bottom: 20px;
 		}
+		.b-basket .b-question{
+			text-align: center;
+		}
+			.b-basket .b-question h3{
+				font-family: "latoregular";
+				font-size: 22px;
+				color: #3b3f3e;
+			}
+			.b-basket .b-question h4{
+				font-family: "latobold";
+				font-size: 24px;
+				color: #3B3F3E;
+				line-height: 24px;
+				color: #3b3f3e;
+			}
+			.b-basket .b-question h5{
+				font-family: "latoblack";
+				font-size: 30px;
+				color: #2ab938;
+				margin-top: 9px;			
+				}
+			.b-basket .b-question a{
+				font-family: "latoheavy";
+				font-size: 15px;
+				color: #ed1f24;
+				text-decoration: underline;
+				display: inline-block;
+				margin-bottom: 10px;			
+			}
+			.b-basket .b-question a:hover{
+				text-decoration: none;
+			}
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;
