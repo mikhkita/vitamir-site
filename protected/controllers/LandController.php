@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','basket','fullMenu'),
+				'actions'=>array('index','basket','fullMenu','dayTime'),
 				'users'=>array('*'),
 			),
 		);
@@ -23,35 +23,15 @@ class LandController extends Controller
 
 	public function actionIndex($partial = false)
 	{	
-		$model = DishSet::model()->findAll("set_id=1");
-		$daytime = array();
-		foreach ($model as $dish) {
-			$temp = array();
-			$temp['name'] = $dish->dish->name;
-			$temp['m_1'] = $dish->dish->m_1;
-			$temp['m_2'] = $dish->dish->m_2;
-			$temp['m_3'] = $dish->dish->m_3;
-			$temp['w_1'] = $dish->dish->w_1;
-			$temp['w_2'] = $dish->dish->w_2;
-			$temp['w_3'] = $dish->dish->w_3;
-			$temp['fat'] = $dish->dish->fat;
-			$temp['pro'] = $dish->dish->protein;
-			$temp['car'] = $dish->dish->carbohydrate;
-			$temp['cal'] = $dish->dish->calories;
-			$temp['price'] = $dish->dish->price;
-			$temp['img'] = $dish->dish->image;
-			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
-		}
-		
-		
+		$set_id = file_get_contents('set_number.txt');
 		$this->render('index',array(
-			'daytime'=>$daytime
+			'daytime'=>$this->actionDayTime($set_id,false)
 		));
 	}
 
-	public function actionFullMenu($partial = false)
+	public function actionFullMenu()
 	{	
-		$criteria = new CDbCriteria();
+		$criteria = new CDbCriteria();	
 		$criteria->condition ="";
 		if($_POST['order'] == 2) {
 			$criteria->order = 'price ASC';
@@ -73,6 +53,15 @@ class LandController extends Controller
 			$criteria->condition .=")";
 		}
 		$dishes = Dish::model()->findAll($criteria);
+		foreach ($dishes as $key => &$dish) {
+			$dish['price'] = $dish['price']*$dish[$_POST['coef']];
+		}
+		function cmp($a, $b)
+		{
+		    return strcmp($a["price"], $b["price"]);
+		}
+
+		usort($dishes, "cmp");
 		$count = count($dishes);
 		$pages = $count/9;
 		$this->renderPartial('dishes',array(
@@ -89,7 +78,39 @@ class LandController extends Controller
 			
 		));
 	}
+	public function actionDayTime($set_id,$arr = true)
+	{
+		$model = Set::model()->findAll(array('order' => 'sort'));
+		$count = Set::model()->count()-1;
+		$set_id = ($set_id==$count) ? 0 : $set_id+1;
+		$model = $model[$set_id]->dishes;
+		$daytime = array();
+		foreach ($model as $dish) {
+			$temp = array();
+			$temp['id'] = $dish->dish->id;
+			$temp['name'] = $dish->dish->name;
+			$temp['m_1'] = $dish->dish->m_1;
+			$temp['m_2'] = $dish->dish->m_2;
+			$temp['m_3'] = $dish->dish->m_3;
+			$temp['w_1'] = $dish->dish->w_1;
+			$temp['w_2'] = $dish->dish->w_2;
+			$temp['w_3'] = $dish->dish->w_3;
+			$temp['fat'] = $dish->dish->fat;
+			$temp['pro'] = $dish->dish->protein;
+			$temp['car'] = $dish->dish->carbohydrate;
+			$temp['cal'] = $dish->dish->calories;
+			$temp['price'] = $dish->dish->price;
+			$temp['img'] = $dish->dish->image;
+			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
+			$daytime['set_id'] = $set_id;
 
+		}
+		if($arr) {	
+			$this->renderPartial('daytime',array(
+				'daytime'=>$daytime
+			));	
+		} else return $daytime;
+	}
 	public function loadModel($id)
 	{
 		$model=Good::model()->findByPk($id);

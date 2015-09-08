@@ -283,137 +283,23 @@
                     <div class="b-padding">
                         <div class="clearfix b-header">
                             <h3 class="left">Меню на день</h3>
-                            <a href="#" class="right b-add-day fancy">Добавить еще день</a>
+                            <a href="#" class="right b-add-day">Добавить еще день</a>
                             <select class="right" name="day" id="day-select">
-                                <option value="1">1</option>
-                                <option value="2" selected>2</option>
+                                <option value="1" selected>1</option>
                             </select>
-                            <!-- <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
-                            <a href="#" class="fancy b-blue-link right" data-block="#b-popup-menu">Посмотреть все меню</a>
+                            <!-- <a href="#" class="b-add-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
                         </div>
-                        <? if(isset($daytime[1])): ?>
-                        <div class="b-time b-time-morning" id="morning">
-                            <div class="b-header clearfix">
-                                <h3 class="left">Утро</h3>
-                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
-                            </div>
-                            <ul class="b-eat">
-                                <? foreach($daytime[1] as $item): ?>
-                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                        <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
-                                        <div class="left">
-                                            <h4><?=$item['name']?></h4>
-                                            <a href="#" class="b-more">Подробнее</a>
-                                        </div>
-                                        <div class="right clearfix">
-                                            <div class="left">
-                                                <span>Кол-во:</span>
-                                            </div>
-                                            <div class="right">
-                                                <select name="count" id="">
-                                                    <option value="1" selected>1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <? endforeach; ?>
-                            </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на утро</a></div>
-                        </div>
-                        <? endif; ?>   
-                        <? if(isset($daytime[2])): ?>
-                        <div class="b-time b-time-day" id="day">
-                            <div class="b-header clearfix">
-                                <h3 class="left">День</h3>
-                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
-                            </div>
-                            <ul class="b-eat">
-                                <? foreach($daytime[2] as $item): ?>
-                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                       <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
-                                        <div class="left">
-                                            <h4><?=$item['name']?></h4>
-                                            <a href="#" class="b-more">Подробнее</a>
-                                        </div>
-                                        <div class="right clearfix">
-                                            <div class="left">
-                                                <span>Кол-во:</span>
-                                            </div>
-                                            <div class="right">
-                                                <select name="count" id="">
-                                                    <option value="1" selected>1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <? endforeach; ?>
-                            </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на день</a></div>
-                        </div>
-                        <? endif; ?>   
-                        <? if(isset($daytime[3])): ?>
-                        <div class="b-time b-time-evening" id="evening">
-                            <div class="b-header clearfix">
-                                <h3 class="left">Вечер</h3>
-                                <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
-                            </div>
-                            <ul class="b-eat">
-                                <? foreach($daytime[3] as $item): ?>
-                                    <li class="clearfix" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-w-1="<?=$item['w_1']?>" data-w-2="<?=$item['w_2']?>" data-w-3="<?=$item['w_3']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['pro']?>" data-car="<?=$item['car']?>" data-cal="<?=$item['cal']?>" data-pri="<?=$item['price']?>">
-                                        <div class="left b-image" style="background-image: url('<?=$item['img']?>');"></div>
-                                        <div class="left">
-                                            <h4><?=$item['name']?></h4>
-                                            <a href="#" class="b-more">Подробнее</a>
-                                        </div>
-                                        <div class="right clearfix">
-                                            <div class="left">
-                                                <span>Кол-во:</span>
-                                            </div>
-                                            <div class="right">
-                                                <select name="count" id="">
-                                                    <option value="1" selected>1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </li>
-                                <? endforeach; ?>
-                            </ul>
-                            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на вечер</a></div>
-                        </div>
-                        <? endif; ?>
+                        <form action="land/basket" method="POST" id="menu-order">
+                        <?php $this->renderPartial('daytime', array('daytime'=> $daytime)); ?>
+                        </form>
+                       
                     </div>
                     <div class="b-green-bottom b-time-all clearfix">
                         <div class="left">
                             <h3>Цена: <span class="pri">1202</span> руб.</h3>
                         </div>
                         <div class="right">
-                            <a href="#" class="ajax b-orange-butt rounded">Заказать набор на 1 месяц</a>
+                            <input type="submit" class="b-orange-butt rounded" >Заказать набор на 1 месяц</a>
                         </div>
                     </div>
                 </div>
@@ -814,12 +700,12 @@
                         <div class="filter-item">
                             <h5>Сортировать по:</h5>
                             <div class="b-inputs radio">
-                                <div class="clearfix">
-                                    <input id="order-1" type="radio" checked name="order" value="1">
+                                <!-- <div class="clearfix">
+                                    <input id="order-1" type="radio" name="order" value="1">
                                     <label for="order-1">По популярности</label>
-                                </div>
+                                </div> -->
                                 <div class="clearfix">
-                                    <input id="order-2" type="radio" name="order" value="2">
+                                    <input id="order-2" type="radio" name="order" value="2" checked>
                                     <label for="order-2">По цене</label>
                                 </div>
                                 <div class="clearfix">
