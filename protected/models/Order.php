@@ -100,6 +100,11 @@ class Order extends CActiveRecord
 		));
 	}
 
+	public function beforeDelete() {
+		OrderDish::model()->deleteAll("order_id=".$this->id);
+        return true;
+    }
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

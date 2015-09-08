@@ -36,6 +36,9 @@ class LandController extends Controller
 		if($_POST['order'] == 2) {
 			$criteria->order = 'price ASC';
 		}
+		if($_POST['order'] == 3) {
+			$criteria->order = 'action DESC';
+		}
 		if(!empty($_POST['daytime'])) {
 			$criteria->condition .="(";
 			foreach ($_POST['daytime'] as $item) {	
@@ -54,14 +57,15 @@ class LandController extends Controller
 		}
 		$dishes = Dish::model()->findAll($criteria);
 		foreach ($dishes as $key => &$dish) {
+			if($dish['action'])  {
+				$temp = $dish['price'];
+				$dish['price'] = $dish['action'];
+				$dish['action'] = ($temp - $dish['action'])*100/$temp;
+				$temp = $dish['action'] % 5;
+				$dish['action'] = ($temp) ? $dish['action']+(5-$temp) : $dish['action'];
+			}
 			$dish['price'] = $dish['price']*$dish[$_POST['coef']];
 		}
-		function cmp($a, $b)
-		{
-		    return strcmp($a["price"], $b["price"]);
-		}
-
-		usort($dishes, "cmp");
 		$count = count($dishes);
 		$pages = $count/9;
 		$this->renderPartial('dishes',array(
@@ -73,12 +77,30 @@ class LandController extends Controller
 
 	public function actionBasket($partial = false)
 	{
-
+		$model = new Order;	
+		$model->location = '123';
+		$model->date = time();
+		$model->delivery = 1;
+		$model->payment = 1;
+		$model->save();
+		$order_id = $model->id;
+		foreach ($_POST['day'] as $key => $item) {
+			foreach ($item as $value) {
+				$arr = explode(";", $value);
+				$temp = new OrderDish;
+				$temp->order_id = $order_id;
+				$temp->dish_id = $arr[0];
+				$temp->daytime_id = $arr[1];
+				$temp->count = $arr[2];
+				$temp->day = $key+1;
+				$temp->save();
+			}
+		}
 		$this->render('basket',array(
-			
+			'order_id' => $order_id	
 		));
 	}
-	public function actionDayTime($set_id,$arr = true)
+	public function actionDayTime($set_id,$html = true)
 	{
 		$model = Set::model()->findAll(array('order' => 'sort'));
 		$count = Set::model()->count()-1;
@@ -99,13 +121,13 @@ class LandController extends Controller
 			$temp['pro'] = $dish->dish->protein;
 			$temp['car'] = $dish->dish->carbohydrate;
 			$temp['cal'] = $dish->dish->calories;
-			$temp['price'] = $dish->dish->price;
+			$temp['price'] = ($dish->dish->action!=0) ? $dish->dish->action : $dish->dish->price;
 			$temp['img'] = $dish->dish->image;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
 			$daytime['set_id'] = $set_id;
 
 		}
-		if($arr) {	
+		if($html) {	
 			$this->renderPartial('daytime',array(
 				'daytime'=>$daytime
 			));	

@@ -30,7 +30,7 @@
 					<? if( $this->getUserRole() == "root" ):  ?>
 						<td><?=$item->id?></td>
 					<? endif; ?>
-					<td class="align-left"><a href="#"><?=$item->name?></a></td>
+					<td class="align-left"><a class="ajax-form ajax-update" href="<?php echo Yii::app()->createUrl('/'.$this->adminMenu["cur"]->code.'/adminupdate',array('id'=>$item->id))?>"><?=$item->name?></a></td>
 					<td class="align-left"><?=$item->daytime->name?></td>
 					<td class="align-left"><?=$item->category->name?></td>
 					<td class="align-left"><?=$item->price?></td>

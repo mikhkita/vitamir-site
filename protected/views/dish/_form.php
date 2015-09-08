@@ -69,6 +69,11 @@
 				<?php echo $form->textField($model,'price',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
 				<?php echo $form->error($model,'price'); ?>
 			</div>
+			<div class="row mt row-half">
+				<?php echo $form->labelEx($model,'action'); ?>
+				<?php echo $form->textField($model,'action',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
+				<?php echo $form->error($model,'action'); ?>
+			</div>
 		</div>
 	</div>
 

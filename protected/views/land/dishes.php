@@ -7,7 +7,9 @@
                     <h3><?=$item['name']?></h3>
                     <div class="b-image-cont">
                         <div class="b-image" style="background-image: url('<?=$item['image']?>');" ></div>
-                        <span class="b-sale">-20%</span>
+                        <?if($item['action']): ?>
+                            <span class="b-sale">-<?=$item['action']?>%</span>
+                        <? endif; ?>
                     </div>
                     <div class="clearfix b-price-cont">
                         <div class="left"><span><?=$item['price']?></span> руб.</div>

@@ -88,7 +88,7 @@ class Dish extends CActiveRecord
 			'carbohydrate' => 'Углеводы в порции',
 			'calories' => 'Килокалории в порции',
 			'price' => 'Цена за порцию',
-			'action' => 'Акция',
+			'action' => 'Цена по акции',
 			'category_id' => 'Категория',
 			'daytime_id' => 'Время суток',
 		);
