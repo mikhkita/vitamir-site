@@ -15,20 +15,22 @@ $(document).ready(function(){
     $(window).resize(resize);
     resize();
     
-	var myPlace = new google.maps.LatLng(55.754407, 37.625151);
-    var myOptions = {
-        zoom: 16,
-        center: myPlace,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true,
-        scrollwheel: false,
-        zoomControl: true
-    }
-    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+    if( $("#map_canvas").length ){
+    	var myPlace = new google.maps.LatLng(55.754407, 37.625151);
+        var myOptions = {
+            zoom: 16,
+            center: myPlace,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true,
+            scrollwheel: false,
+            zoomControl: true
+        }
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
 
-    var marker = new google.maps.Marker({
-	    position: myPlace,
-	    map: map,
-	    title: "Витамир"
-	});
+        var marker = new google.maps.Marker({
+    	    position: myPlace,
+    	    map: map,
+    	    title: "Витамир"
+    	});
+    }
 });

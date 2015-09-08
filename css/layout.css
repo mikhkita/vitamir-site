@@ -2490,13 +2490,362 @@ margin-bottom: 6px;
 		font-family: "latobold";
 		color: rgb(51, 51, 51);
 		line-height: 1;
+		display: block;
+		border: 1px solid #d9d9d9;
+		padding: 13px 39px 13px 95px;
+		margin-top: -12px;
+		border-radius: 5px;
+		position: relative;
 	}
+		.b-basket .basket-cont .shipping:after{
+			font-size: 0px;
+			content: ".";
+			position: absolute;
+			width: 34px;
+			height: 23px;
+			top: 9px;
+			left: 37px;
+			background: url("../images/car.png");	
+		}
+.b-basket .basket-cont .table{
+	width: 970px;
+	border: 2px solid #96bf0b;
+	margin-top: 62px;
+	border-radius: 5px;
+}
+	.b-basket .basket-cont table tbody{
+
+	}
+		.b-basket .basket-cont .table .tr{
+			text-align: left;
+		}
+		.b-basket .basket-cont .table .td{
+			padding-top: 18px;
+		}
+			.b-basket .basket-cont .table .tr .th{
+				background-color: #96bf0b;
+				font-size: 14px;
+				color: #ffffff;
+				font-family: "latobold";
+				text-align: left;
+				padding-top: 6px;
+				padding-bottom: 9px;
+				background-image: url("../i/green-pattern.jpg");
+				background-position: 50% 50%;
+			}
+				.b-basket .basket-cont .table .tr .th:nth-child(1){
+					width: 300px;
+					padding-left: 26px;
+				}
+				.b-basket .basket-cont .table .tr .th:nth-child(2){
+					width: 195px;
+				}
+				.b-basket .basket-cont .table .tr .th:nth-child(3){
+					width: 449px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(1){
+					width: 300px;
+					padding-left: 26px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(2){
+					width: 195px;
+				}
+				.b-basket .basket-cont .table .tr .td:nth-child(3){
+					width: 449px;
+				}
+				.b-basket .basket-cont .table h2{
+					font-size: 19px;
+					font-family: "latobold";
+					text-align: left;
+				}
+				.b-basket .basket-cont .table h4{
+					font-size: 20px;
+					font-family: "latobold";
+					color: #555555;
+				}
+				.b-basket .basket-cont .table h5{
+					font-size: 12px;
+					font-family: "latobold";
+					color: #97c10b;
+				}
+				.b-basket .basket-cont .table h6{
+					font-size: 12px;
+					font-family: "latobold";
+					color: #c5c5c5;
+					width: 190px;
+					margin-bottom: 15px;
+				}
+				.b-basket .basket-cont .table .b-arrow{
+					font-size: 16px;
+					font-family: "latobold";
+					color: #616161;
+				/*	border: 2px solid #a99ba1;
+					border-radius: 5px;*/
+					margin-top: 22px;
+					display: inline-block;
+ 				   	padding: 3px 17px;
+				}
+				.b-basket .basket-cont .table a{
+					font-size: 12px;
+					font-family: "latoregular";
+					color: #748285;
+					text-decoration: underline;
+				}
+					.b-basket .basket-cont .table a:hover{
+						text-decoration: none;
+					}
+		.b-basket .basket-cont .b-order>h4{
+			font-family: "latoregular";
+			font-size: 18px;
+			color: #333333;
+			text-align: left;
+			margin-top: 35px;
+		}			
+		.b-basket .basket-cont .b-order input{
+			font-family: "latobold";
+			font-size: 14px;
+			color: #918b8e;
+			margin-top: 14px;
+			border: none;
+			border: 1px solid #cec6c9;
+			border-radius: 5px;
+			padding: 7px 92px 7px 12px;
+		}
+		.b-basket .basket-cont .b-order{
+			border-bottom: 1px solid #d4d4d4;
+		}
+			.b-basket .basket-cont .b-order button{
+				margin-top: 15px;
+				margin-left: 27px;
+				text-transform: uppercase;
+				padding: 4px 31px;
+				border-radius: 500px;
+				font-family: "latoregular";
+				font-size: 15px;
+				padding: 7px 31px;
+			}
+			.b-basket b{
+				font-weight: 300;
+				font-family: "latoregular";
+				font-size: 21px;
+				color: #ff9329;
+				margin-top: 11px;
+			}
+			.b-basket .sale{
+				font-family: "latoregular";
+				font-size: 12px;
+				text-decoration: underline;
+				color: #b0b7b8;
+				text-align: left;
+				margin-top: 18px;
+				margin-left: 5px;
+				margin-bottom: 39px;
+			}
+				.b-basket .sale:hover{
+					text-decoration: none;
+				}
+		.b-order-butt{
+			margin-top: 40px;
+			border-radius: 100px;
+			text-transform: uppercase;
+			padding: 12px 71px;
+			margin-bottom: 20px;
+			font-family: "latoregular";
+			font-size: 12px;
+			margin-bottom: 70px;
+		}
+		.b-basket .b-question{
+			text-align: center;
+		}
+			.b-basket .b-question h3{
+				font-family: "latoregular";
+				font-size: 22px;
+				color: #3b3f3e;
+			}
+			.b-basket .b-question h4{
+				font-family: "latobold";
+				font-size: 24px;
+				color: #3B3F3E;
+				line-height: 24px;
+				color: #3b3f3e;
+			}
+			.b-basket .b-question h5{
+				font-family: "latoblack";
+				font-size: 30px;
+				color: #2ab938;
+				margin-top: 9px;			
+				}
+			.b-basket .b-question a{
+				font-family: "latoheavy";
+				font-size: 15px;
+				color: #ed1f24;
+				text-decoration: underline;
+				display: inline-block;
+				margin-bottom: 76px;			
+			}
+			.b-basket .b-question a:hover{
+				text-decoration: none;
+			}
 
 #day-select {
 	width: 62px;
     background-position: 70% 50%;
     padding-right: 0;
 }
+
+.b-sale{
+	text-align: left;
+	color: #333333;
+	margin-top: 30px;
+}
+	.b-sale-block{
+		padding-left: 30px;
+		padding-top: 25px;
+		border-bottom: 1px solid #d4d4d4;
+		padding-bottom: 20px;
+	}
+		.b-sale-block h3{
+			font-family: "latobold";
+			margin-bottom: 15px;
+		}
+		.b-sale-block h3.edit{
+			margin-bottom: 20px;
+		}
+		.b-sale-block label{
+			display: block;
+			font-size: 14px;
+			font-family: "latobold";
+			color: #473e42;
+			margin-bottom: 5px;
+		}
+		.b-sale-block>input[type="text"],
+		.b-sale-block>.left>input[type="text"]{
+			display: block;
+			width: 272px;
+			background-color: #FFF;
+			border: 1px solid rgba(156, 139, 145, 0.49);
+			border-radius: 5px;
+			color: #818181;
+			font-family: "latobold";
+			font-size: 15px;
+			margin-top: 3px;
+			margin-bottom: 20px;
+			padding: 9px 15px;
+			color: #473E42;
+		}
+		.b-sale-block .phone-cont{
+			margin-top: 0;
+		}
+		.b-sale-block>.left{
+			width: 350px;
+		}
+		.b-sale-block .right{
+			width: 350px;
+		}
+		.phone-cont{
+			display: inline-block;
+			margin-top: 12px;
+		}
+		.phone-cont .phone-img{
+			width: 40px;
+			height: 40px;
+			background-color: #FFF;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			border-radius: 5px 0px 0px 5px;
+			background-image: url('../i/phone.png');
+			border: 1px solid rgba(168, 168, 168, 0.5);
+			border-right: 0px;
+		}
+		.phone-cont input{
+			border: 1px solid rgba(168, 168, 168, 0.5);
+			height: 40px;
+			width: 251px;
+			font-size: 15px;
+			border-radius: 0px 5px 5px 0px;
+			padding-left: 10px;
+			margin-bottom: 17px;
+			letter-spacing: 2px;
+		}
+		.b-sale .radio{
+			margin-left: 2px;
+			margin-top: 1px;
+			margin-bottom: 10px;
+		}
+		.b-sale .radio label{
+			display: inline-block;
+			cursor: pointer;
+			position: relative;
+			color: #473E42;
+			font-family: "latobold";
+			font-size: 14px;
+			padding-left: 20px;
+			margin-right: 24px;
+			margin-bottom: 15px;
+		}
+		.b-sale .radio label span{
+			color: #473e42;
+			font-family: "latobold";
+			opacity: 0.6;
+			font-size: 14px;
+		}
+		.b-sale .radio input[type="radio"]{
+			display: none;
+		}
+			.b-sale .radio label:before{
+				content: "";
+			    display: inline-block;
+			    width: 12px;
+				height: 12px;
+				background-color: #FFF;
+				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
+			    margin-right: 10px;
+			    position: absolute;
+			    left: 0;
+			    bottom: 3px;
+			    background-color: #FFF;
+			}
+			.b-sale .radio label:before {
+		    	border-radius: 50%;
+			}
+			.b-sale .radio input[type=radio]:checked + label:before {
+				font-size: 58px;
+				text-align: center;
+				line-height: 20px;
+				display: block;
+				width: 6px;
+				height: 6px;
+				background-color: #9C8B91;
+				border: 3px solid #FFF;
+				box-shadow: 0px 0px 0px 2px rgba(84, 56, 67, 0.58);
+			}
+.b-sum{
+	width: 280px;
+	display: inline-block;
+	margin-top: 40px;
+	font-family: "latobold";
+}
+	.b-sum .left{
+		margin-left: 30px;
+		text-align: left;
+	}
+		.b-sum h4{
+			font-size: 14px;
+			color: #473e42;
+			opacity: 0.7;
+		}
+		.b-sum h5{
+			font-size: 18px;
+			color: #333333;
+		}
+	.b-sum .right{
+		text-align: left;
+	}
+	.b-sum .b-order-butt{
+		margin-top: 15px;
+	}
+
+
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;
