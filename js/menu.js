@@ -66,11 +66,27 @@ function menuFilter() {
 
     });
     $("body").on("click",".b-add-cart",function(){
-        var o = $(this).closest("li"),daynumber;
+        var o = $(this).closest("li"),daynumber,$clone;
         if(daytime == "morning") daynumber = 1;
         if(daytime == "day") daynumber = 2;
         if(daytime == "evening") daynumber = 3;
-        $(".b-time-"+daytime+":visible").find(".b-eat").append('<li class="clearfix" data-dish-id="'+o.attr("data-dish-id")+'" data-m-1="'+o.attr("data-m-1")+'" data-m-2="'+o.attr("data-m-2")+'" data-m-3="'+o.attr("data-m-3")+'" data-w-1="'+o.attr("data-w-1")+'" data-w-2="'+o.attr("data-w-1")+'" data-w-3="'+o.attr("data-w-1")+'" data-fat="'+o.attr("data-fat")+'" data-pro="'+o.attr("data-pro")+'" data-car="'+o.attr("data-car")+'" data-cal="'+o.attr("data-cal")+'" data-pri="'+o.attr("data-pri")+'"><div class="left b-image" style="background-image: url('+o.attr("data-img")+');"></div><div class="left"><h4>'+o.attr("data-name")+'</h4><a href="#" class="b-more">Подробнее</a></div><div class="del-cross"></div><div class="right clearfix"><div class="left"><span>Кол-во:</span></div><div class="right"><select name="count" id=""><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>/select></div></div><input type="hidden" name="day['+($("#day-select").val()-1)+'][]" value="'+o.attr("data-dish-id")+';'+daynumber+';1"></li>');
+        $clone = $("#item-copy").clone();
+        $clone.attr("data-dish-id",o.attr("data-dish-id"))
+        .attr("data-m-1",o.attr("data-m-1"))
+        .attr("data-m-2",o.attr("data-m-2"))
+        .attr("data-m-3",o.attr("data-m-3"))
+        .attr("data-w-1",o.attr("data-w-1"))
+        .attr("data-w-2",o.attr("data-w-2"))
+        .attr("data-w-3",o.attr("data-w-3"))
+        .attr("data-fat",o.attr("data-fat"))
+        .attr("data-pro",o.attr("data-pro"))
+        .attr("data-car",o.attr("data-car"))
+        .attr("data-cal",o.attr("data-cal"))
+        .attr("data-pri",o.attr("data-pri"));
+        $clone.find('.b-image').css("background-image",'url('+o.attr("data-img")+')');
+        $clone.find('h4').text(o.attr("data-name"));
+        $clone.find('input').attr("name",'day['+($("#day-select").val()-1)+'][]').val(o.attr("data-dish-id")+';'+daynumber+';1');
+        $(".b-time-"+daytime+":visible").find(".b-eat").append($clone);
         $.fancybox.close();
         calculateMenu();
         return false;
@@ -115,7 +131,9 @@ function menuFilter() {
         arr[2] = $(this).val();
         $(this).closest("li").find("input[type='hidden']").val(arr.join(";"));
     });
-   
+    $("#menu-order").submit(function() {
+        if($(".b-eat li").length == 0) return false;
+    }); 
     function set_day($page) {
        $page.find("input[type='hidden']").attr("name","day["+($("#day-select").val()-1)+"][]");
     }

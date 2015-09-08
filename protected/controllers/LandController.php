@@ -84,6 +84,7 @@ class LandController extends Controller
 		$model->payment = 1;
 		$model->save();
 		$order_id = $model->id;
+		if(isset($_POST['day']))
 		foreach ($_POST['day'] as $key => $item) {
 			foreach ($item as $value) {
 				$arr = explode(";", $value);
@@ -121,7 +122,7 @@ class LandController extends Controller
 			$temp['pro'] = $dish->dish->protein;
 			$temp['car'] = $dish->dish->carbohydrate;
 			$temp['cal'] = $dish->dish->calories;
-			$temp['price'] = ($dish->dish->action!=0) ? $dish->dish->action : $dish->dish->price;
+			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
 			$temp['img'] = $dish->dish->image;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
 			$daytime['set_id'] = $set_id;

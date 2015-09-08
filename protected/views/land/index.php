@@ -285,8 +285,8 @@
                         <div class="clearfix b-header">
                             <h3 class="left">Меню на день</h3>
                             <a href="#" class="right b-add-day">Добавить еще день</a>
-                            <select class="right" name="day" id="day-select">
-                                <option value="1" selected>1</option>
+                            <select class="right" name="day-select" id="day-select">
+                                <option value="1">1</option>
                             </select>
                             <!-- <a href="#" class="b-add-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
                         </div>
@@ -750,6 +750,32 @@
                 <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
             </div>
         </div>
+        <li class="clearfix" data-dish-id="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
+            <div class="left b-image" style=""></div>
+            <div class="left">
+                <h4></h4>
+                <a href="#" class="b-more">Подробнее</a>
+            </div>
+            <div class="del-cross"></div>
+            <div class="right clearfix">
+                <div class="left"><span>Кол-во:</span></div>
+                <div class="right">
+                <select name="count" id="">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                </div>
+            </div>
+            <input type="hidden" name="" value="">
+        </li>
     </div>
 </body>
 </html>
