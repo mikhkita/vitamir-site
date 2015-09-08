@@ -61,7 +61,7 @@
     <div class="b b-1 b-basket">
         <div class="header">
             <div class="b-block clearfix">
-                <a href="/" class="logo left">
+                <a href="#" class="logo left">
                     <!-- <h3>Клубы здорового питания в Москве</h3> -->
                     <img src="<?php echo Yii::app()->request->baseUrl;?>/i/logo.png" width="175">
                 </a>
@@ -118,47 +118,61 @@
             <!-- <a class="back-link" href="#">Вернуться к выбору</a> -->
             <div class="navigate clearfix">
                 <ul class="left clearfix">
-                    <li class="active"><span>1.</span>Ваш заказ</li>
-                    <li><span>2.</span>Оформление заказа</li>
+                    <li><span>1.</span>Ваш заказ</li>
+                    <li class="active"><span>2.</span>Оформление заказа</li>
                 </ul>
                 <h3 class="shipping right">Бесплатная доставка при заказе от 2900 руб</h3>
             </div>
-            <div class="b-order">
-                <div class="table">
-                        <div class="tr clearfix">
-                            <div class="th left">Наименование</div>
-                            <div class="th left">Количество</div>
-                            <div class="th left">Цена</div>
-                        </div>
-                        <div class="tr clearfix" style="min-height: 113px;">
-                            <div class="td left">
-                                <h2><?=Order::model()->types[$order->type]?></h2>
-                                <div class="clearfix">
-                                    <!-- <a class="left" href="#">Посмотреть подробнее</a> -->
-                                </div>
-                            </div>
-                            <div class="td left">
-                                <div class="b-arrow">1 день</div>
-                            </div>
-                            <div class="td left">
-                                <h4><?=$price?> руб.</h4>
-                                <!-- <h5>Экономия 450 руб.</h5> -->
-                                <!-- <h6>Цифра экономии меняется в зависимости от количества дней</h6> -->
-                            </div>
-                        </div>
+            <form action="<?=$this->createUrl('/land/updateorder')?>" method="POST" id="b-order-form">
+            <div class="b-sale">
+                <div class="b-sale-block">
+                    <h3 class="edit">Введите Ваши контактные данные:</h3>
+                    <label for="sale-name">Введите Ваше имя:</label>
+                    <input type="text" id="sale-name" class="write" name="name" placeholder="Иванов Иван" required/>
+                    <label for="phone-1">Введите Ваш телефон:</label>
+                    <div class="clearfix phone-cont">
+                        <div class="left phone-img"></div>
+                        <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                    </div>
+                    <label for="sale-email">Введите Ваш e-mail:</label>
+                    <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
                 </div>
-                <h4>Введите промокод</h4>
-                <div class="clearfix">
-                    <input class="left" type="text" placeholder="">
-                    <button type="button" class="b-orange-butt left">готово</button>
-                </div>
-                <div class="clearfix">
-                    <b class="left">%</b>
-                    <a class="sale left fancy" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
+                <div class="b-sale-block clearfix">
+                    <div class="left">
+                        <h3 class="delivery">Доставка</h3>
+                        <div class="radio">
+                            <input id="sale-himself" type="radio" name="delivery" checked value="1">
+                            <label for="sale-himself">Самовывоз <span>(Проспект Вернардского, д5 )</span></label>
+                            <input id="sale-courier" type="radio" name="delivery" value="2">
+                            <label for="sale-courier">Курьерская доставка до дома или офиса</label>
+                        </div>
+                        <h3 class="location">Введите адрес</h3>
+                        <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1" required/>
+                    </div>
+                    <div class="right">
+                        <h3 class="payment">Оплата</h3>
+                        <div class="radio">
+                            <input id="sale-pay-courier" type="radio" name="payment" checked value="1">
+                            <label for="sale-pay-courier">Наличными курьеру</label>
+                            <input id="sale-pay-bank" type="radio" name="payment" value="2">
+                            <label for="sale-pay-bank">Банковской картой/Электронными деньгами</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="clearfix">
-                <a href="<?=$this->createUrl('/land/order')?>" type="submit" class="right b-orange-butt b-order-butt">оформить заказ</a>
+            </form>
+            <div class="clearfix" style="text-align: right;">
+                <div class="clearfix b-sum">
+                    <div class="left">
+                        <h4>Стоимость доставки:</h4>
+                        <h5>Сумма заказа:</h5>
+                    </div>
+                    <div class="right">
+                        <h4><span>0</span> руб.</h4>
+                        <h5><span><?=$price?></span> руб.</h5>
+                    </div>
+                    <button type="submit" class="right b-orange-butt b-order-butt" onclick="$('#b-order-form').submit();">оформить заказ</button>
+                </div>
             </div>
         </div>
         <div class="b-question">

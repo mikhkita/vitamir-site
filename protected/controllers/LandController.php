@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','basket','fullMenu','dayTime'),
+				'actions'=>array('index','basket','fullMenu','dayTime','createOrder','order','updateOrder','thanks'),
 				'users'=>array('*'),
 			),
 		);
@@ -57,14 +57,14 @@ class LandController extends Controller
 		}
 		$dishes = Dish::model()->findAll($criteria);
 		foreach ($dishes as $key => &$dish) {
-			if($dish['action'])  {
+			if($dish['action'] != 0)  {
 				$temp = $dish['price'];
 				$dish['price'] = $dish['action'];
 				$dish['action'] = ($temp - $dish['action'])*100/$temp;
 				$temp = $dish['action'] % 5;
 				$dish['action'] = ($temp) ? $dish['action']+(5-$temp) : $dish['action'];
 			}
-			$dish['price'] = $dish['price']*$dish[$_POST['coef']];
+			$dish['price'] = $dish['price'];
 		}
 		$count = count($dishes);
 		$pages = $count/9;
@@ -75,32 +75,121 @@ class LandController extends Controller
 		));
 	}
 
+	public function actionCreateOrder($partial = false)
+	{
+		date_default_timezone_set("Europe/Moscow");
+
+		$model = new Order;	
+		$model->date = date("Y-m-d H:i:s");
+		$model->delivery = 0;
+		$model->price = $_POST["price"];
+		$model->payment = 0;
+		$model->type = $_POST["type"];
+		if($model->save()){
+			$order_id = $model->id;
+			if(isset($_POST['day']))
+			foreach ($_POST['day'] as $key => $item) {
+				foreach ($item as $value) {
+					$arr = explode(";", $value);
+					$temp = new OrderDish;
+					$temp->order_id = $order_id;
+					$temp->dish_id = $arr[0];
+					$temp->daytime_id = $arr[1];
+					$temp->count = $arr[2];
+					$temp->day = $key+1;
+					$temp->save();
+				}
+			}
+			
+			session_start();
+			$_SESSION['order_id'] = $order_id;
+			$_SESSION['order_price'] = $_POST["price"];
+
+			header("Location: ".$this->createUrl('/land/basket'));
+		}else{
+			echo "Ошибка создания заказа";
+		}
+	}
+
 	public function actionBasket($partial = false)
 	{
-		$model = new Order;	
-		$model->location = '123';
-		$model->date = time();
-		$model->delivery = 1;
-		$model->payment = 1;
-		$model->save();
-		$order_id = $model->id;
-		if(isset($_POST['day']))
-		foreach ($_POST['day'] as $key => $item) {
-			foreach ($item as $value) {
-				$arr = explode(";", $value);
-				$temp = new OrderDish;
-				$temp->order_id = $order_id;
-				$temp->dish_id = $arr[0];
-				$temp->daytime_id = $arr[1];
-				$temp->count = $arr[2];
-				$temp->day = $key+1;
-				$temp->save();
-			}
+		session_start();
+
+		if( isset($_SESSION['order_id']) ){
+			$model = Order::model()->findByPk($_SESSION["order_id"]);
+
+			$this->render('basket',array(
+				'order' => $model,
+				'price' => $_SESSION['order_price'],
+			));
+		}else{
+			header("Location: /");
 		}
-		$this->render('basket',array(
-			'order_id' => $order_id	
+	}
+
+	public function actionOrder($partial = false)
+	{
+		session_start();
+
+		if( isset($_SESSION['order_id']) ){
+			$model = Order::model()->findByPk($_SESSION["order_id"]);
+
+			$this->render('order',array(
+				'order' => $model,
+				'price' => $_SESSION['order_price'],
+			));
+		}else{
+			header("Location: /");
+		}
+	}
+
+	public function actionUpdateOrder(){
+		if( isset($_SESSION['order_id']) ){
+			if( count($_POST) ){
+				$vowels = array("(", ")", "+", " ", "-");
+				$login = str_replace($vowels, "", $_POST["phone"]);
+				$model = Order::model()->findByPk($_SESSION["order_id"]);
+
+				$user = User::model()->find("usr_login='".$login."'");
+
+				if( !$user ){
+					$user = new User();
+
+					$user->usr_login = $login;
+					$user->usr_password = "123";
+					$user->usr_name = $_POST["name"];
+					$user->usr_email = $_POST["email"];
+					$user->usr_rol_id = 4;
+
+					if(!$user->save()){
+						die("Ошибка создания заказа");
+					}
+				}
+
+				$model->delivery = $_POST["delivery"];
+				$model->payment = $_POST["payment"];
+				$model->location = $_POST["location"];
+				$model->user_id = $user->usr_id;
+				if($model->save()){
+					header("Location: ".$this->createUrl('/land/thanks'));
+				}
+			}
+			
+
+			$this->render('order',array(
+				'order' => $model
+			));
+		}else{
+			header("Location: /");
+		}
+	}
+
+	public function actionThanks(){
+		$this->render('thanks',array(
+
 		));
 	}
+
 	public function actionDayTime($set_id,$html = true)
 	{
 		$model = Set::model()->findAll(array('order' => 'sort'));

@@ -7,12 +7,28 @@ $(document).ready(function(){
 });
 
 function calculateMenu(){
-    type = $(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val();
+    var type = $(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val();
 
     $(".b-time").each(function(){
-        calculateDaytime($(this).attr("data-id"),$(this).attr("data-id"),type);
+        calculateDaytime(".b-time-"+$(this).attr("data-id"),$(this).attr("data-id"),type);
     });
     calculateDaytime("","all",type);
+    calculatePrice();
+}
+
+function calculatePrice(){
+    var price = 0,
+        type = $(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val();
+    $(".b-eat li").each(function(){
+        var combo = $(this).attr("data-"+type)*1,
+            count = $(this).find('select[name="count"]').val()*1;
+
+        console.log(combo);
+
+        price = price+($(this).attr("data-pri")*combo*count);
+    });
+
+    $(".b-time-all .pri").text(price);
 }
 
 function calculateDaytime(daytime,daytime1,type){
@@ -20,17 +36,19 @@ function calculateDaytime(daytime,daytime1,type){
             "cal" : 0,
             "car" : 0,
             "pro" : 0,
-            "pri" : 0,
+            // "pri" : 0,
             "fat" : 0
         };
 
-    $(".b-time-"+daytime+" .b-eat li").each(function(){
+    $(".daytime-cont").eq($("#day-select").val()*1-1).find(daytime+" .b-eat li").each(function(){
         var combo = $(this).attr("data-"+type)*1,
             count = $(this).find('select[name="count"]').val()*1;
         for( i in sum ){
             sum[i] = sum[i]+($(this).attr("data-"+i)*combo*count);
         }
     });
+
+    console.log(sum);
 
     for( i in sum ){
         $(".b-time-"+daytime1+" ."+i).text(sum[i]);
@@ -133,6 +151,10 @@ function menuFilter() {
     });
     $("#menu-order").submit(function() {
         if($(".b-eat li").length == 0) return false;
+        calculateMenu();
+        $("#main-price").parent("h3").append("<input type='hidden' name='price' value='"+$("#main-price").text()+"'>");
+        var type = $(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val();
+        $("#menu-order").append("<input type='hidden' name='type' value='"+type+"'/>");
     }); 
     function set_day($page) {
        $page.find("input[type='hidden']").attr("name","day["+($("#day-select").val()-1)+"][]");

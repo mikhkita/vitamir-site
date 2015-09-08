@@ -264,6 +264,8 @@ class SiteController extends Controller
 
         $role = $auth->createRole('root');
         $role->addChild('admin');
+
+        $role = $auth->createRole('client');
         
         //связываем пользователя с ролью
         $auth->assign('root', 1);
@@ -272,6 +274,6 @@ class SiteController extends Controller
         //сохраняем роли и операции
         $auth->save();
         
-        $this->render('install');
+        // $this->render('install');
     }
 }

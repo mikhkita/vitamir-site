@@ -114,52 +114,10 @@
                 </div>
             </div>
         </div>
-        <div class="b-block basket-cont">
-            <!-- <a class="back-link" href="#">Вернуться к выбору</a> -->
-            <div class="navigate clearfix">
-                <ul class="left clearfix">
-                    <li class="active"><span>1.</span>Ваш заказ</li>
-                    <li><span>2.</span>Оформление заказа</li>
-                </ul>
-                <h3 class="shipping right">Бесплатная доставка при заказе от 2900 руб</h3>
-            </div>
-            <div class="b-order">
-                <div class="table">
-                        <div class="tr clearfix">
-                            <div class="th left">Наименование</div>
-                            <div class="th left">Количество</div>
-                            <div class="th left">Цена</div>
-                        </div>
-                        <div class="tr clearfix" style="min-height: 113px;">
-                            <div class="td left">
-                                <h2><?=Order::model()->types[$order->type]?></h2>
-                                <div class="clearfix">
-                                    <!-- <a class="left" href="#">Посмотреть подробнее</a> -->
-                                </div>
-                            </div>
-                            <div class="td left">
-                                <div class="b-arrow">1 день</div>
-                            </div>
-                            <div class="td left">
-                                <h4><?=$price?> руб.</h4>
-                                <!-- <h5>Экономия 450 руб.</h5> -->
-                                <!-- <h6>Цифра экономии меняется в зависимости от количества дней</h6> -->
-                            </div>
-                        </div>
-                </div>
-                <h4>Введите промокод</h4>
-                <div class="clearfix">
-                    <input class="left" type="text" placeholder="">
-                    <button type="button" class="b-orange-butt left">готово</button>
-                </div>
-                <div class="clearfix">
-                    <b class="left">%</b>
-                    <a class="sale left fancy" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
-                </div>
-            </div>
-            <div class="clearfix">
-                <a href="<?=$this->createUrl('/land/order')?>" type="submit" class="right b-orange-butt b-order-butt">оформить заказ</a>
-            </div>
+        <div class="b-thanks-page">
+            <h3>Спасибо! Ваш заказ успешно создан!</h3>
+            <h4>Наши менеджеры свяжутся с Вами в течение 15 минут</h4>
+            <a href="/">На главную</a>
         </div>
         <div class="b-question">
             <h3>Возник вопрос?</h3>

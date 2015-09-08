@@ -10,12 +10,21 @@
  * @property integer $delivery
  * @property integer $payment
  * @property string $location
+ * @property string $type
+ * @property integer $price
  */
 class Order extends CActiveRecord
 {
-
 	public $delivery = array("Самовывоз","Курьерская доставка");
 	public $payment = array("Наличными","Банковской картой");
+	public $types = array(
+		"m-1" => "Мужчине для похудения",
+		"m-2" => "Мужчине для набора массы",
+		"m-3" => "Мужчине для поддержания формы",
+		"w-1" => "Женщине для похудения",
+		"w-2" => "Женщине для набора массы",
+		"w-3" => "Женщине для поддержания формы",
+	);
 
 	/**
 	 * @return string the associated database table name
@@ -33,13 +42,14 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('date, location', 'required'),
-			array('delivery, payment', 'numerical', 'integerOnly'=>true),
+			array('date, type, price', 'required'),
+			array('delivery, payment, price', 'numerical', 'integerOnly'=>true),
 			array('user_id', 'length', 'max'=>10),
 			array('location', 'length', 'max'=>255),
+			array('type', 'length', 'max'=>3),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, date, user_id, delivery, payment, location', 'safe', 'on'=>'search'),
+			array('id, date, user_id, delivery, payment, location, type, price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +77,8 @@ class Order extends CActiveRecord
 			'delivery' => 'Доставка',
 			'payment' => 'Оплата',
 			'location' => 'Адрес',
+			'type' => 'Тип',
+			'price' => 'Цена',
 		);
 	}
 
@@ -94,6 +106,8 @@ class Order extends CActiveRecord
 		$criteria->compare('delivery',$this->delivery);
 		$criteria->compare('payment',$this->payment);
 		$criteria->compare('location',$this->location,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('price',$this->price);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

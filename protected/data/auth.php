@@ -24,7 +24,7 @@ return array (
   'seeAdminPanel' => 
   array (
     'type' => 0,
-    'description' => 'видеть панель администратора',
+    'description' => 'наличие доступа в админку',
     'bizRule' => NULL,
     'data' => NULL,
   ),
@@ -45,11 +45,6 @@ return array (
         'bizRule' => NULL,
         'data' => NULL,
       ),
-      6 => 
-      array (
-        'bizRule' => NULL,
-        'data' => NULL,
-      ),
     ),
   ),
   'admin' => 
@@ -63,24 +58,7 @@ return array (
       0 => 'manager',
       1 => 'changeState',
       2 => 'createUser',
-    ),
-    'assignments' => 
-    array (
-      3 => 
-      array (
-        'bizRule' => NULL,
-        'data' => NULL,
-      ),
-      5 => 
-      array (
-        'bizRule' => NULL,
-        'data' => NULL,
-      ),
-      1 => 
-      array (
-        'bizRule' => NULL,
-        'data' => NULL,
-      ),
+      3 => 'changeRole',
     ),
   ),
   'root' => 
@@ -92,11 +70,25 @@ return array (
     'children' => 
     array (
       0 => 'admin',
-      1 => 'changeRole',
     ),
     'assignments' => 
     array (
       1 => 
+      array (
+        'bizRule' => NULL,
+        'data' => NULL,
+      ),
+    ),
+  ),
+  'client' => 
+  array (
+    'type' => 2,
+    'description' => '',
+    'bizRule' => NULL,
+    'data' => NULL,
+    'assignments' => 
+    array (
+      5 => 
       array (
         'bizRule' => NULL,
         'data' => NULL,

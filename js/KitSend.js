@@ -30,7 +30,20 @@ $(document).ready(function(){
 		
 	});
 
-	
+	$("#b-order-form").each(function(){     
+		$(this).validate({
+			validClass: "success",
+			rules: {
+				email: 'email',
+				phone: 'customPhone'
+			}
+		});
+		if( $(this).find("input[name=phone]").length ){
+			$(this).find("input[name=phone]").mask(tePhone,{placeholder:"_"});
+		}
+		
+	});
+
 	function whenScroll(){
 		var scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 		if( customHandlers["onScroll"] ){
@@ -97,6 +110,12 @@ $(document).ready(function(){
   		}
   		return false;
   	});
+
+	$("#b-order-form").submit(function(){
+		$("input[name='phone'].success").parent("div").removeClass("error");
+		$("input[name='phone'].error").parent("div").addClass("error");
+  		if( !$(this).valid() ) return false;
+	});
 	
 	$('#calc').find("input[type=text]").mask('99?9',{placeholder:" "});
 	$("#calc").submit(function(){

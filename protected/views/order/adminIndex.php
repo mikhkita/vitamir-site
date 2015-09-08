@@ -3,6 +3,7 @@
 	<table class="b-table" border="1">
 		<tr>
 			<th><? echo $labels['id']; ?></th>
+			<th><? echo $labels['type']; ?></th>
 			<th><? echo $labels['date']; ?></th>
 			<th><? echo $labels['user_id']; ?></th>
 			<th><? echo $labels['delivery']; ?></th>
@@ -17,12 +18,14 @@
 			<td></td>
 			<td></td>
 			<td></td>
+			<td></td>
 			<td><a href="#" class="b-clear-filter">Сбросить фильтр</a></td>
 		</tr>
 		<? if( count($data) ): ?>
 			<? foreach ($data as $i => $item): ?>
 				<tr>
 					<td class="align-left"><?=$item->id?></td>
+					<td class="align-left"><?=Order::model()->types[$item->type]?></td>
 					<td class="align-left"><?=$item->date?></td>
 					<td class="align-left"><?=$item->user_id?></td>
 					<td class="align-left"><?=Order::model()->delivery[$item->delivery-1]?></td>

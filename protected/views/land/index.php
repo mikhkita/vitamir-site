@@ -279,7 +279,7 @@
                     <h5 class="b-time-all"><font class="cal">2450</font> кКал. <span>+ 1,8 л воды</span></h5>
                     <a href="#" class="ajax b-orange-butt rounded fancy" href="#" data-block="#b-popup-programm">Получить персональную<br>программу питания</a>
                 </div>
-                <form action="land/basket" method="POST" id="menu-order">
+                <form action="<?=$this->createUrl('/land/createorder')?>" method="POST" id="menu-order">
                 <div class="b-menu right">
                     <div class="b-padding">
                         <div class="clearfix b-header">
@@ -294,10 +294,10 @@
                     </div>
                     <div class="b-green-bottom b-time-all clearfix">
                         <div class="left">
-                            <h3>Цена: <span class="pri">1202</span> руб.</h3>
+                            <h3>Цена: <span class="pri" id="main-price">1202</span> руб.</h3>
                         </div>
                         <div class="right">
-                            <input type="submit" class="b-orange-butt rounded" value="Заказать набор на 1 месяц">
+                            <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
                         </div>
                     </div>
                 </div>

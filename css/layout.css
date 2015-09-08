@@ -2557,11 +2557,14 @@ margin-bottom: 6px;
 					font-size: 19px;
 					font-family: "latobold";
 					text-align: left;
+					width: auto;
+					margin-top: 13px;
 				}
 				.b-basket .basket-cont .table h4{
 					font-size: 20px;
 					font-family: "latobold";
 					color: #555555;
+					margin-top: 22px;
 				}
 				.b-basket .basket-cont .table h5{
 					font-size: 12px;
@@ -2844,7 +2847,28 @@ margin-bottom: 6px;
 	.b-sum .b-order-butt{
 		margin-top: 15px;
 	}
+.b-thanks-page{
 
+}
+	.b-thanks-page h3{
+		margin-top: 150px;
+		font-size: 30px;
+		font-family: "latobold";
+		color: #000;
+		margin-bottom: 10px;
+	}
+	.b-thanks-page h4{
+		font-size: 18px;
+		color: #777;
+		margin-bottom: 15px;
+	}
+	.b-thanks-page a{
+		color: #ed1f24;
+		font-size: 15px;
+		text-decoration: underline;
+		margin-bottom: 150px;
+		display: inline-block;
+	}
 
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
