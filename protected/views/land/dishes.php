@@ -12,7 +12,7 @@
                         <? endif; ?>
                     </div>
                     <div class="clearfix b-price-cont">
-                        <div class="left"><span><?=$item['price']*$item[$_POST['coef']]?></span> руб.</div>
+                        <div class="left"><span><?=$item['price']?></span> руб.</div>
                         <a href='#' class="right">Подробнее</a>
                     </div>
                     <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>

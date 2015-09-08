@@ -678,7 +678,7 @@
                 <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
                 <div class="menu-cont clearfix">
                     <div class="filter left">
-                        <form action="/land/fullMenu" id="fullmenu">
+                        <form action="<?=$this->createUrl('/land/fullmenu')?>" id="fullmenu">
                         <div class="filter-item">
                             <h5>Показывать:</h5>
                             <div class="b-inputs checkbox">
@@ -730,10 +730,18 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="no-add" name="no-add">
                         </form>
                     </div>
                     <div class="right b-menu-items"></div>
                 </div>
+            </div>
+        </div>
+          <div id="b-popup-menu">
+            <div class="b-popup menu">
+                <h2>Полное меню</h2>
+                <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
+               
             </div>
         </div>
         <div id="b-popup-2">

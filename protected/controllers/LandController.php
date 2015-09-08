@@ -32,40 +32,39 @@ class LandController extends Controller
 	public function actionFullMenu()
 	{	
 		$criteria = new CDbCriteria();	
-		$criteria->condition ="";
-		if($_POST['order'] == 2) {
-			$criteria->order = 'price ASC';
-		}
-		if($_POST['order'] == 3) {
-			$criteria->order = 'action DESC';
-		}
-		if(!empty($_POST['daytime'])) {
-			$criteria->condition .="(";
-			foreach ($_POST['daytime'] as $item) {	
-				$criteria->condition .= "daytime_id LIKE '%".$item."%' OR ";
-			}
-			$criteria->condition = substr($criteria->condition,0,-3);
-			$criteria->condition .=")";
-		}
-		if(!empty($_POST['type'])) {
-			if($criteria->condition) $criteria->condition .=" AND ("; else $criteria->condition .="(";
-			foreach ($_POST['type'] as $item) {	
-				$criteria->condition .= "category_id = ".$item." OR ";
-			}
-			$criteria->condition = substr($criteria->condition,0,-3);
-			$criteria->condition .=")";
-		}
+		if(!empty($_POST['daytime'])) foreach ($_POST['daytime'] as $item) $criteria->addSearchCondition('daytime_id', $item,true,"OR");
+		if(!empty($_POST['type'])) $criteria->addInCondition("category_id",$_POST['type']);
 		$dishes = Dish::model()->findAll($criteria);
 		foreach ($dishes as $key => &$dish) {
 			if($dish['action'] != 0)  {
 				$temp = $dish['price'];
 				$dish['price'] = $dish['action'];
-				$dish['action'] = ($temp - $dish['action'])*100/$temp;
-				$temp = $dish['action'] % 5;
-				$dish['action'] = ($temp) ? $dish['action']+(5-$temp) : $dish['action'];
+				$dish['action'] = round(($temp - $dish['action'])*100/$temp);
 			}
-			$dish['price'] = $dish['price'];
+			$dish['price'] = round($dish['price']*$dish[$_POST['coef']]);
 		}
+		if($_POST['order'] == 3) {
+			function cmp($a, $b)
+			{
+				$a = $a['action'];
+				$b = $b['action'];
+			    if ($a == $b) {
+			        return 0;
+			    }
+			    return ($a > $b) ? -1 : 1;
+			}
+		} else if($_POST['order'] == 2){
+			function cmp($a, $b)
+			{
+				$a = $a['price'];
+				$b = $b['price'];
+			    if ($a == $b) {
+			        return 0;
+			    }
+			    return ($a < $b) ? -1 : 1;
+			}	
+		}	
+		usort($dishes, "cmp");
 		$count = count($dishes);
 		$pages = $count/9;
 		$this->renderPartial('dishes',array(
