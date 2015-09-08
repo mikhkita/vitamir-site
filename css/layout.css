@@ -2715,6 +2715,9 @@ margin-bottom: 6px;
 			padding: 9px 15px;
 			color: #473E42;
 		}
+		.b-sale-block .phone-cont{
+			margin-top: 0;
+		}
 		.b-sale-block>.left{
 			width: 350px;
 		}

@@ -63,6 +63,7 @@ class Dish extends CActiveRecord
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'daytime' => array(self::BELONGS_TO, 'Daytime', 'daytime_id'),
 			'sets' => array(self::HAS_MANY, 'DishSet', 'dish_id','order'=>'sort'),
+			'orders' => array(self::HAS_MANY, 'OrderDish', 'dish_id'),
 		);
 	}
 

@@ -1,20 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "daytime".
+ * This is the model class for table "order".
  *
- * The followings are the available columns in table 'daytime':
+ * The followings are the available columns in table 'order':
  * @property string $id
- * @property string $name
+ * @property string $date
+ * @property string $user_id
+ * @property integer $delivery
+ * @property integer $payment
+ * @property string $location
  */
-class Daytime extends CActiveRecord
+class Order extends CActiveRecord
 {
+
+	public $delivery = array("Самовывоз","Курьерская доставка");
+	public $payment = array("Наличными","Банковской картой");
+
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'daytime';
+		return 'order';
 	}
 
 	/**
@@ -25,11 +33,13 @@ class Daytime extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('date, location', 'required'),
+			array('delivery, payment', 'numerical', 'integerOnly'=>true),
+			array('user_id', 'length', 'max'=>10),
+			array('location', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, date, user_id, delivery, payment, location', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,9 +51,7 @@ class Daytime extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'dishes' => array(self::HAS_MANY, 'Dish', 'daytime_id'),
-			'dishSet' => array(self::HAS_MANY, 'DishSet', 'daytime_id'),
-			'orderDish' => array(self::HAS_MANY, 'OrderDish', 'daytime_id'),
+			'dishes' => array(self::HAS_MANY, 'OrderDish', 'order_id'),
 		);
 	}
 
@@ -54,7 +62,11 @@ class Daytime extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Название',
+			'date' => 'Дата',
+			'user_id' => 'Пользователь',
+			'delivery' => 'Доставка',
+			'payment' => 'Оплата',
+			'location' => 'Адрес',
 		);
 	}
 
@@ -77,7 +89,11 @@ class Daytime extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('date',$this->date,true);
+		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('delivery',$this->delivery);
+		$criteria->compare('payment',$this->payment);
+		$criteria->compare('location',$this->location,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -88,7 +104,7 @@ class Daytime extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Daytime the static model class
+	 * @return Order the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
