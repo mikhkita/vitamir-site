@@ -2883,11 +2883,11 @@ margin-bottom: 6px;
 		margin-top: 22px;
 	}
 		#b-popup-more .more-cont img {
-			max-width: 300px;
+			max-width: 290px;
 		}
 		#b-popup-more .more-cont .right {
-			width: 440px;
-    		text-align: left;
+			width: 470px;
+			text-align: left;
 		}
 			#b-popup-more .more-cont .right p {
 				color: #303030;
@@ -2901,11 +2901,20 @@ margin-bottom: 6px;
 			}
 				#b-popup-more .more-cont .right ul li {
 					float: left;
-					width: 25%;
+					width: 113px;
 					font-size: 16px;
 					box-sizing: border-box;
 					padding: 2px 10px;
 					background-color: #e5ffc7;
+				}
+				#b-popup-more .more-cont .right ul li:nth-child(1){
+					width: 110px !important;
+				}
+				#b-popup-more .more-cont .right ul li:nth-child(2){
+					width: 110px !important;
+				}
+				#b-popup-more .more-cont .right ul li:nth-child(3){
+					width: 134px !important;
 				}
 				#b-popup-more .more-cont .right ul li:nth-child(2n){
 					background-color: #eefddc;

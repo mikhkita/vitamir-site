@@ -165,7 +165,10 @@ function menuFilter() {
         set_more(o,day,coef);
         detail_dish_id = o.attr("data-dish-id");
         $("#more-add-butt").show();
-        $.fancybox("#b-popup-more");
+        $.fancybox({
+            content: $("#b-popup-more"),
+            padding: 0
+        });
         return false; 
     });  
 
