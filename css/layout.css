@@ -198,6 +198,9 @@ label.error{
 input.error,textarea.error{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 }
+.green {
+	color: #6fc617;
+}
 .ps-lines{
 	display: none;
 }
@@ -299,9 +302,6 @@ textarea{
 	    font-family: "latobold";
 	    padding-top: 0px;
 	}
-		.b-popup h2.sub-title span{
-		    color: #6fc617;
-		}
 	.b-popup h3{
 		color: #7C7C7C;
 		font-family: "latoregular";
@@ -2872,6 +2872,75 @@ margin-bottom: 6px;
 		margin-bottom: 150px;
 		display: inline-block;
 	}
+
+#b-popup-more .b-popup{
+	padding: 25px 30px 30px;
+}
+	#b-popup-more #more-weight{
+		color: #676767;
+	}
+	#b-popup-more .more-cont{
+		margin-top: 22px;
+	}
+		#b-popup-more .more-cont img {
+			max-width: 300px;
+		}
+		#b-popup-more .more-cont .right {
+			width: 440px;
+    		text-align: left;
+		}
+			#b-popup-more .more-cont .right p {
+				color: #303030;
+				font-family: "latoregular";
+				font-size: 14px;
+				margin-bottom: 25px;
+				line-height: 1.75;
+			}
+			#b-popup-more .more-cont .right ul {	
+				margin-bottom: 22px;
+			}
+				#b-popup-more .more-cont .right ul li {
+					float: left;
+					width: 25%;
+					font-size: 16px;
+					box-sizing: border-box;
+					padding: 2px 10px;
+					background-color: #e5ffc7;
+				}
+				#b-popup-more .more-cont .right ul li:nth-child(2n){
+					background-color: #eefddc;
+				}
+				#b-popup-more .more-cont .right ul h5 {
+					float: left;
+					font-family: "latobold";
+					color: #1f221b;
+				}
+				#b-popup-more .more-cont .right ul span {
+					float: right;
+					font-family: "latoblack";
+					font-size: 13px;
+					color: #6fc617;
+				}
+			#b-popup-more .more-cont .right h4 {
+				font-family: "latobold";
+				font-size: 20px;
+				margin-bottom: 34px;
+			}
+			#b-popup-more .more-cont .right button {
+			
+width: 192px;
+			
+text-align: center;
+			
+font-family: "latobold";
+			
+font-size: 14px;
+			
+padding: 12px;
+			
+text-transform: uppercase;
+			}
+
 
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;

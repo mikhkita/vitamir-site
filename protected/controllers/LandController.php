@@ -41,25 +41,24 @@ class LandController extends Controller
 				$dish['price'] = $dish['action'];
 				$dish['action'] = round(($temp - $dish['action'])*100/$temp);
 			}
-			$dish['price'] = round($dish['price']*$dish[$_POST['coef']]);
 		}
-		// function cmp($a, $b)
-		// {
-		// 	if($_POST['order'] == 3) {
-		// 		$a = $a['action'];
-		// 		$b = $b['action'];
-		// 	} else if($_POST['order'] == 2) {
-		// 		$a = $a['price'];
-		// 		$b = $b['price'];
-		// 	}
-		//     if ($a == $b) {
-		//         return 0;
-		//     }
-		//     if($_POST['order'] == 3) return ($a > $b) ? -1 : 1;
-		// 	if($_POST['order'] == 2) return ($a < $b) ? -1 : 1;
-		// }
+		function cmp($a, $b)
+		{
+			if($_POST['order'] == 3) {
+				$a = $a['action'];
+				$b = $b['action'];
+			} else if($_POST['order'] == 2) {
+				$a = $a['price'];
+				$b = $b['price'];
+			}
+		    if ($a == $b) {
+		        return 0;
+		    }
+		    if($_POST['order'] == 3) return ($a > $b) ? -1 : 1;
+			if($_POST['order'] == 2) return ($a < $b) ? -1 : 1;
+		}
 
-		// usort($dishes, "cmp");
+		usort($dishes, "cmp");
 		$count = count($dishes);
 		$pages = $count/9;
 		$this->renderPartial('dishes',array(
@@ -232,6 +231,7 @@ class LandController extends Controller
 			$temp['w_1'] = $dish->dish->w_1;
 			$temp['w_2'] = $dish->dish->w_2;
 			$temp['w_3'] = $dish->dish->w_3;
+			$temp['weight'] = $dish->dish->weight;
 			$temp['fat'] = $dish->dish->fat;
 			$temp['pro'] = $dish->dish->protein;
 			$temp['car'] = $dish->dish->carbohydrate;
@@ -239,9 +239,12 @@ class LandController extends Controller
 			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
 			$temp['image'] = $dish->dish->image;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
-			$daytime['set_id'] = $set_id;
-
+			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;			
 		}
+		$daytime['set_id'] = $set_id;
+		$daytime['daytime']["1"] = "Утро";
+		$daytime['daytime']["2"] = "День";
+		$daytime['daytime']["3"] = "Вечер";
 		if($html) {	
 			$this->renderPartial('daytime',array(
 				'daytime'=>$daytime

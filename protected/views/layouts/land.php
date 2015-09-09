@@ -195,7 +195,7 @@
         <div id="b-popup-menu">
             <div class="b-popup menu">
                 <h2>Полное меню</h2>
-                <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
+                <h2 class="sub-title"><span class="green">100%</span> здоровое питание делает вас энергичнее!</h2>
                 <div class="menu-cont clearfix">
                     <div class="filter left">
                         <form action="<?=$this->createUrl('/land/fullmenu')?>" id="fullmenu">
@@ -259,8 +259,23 @@
         </div>
         <div id="b-popup-more">
             <div class="b-popup menu">
-                <h2><span class="more-day">100%</span> <span>здоровое питание делает вас энергичнее!</span><span class="more-">100%</span></h2>
-               
+                <h2><span class="green"><span id="more-day">Утро</span>:</span> <span id="more-name">Оладьи на пару с рисом </span><span id="more-weight"> (<span>250</span>г)</span></h2>
+                <div class="more-cont clearfix">
+                    <img class="left" id="more-img" src="upload/images/default.jpg">
+                    <div class="right">
+                        <p id="more-desc">Оладьи из кабачков на пару получаются очень нежными и сочными. Для их приготовления лучше всего брать молодые кабачки. Цуккини здесь не подойдут, так как их мякоть более водянистая, и придется добавлять больше муки, чтобы оладьи не расползались.</p>
+                        <ul id="more-jbu" class="clearfix">
+                            <li class="clearfix"><h5>Белки</h5><span>11</span></li>
+                            <li class="clearfix"><h5>Жиры</h5><span>11</span></li>
+                            <li class="clearfix"><h5>Углеводы</h5><span>11</span></li>
+                            <li class="clearfix"><h5>Калории</h5><span>11</span></li>
+                        </ul>
+                        <h4>Цена: <span class="green"><span id="more-price">190</span> руб.</span></h4>
+                        <div class="clearfix">
+                            <button class="right b-orange-butt rounded b-add-cart-detail" id="more-add-butt">Добавить на <span>утро</span></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="b-popup-2">
@@ -277,11 +292,12 @@
                 <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
             </div>
         </div>
-        <li class="clearfix" data-dish-id="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
+        <li class="dish-item clearfix" data-dish-id="" data-img="" data-name="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-weight="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
             <div class="left b-image" style=""></div>
             <div class="left">
                 <h4></h4>
-                <a href="#" class="b-more">Подробнее</a>
+                <a href="#" class="b-more more-butt-main fancy" data-block="#b-popup-more">Подробнее</a>
+                <p class="more-desc hidden"></p>
             </div>
             <div class="del-cross"></div>
             <div class="right clearfix">
