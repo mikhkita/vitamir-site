@@ -202,6 +202,7 @@ function fancy_init() {
 					}
 				},
 				afterShow: function(){
+					$popup.find("input[type='text'],input[type='number']").eq(0).focus();
 					if( $this.attr("data-afterShow") && customHandlers[$this.attr("data-afterShow")] ){
 						customHandlers[$this.attr("data-afterShow")]($this);
 					}

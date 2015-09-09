@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','basket','fullMenu','dayTime','createOrder','order','updateOrder','thanks'),
+				'actions'=>array('index','basket','getpromo','fullMenu','dayTime','createOrder','order','updateOrder','thanks'),
 				'users'=>array('*'),
 			),
 		);
@@ -140,8 +140,7 @@ class LandController extends Controller
 	public function actionUpdateOrder(){
 		if( isset($_SESSION['order_id']) ){
 			if( count($_POST) ){
-				$vowels = array("(", ")", "+", " ", "-");
-				$login = str_replace($vowels, "", $_POST["phone"]);
+				$login = $this->getLogin($_POST["phone"]);
 				$model = Order::model()->findByPk($_SESSION["order_id"]);
 
 				$user = User::model()->find("usr_login='".$login."'");
@@ -150,7 +149,8 @@ class LandController extends Controller
 					$user = new User();
 
 					$user->usr_login = $login;
-					$user->usr_password = "123";
+					$user->newPass = "123123";
+					$user->usr_password = "123123";
 					$user->usr_name = $_POST["name"];
 					$user->usr_email = $_POST["email"];
 					$user->usr_rol_id = 4;
@@ -175,6 +175,37 @@ class LandController extends Controller
 			));
 		}else{
 			header("Location: /");
+		}
+	}
+
+	public function actionGetPromo(){
+		if( isset($_POST["phone"]) ){
+			$login = $this->getLogin($_POST["phone"]);
+			$user = User::model()->find("usr_login='".$login."'");
+
+			if( !$user ){
+				$user = new User();
+
+				$user->usr_login = $login;
+				$user->newPass = "123123";
+				$user->usr_password = "123123";
+				$user->usr_rol_id = 4;
+
+				if(!$user->save()){
+					die("Ошибка создания пользователя");
+				}
+			}
+
+			if( $user->usr_promo == NULL ){
+				$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
+				if( !$user->save() ){
+					die("Ошибка создания промокода");
+				}
+			}
+
+			echo "1";
+		}else{
+			echo "0";
 		}
 	}
 

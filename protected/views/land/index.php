@@ -659,7 +659,7 @@
             <div class="b-popup" >
                 <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
                 <h3>Введите телефон, и промокод автоматически будет выслан</h3>
-                <form action="kitsend.php" method="POST" id="b-form-8" data-block="#b-popup-2">
+                <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="b-form-8" data-block="#b-popup-2">
                     <div class="b-popup-form">
                         <input type="hidden" name="subject" value="Заявка на промокод"/>
                         <label for="phone-5">Введите Ваш телефон:</label>

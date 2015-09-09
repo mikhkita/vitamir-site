@@ -90,6 +90,8 @@ $(document).ready(function(){
 
             url = ( $(".main form").length ) ? (url+"&"+$(".main form").serialize()) : url;
 
+            $(".b-tooltip, .b-panel-icons-item a,.b-tool, .b-image-nav, .b-help, .b-title").qtip('destroy', true);
+
             $.ajax({
                 url: url,
                 success: function(msg){
@@ -272,7 +274,7 @@ $(document).ready(function(){
     /* Preloader ----------------------------------- Preloader */
 
     /* Hot keys ------------------------------------ Hot keys */
-    if( $(".ajax-create").length ){
+    if( $(".ajax-form").length ){
         var cmddown = false,
             ctrldown = false;
         function down(e){

@@ -7,7 +7,11 @@
  * @property integer $usr_id
  * @property string $usr_login
  * @property string $usr_password
+ * @property string $usr_name
  * @property string $usr_email
+ * @property string $usr_rol_id
+ * @property string $usr_promo
+ * @property integer $usr_discount
  */
 class User extends CActiveRecord
 {
@@ -18,8 +22,8 @@ class User extends CActiveRecord
 	const STATE_ACTIVE = 1;
 	const STATE_DISABLED = 0;
 
-	public $prevRole = null;
-	public $prevPass = null;
+	public $prevRole = NULL;
+	public $newPass = NULL;
 
 	/**
 	 * @return string the associated database table name
@@ -37,12 +41,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('usr_login, usr_password, usr_email', 'required'),
+			array('usr_login, usr_password, usr_rol_id', 'required'),
+			array('usr_discount', 'numerical', 'integerOnly'=>true),
 			array('usr_login, usr_password, usr_email', 'length', 'max'=>128),
-			array('usr_rol_id, usr_name', 'safe'),
+			array('usr_name', 'length', 'max'=>255),
+			array('usr_rol_id, usr_promo', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('usr_id, usr_login, usr_password, usr_email, usr_rol_id, usr_name', 'safe', 'on'=>'search'),
+			array('usr_id, usr_login, usr_password, usr_name, usr_email, usr_rol_id, usr_promo, usr_discount', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,16 +73,16 @@ class User extends CActiveRecord
 			'usr_email' => 'E-mail',
 			'usr_rol_id' => 'Роль',
 			'usr_name' => 'Фамилия И.О.',
+			'usr_promo' => 'Промо-код',
+			'usr_discount' => 'Скидка',
 		);
 	}
 
 	public function beforeSave() {
 		parent::beforeSave();
-		$this->usr_password = ( $this->prevPass == $this->usr_password ) ? $this->usr_password : md5($this->usr_password."eduplan");
+		if( $this->newPass != NULL ) $this->usr_password = md5($this->usr_password."eduplan");
 
-		if( !$this->usr_login || !$this->usr_email || !$this->usr_password ){
-	        return false;
-		}
+		$this->newPass = NULL;
 
 		if( ($this->role->code == User::ROLE_ADMIN || $this->role->code == User::ROLE_ROOT) && Controller::getUserRoleFromModel() != User::ROLE_ROOT && Controller::getUserRoleFromModel() != User::ROLE_ADMIN )
 			throw new CHttpException(403,'Доступ запрещен');
@@ -117,7 +123,11 @@ class User extends CActiveRecord
 		$criteria->compare('usr_id',$this->usr_id);
 		$criteria->compare('usr_login',$this->usr_login,true);
 		$criteria->compare('usr_password',$this->usr_password,true);
+		$criteria->compare('usr_name',$this->usr_name,true);
 		$criteria->compare('usr_email',$this->usr_email,true);
+		$criteria->compare('usr_rol_id',$this->usr_rol_id,true);
+		$criteria->compare('usr_promo',$this->usr_promo,true);
+		$criteria->compare('usr_discount',$this->usr_discount);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

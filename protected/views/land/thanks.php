@@ -247,7 +247,7 @@
             <div class="b-popup" >
                 <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
                 <h3>Введите телефон, и промокод автоматически будет выслан</h3>
-                <form action="kitsend.php" method="POST" id="b-form-8" data-block="#b-popup-2">
+                <form action="kitsend.php" method="POST" id="b-form-8" data-block="#b-popup-3">
                     <div class="b-popup-form">
                         <input type="hidden" name="subject" value="Заявка на промокод"/>
                         <label for="phone-5">Введите Ваш телефон:</label>
@@ -288,6 +288,13 @@
                         
                     </div>
                 </div>
+            </div>
+        </div>
+        <div id="b-popup-3">
+            <div class="b-thanks b-popup">
+                <h3>Спасибо!</h3>
+                <h4>Ваш личный промо-код на скидку был выслан Вам в виде СМС-сообщения</h4>
+                <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
             </div>
         </div>
         <div id="b-popup-2">

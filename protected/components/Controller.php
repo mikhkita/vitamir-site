@@ -148,4 +148,9 @@ class Controller extends CController
         $model = Page::model()->findAllByPk(array(1,2),array("order"=>"pag_id ASC"));
         return $model;
     }
+
+    public function getLogin($phone){
+        $vowels = array("(", ")", "+", " ", "-");
+        return str_replace($vowels, "", $phone);
+    }
 }

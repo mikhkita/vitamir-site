@@ -42,6 +42,9 @@ class UserController extends Controller
 
 		if(isset($_POST['User']))
 		{
+			if( $_POST["User"]["usr_password"] != $model->usr_password )
+				$model->newPass = $_POST["User"]["usr_password"];
+
 			$model->attributes=$_POST['User'];
 
 			if($model->save()){
@@ -62,9 +65,13 @@ class UserController extends Controller
 
 		if(isset($_POST['User']))
 		{
-			$model->prevPass = $model->usr_password;
 			$model->prevRole = $model->role->code;
+			
+			if( $_POST["User"]["usr_password"] != $model->usr_password )
+				$model->newPass = $_POST["User"]["usr_password"];
+
 			$model->attributes=$_POST['User'];
+			
 			if($model->save()){
 				$this->actionAdminindex(true);
 			}
