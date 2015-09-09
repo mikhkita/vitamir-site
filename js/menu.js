@@ -43,7 +43,7 @@ function calculateDaytime(daytime,daytime1,type){
         var combo = $(this).attr("data-"+type)*1,
             count = $(this).find('select[name="count"]').val()*1;
         for( i in sum ){
-            sum[i] = sum[i]+(($(this).attr("data-"+i)*combo*count).toFixed(3))*1;
+            sum[i] = sum[i]+($(this).attr("data-"+i)*combo*count);
         }
     });
 

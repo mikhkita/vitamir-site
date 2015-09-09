@@ -334,6 +334,7 @@ class LandController extends Controller
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;			
 		}
+		ksort($daytime);
 		$daytime['set_id'] = $set_id;
 		$daytime['daytime']["1"] = "Утро";
 		$daytime['daytime']["2"] = "День";
