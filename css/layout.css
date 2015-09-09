@@ -252,6 +252,9 @@ input.error,textarea.error{
 	left: 50%;
 	margin-left: -585px;
 }
+.hidden {
+	display: none !important;
+}
 /*.b-popup form input::-webkit-input-placeholder {
 	color: rgba(71,62, 66, 0.6);
     font-family: "latobold";
@@ -296,7 +299,7 @@ textarea{
 	    font-family: "latobold";
 	    padding-top: 0px;
 	}
-		.b-popup h2 span{
+		.b-popup h2.sub-title span{
 		    color: #6fc617;
 		}
 	.b-popup h3{

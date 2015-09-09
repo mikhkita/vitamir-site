@@ -43,28 +43,23 @@ class LandController extends Controller
 			}
 			$dish['price'] = round($dish['price']*$dish[$_POST['coef']]);
 		}
-		if($_POST['order'] == 3) {
-			function cmp($a, $b)
-			{
-				$a = $a['action'];
-				$b = $b['action'];
-			    if ($a == $b) {
-			        return 0;
-			    }
-			    return ($a > $b) ? -1 : 1;
-			}
-		} else if($_POST['order'] == 2){
-			function cmp($a, $b)
-			{
-				$a = $a['price'];
-				$b = $b['price'];
-			    if ($a == $b) {
-			        return 0;
-			    }
-			    return ($a < $b) ? -1 : 1;
-			}	
-		}	
-		usort($dishes, "cmp");
+		// function cmp($a, $b)
+		// {
+		// 	if($_POST['order'] == 3) {
+		// 		$a = $a['action'];
+		// 		$b = $b['action'];
+		// 	} else if($_POST['order'] == 2) {
+		// 		$a = $a['price'];
+		// 		$b = $b['price'];
+		// 	}
+		//     if ($a == $b) {
+		//         return 0;
+		//     }
+		//     if($_POST['order'] == 3) return ($a > $b) ? -1 : 1;
+		// 	if($_POST['order'] == 2) return ($a < $b) ? -1 : 1;
+		// }
+
+		// usort($dishes, "cmp");
 		$count = count($dishes);
 		$pages = $count/9;
 		$this->renderPartial('dishes',array(
@@ -192,14 +187,14 @@ class LandController extends Controller
 	public function actionDayTime($set_id,$html = true)
 	{
 		$model = Set::model()->findAll(array('order' => 'sort'));
-		$count = Set::model()->count()-1;
-		$set_id = ($set_id==$count) ? 0 : $set_id+1;
+		$set_id = ($model[$set_id]->id == end($model)->id) ? 0 : $set_id+1;
 		$model = $model[$set_id]->dishes;
 		$daytime = array();
 		foreach ($model as $dish) {
 			$temp = array();
 			$temp['id'] = $dish->dish->id;
 			$temp['name'] = $dish->dish->name;
+			$temp['description'] = $dish->dish->description;
 			$temp['m_1'] = $dish->dish->m_1;
 			$temp['m_2'] = $dish->dish->m_2;
 			$temp['m_3'] = $dish->dish->m_3;
@@ -211,7 +206,7 @@ class LandController extends Controller
 			$temp['car'] = $dish->dish->carbohydrate;
 			$temp['cal'] = $dish->dish->calories;
 			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
-			$temp['img'] = $dish->dish->image;
+			$temp['image'] = $dish->dish->image;
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
 			$daytime['set_id'] = $set_id;
 

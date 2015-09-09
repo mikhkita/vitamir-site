@@ -90,7 +90,7 @@ function menuFilter() {
 
     });
     $("body").on("click",".b-add-cart",function(){
-    	var o = $(this).closest("li"),daynumber,$clone,exit = false;
+    	var o = $(this).closest(".dish-item"),daynumber,$clone,exit = false;
     	$(".b-time-"+daytime+":visible .b-eat li").each(function(){
     		if($(this).attr("data-dish-id") == o.attr("data-dish-id")) {
     			if($(this).find("select").val()==9) $(this).find("select").val(8);
@@ -99,9 +99,6 @@ function menuFilter() {
     		}
     	});
     	if(!exit) {
-	        if(daytime == "morning") daynumber = 1;
-	        if(daytime == "day") daynumber = 2;
-	        if(daytime == "evening") daynumber = 3;
 	        $clone = $("#item-copy").clone();
 	        $clone.attr("data-dish-id",o.attr("data-dish-id"))
 	        .attr("data-m-1",o.attr("data-m-1"))
@@ -117,7 +114,7 @@ function menuFilter() {
 	        .attr("data-pri",o.attr("data-pri"));
 	        $clone.find('.b-image').css("background-image",'url('+o.attr("data-img")+')');
 	        $clone.find('h4').text(o.attr("data-name"));
-	        $clone.find('input').attr("name",'day['+($("#day-select").val()-1)+'][]').val(o.attr("data-dish-id")+';'+daynumber+';1');
+	        $clone.find('input').attr("name",'day['+($("#day-select").val()-1)+'][]').val(o.attr("data-dish-id")+';'+daytime+';1');
 	        $(".b-time-"+daytime+":visible").find(".b-eat").append($clone);
 	    }
         $.fancybox.close();
@@ -136,7 +133,7 @@ function menuFilter() {
             if(set_id >=0)
             $.ajax({
                 type: "GET",
-                url: "land/dayTime",
+                url: "/land/daytime",
                 data:  { set_id: set_id},
                 success: function(msg){
                     $(".daytime-cont").hide(); 

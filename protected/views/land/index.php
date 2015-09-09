@@ -215,7 +215,7 @@
                     </div>
                     <h3>Текущий набор БЖУ:</h3>
                     <ul class="b-attr">
-                        <li class="clearfix b-time-morning">
+                        <li class="clearfix b-time-1">
                             <h4 class="left">Утро:</h4>
                             <div class="right">
                                 <ul class="dark clearfix">
@@ -230,7 +230,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="clearfix b-time-day">
+                        <li class="clearfix b-time-2">
                             <h4 class="left">День:</h4>
                             <div class="right">
                                 <ul class="dark clearfix">
@@ -245,7 +245,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="clearfix b-time-evening">
+                        <li class="clearfix b-time-3">
                             <h4 class="left">Вечер:</h4>
                             <div class="right">
                                 <ul class="dark clearfix">
@@ -737,10 +737,9 @@
                 </div>
             </div>
         </div>
-          <div id="b-popup-menu">
+        <div id="b-popup-more">
             <div class="b-popup menu">
-                <h2>Полное меню</h2>
-                <h2 class="sub-title"><span>100%</span> здоровое питание делает вас энергичнее!</h2>
+                <h2><span class="more-day">100%</span> <span>здоровое питание делает вас энергичнее!</span><span class="more-">100%</span></h2>
                
             </div>
         </div>
