@@ -50,8 +50,13 @@ function calculateDaytime(daytime,daytime1,type){
     console.log(sum);
 
     for( i in sum ){
-        $(".b-time-"+daytime1+" ."+i).text(sum[i]);
+        $(".b-time-"+daytime1+" ."+i).text(roundPlus(sum[i],3));
     }
+}
+function roundPlus(x, n) { //x - число, n - количество знаков
+    if(isNaN(x) || isNaN(n)) return false;
+    var m = Math.pow(10,n);
+    return Math.round(x*m)/m;
 }
 function menuFilter() {
     var form = $("#fullmenu"),daytime,rate,detail_dish_id;

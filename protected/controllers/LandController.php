@@ -78,6 +78,7 @@ class LandController extends Controller
 		$model->price = $_POST["price"];
 		$model->payment = 0;
 		$model->type = $_POST["type"];
+		$model->day = isset($_POST["day-select"])?$_POST["day-select"]:1;
 		if($model->save()){
 			$order_id = $model->id;
 			if(isset($_POST['day']))
@@ -251,11 +252,11 @@ class LandController extends Controller
 			$model->image = $item[7];
 			$model->description = $item[0];
 			$model->m_1 = "1";
-			$model->m_2 = "1";
-			$model->m_3 = "1";
-			$model->w_1 = "1";
-			$model->w_2 = "1";
-			$model->w_3 = "1";
+			$model->m_2 = "1.8";
+			$model->m_3 = "1.3";
+			$model->w_1 = "0.5";
+			$model->w_2 = "1.2";
+			$model->w_3 = "0.8";
 			$model->weight = $item[1];
 			$model->fat = $item[3];
 			$model->protein = $item[2];

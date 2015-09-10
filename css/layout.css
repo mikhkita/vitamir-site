@@ -2537,24 +2537,26 @@ margin-bottom: 6px;
 				background-position: 50% 50%;
 			}
 				.b-basket .basket-cont .table .tr .th:nth-child(1){
-					width: 300px;
+					width: 400px;
 					padding-left: 26px;
 				}
 				.b-basket .basket-cont .table .tr .th:nth-child(2){
-					width: 195px;
+					width: 305px;
 				}
 				.b-basket .basket-cont .table .tr .th:nth-child(3){
-					width: 449px;
+					width: 239px;
 				}
 				.b-basket .basket-cont .table .tr .td:nth-child(1){
-					width: 300px;
+					width: 386px;
 					padding-left: 26px;
 				}
 				.b-basket .basket-cont .table .tr .td:nth-child(2){
-					width: 195px;
+					width: 110px;
+					text-align: center;
 				}
 				.b-basket .basket-cont .table .tr .td:nth-child(3){
-					width: 449px;
+					width: 240px;
+					margin-left: 201px;
 				}
 				.b-basket .basket-cont .table h2{
 					font-size: 19px;

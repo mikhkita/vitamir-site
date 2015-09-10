@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="td left">
-                            <div class="b-arrow">1 день</div>
+                            <div class="b-arrow"><?=$this->declOfNum($order->day,array("день","дня","дней"));?></div>
                         </div>
                         <div class="td left">
                             <h4><?=$price?> руб.</h4>
