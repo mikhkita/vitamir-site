@@ -1,6 +1,6 @@
 $(document).ready(function(){	
     $(".b-filter input,select[name='count']").change(calculateMenu);
-
+    var daytime,rate,detail_dish_id,show_menu;
     calculateMenu();
     menuFilter();
 });
@@ -36,7 +36,8 @@ function calculateDaytime(daytime,daytime1,type){
             "car" : 0,
             "pro" : 0,
             // "pri" : 0,
-            "fat" : 0
+            "fat" : 0,
+            'weight' : 0
         };
 
     $(".daytime-cont").eq($("#day-select").val()*1-1).find(daytime+" .b-eat li").each(function(){
@@ -59,7 +60,7 @@ function roundPlus(x, n) { //x - число, n - количество знако
     return Math.round(x*m)/m;
 }
 function menuFilter() {
-    var daytime,rate,detail_dish_id;
+    
     $('body').on('click',".b-menu-pages a:not(.active)",function() {
         $(".b-menu-pages a.active").removeClass("active");
         $(this).addClass('active');
@@ -75,7 +76,6 @@ function menuFilter() {
             success: function(msg){
                $(".b-menu-items").empty().append(msg);
                $(".b-menu-pages a").eq(0).click();
-               fancy_init();
             }
         });
     });
@@ -85,8 +85,8 @@ function menuFilter() {
     });
     $("body").on("click",".b-add-butt",function(){
         daytime = $(this).closest('.b-time').attr("data-id");
-        $("#fullmenu input").eq(0).change();
     });
+
     $("body").on("click",".b-add-cart",function(){
     	var o = $(this).closest(".dish-item");
     	dish_clone(o,daytime);
@@ -107,6 +107,7 @@ function menuFilter() {
             $("#day-select").append('<option value="'+opt_length+'">'+opt_length+'</option>');
             $("#day-select option").eq(opt_length-1).prop("selected",true);
             var set_id = $(".daytime-cont:last").attr("data-set-id");
+            $("#day-count").val($("#day-select option").length);
             if(set_id >=0)
             $.ajax({
                 type: "GET",
@@ -152,18 +153,22 @@ function menuFilter() {
        day = $(this).closest(".b-time").attr("data-day"),
        coef = o.attr("data-"+$(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val());
        $("#more-add-butt").hide();
+       show_menu = 0;
        set_more(o,day,coef);
     });
 
     $("body").on("click",".more-butt-menu",function() {
+        $.fancybox.close();
         var o = $(this).closest(".dish-item"),
         day = $('.b-time[data-id="'+daytime+'"]').attr("data-day"),
         coef = o.attr("data-"+$(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val());
         set_more(o,day,coef);
         detail_dish_id = o.attr("data-dish-id");
         $("#more-add-butt").show();
+        show_menu = 1;
         return false; 
     });  
+    $("#fullmenu input").eq(0).change();
 
     function dish_clone(o,daytime) {
         var daynumber,$clone,exit = false;
@@ -191,7 +196,7 @@ function menuFilter() {
             .attr("data-car",o.attr("data-car"))
             .attr("data-cal",o.attr("data-cal"))
             .attr("data-pri",o.attr("data-pri"));
-            $clone.find('.b-image').css("background-image",'url('+o.attr("data-img")+')');
+            $clone.find('.b-image').css("background-image","url('/"+o.attr("data-img")+"')");
             $clone.find('h4').text(o.attr("data-name"));
             $clone.find(".more-desc").text(o.find(".more-desc").text());
             $clone.find('input').attr("name",'day['+($("#day-select").val()-1)+'][]').val(o.attr("data-dish-id")+';'+daytime+';1');
@@ -206,14 +211,14 @@ function menuFilter() {
         coef = coef || 1;
         $("#more-day,#more-add-butt span").text(daytime); 
         $("#more-name").text($obj.attr("data-name")); 
-        $("#more-weight span").text($obj.attr("data-weight")*coef);   
-        $("#more-img").attr("src",$obj.attr("data-img"));
+        $("#more-weight span").text(roundPlus($obj.attr("data-weight")*coef,3));   
+        $("#more-img").attr("src","/"+$obj.attr("data-img"));
         $("#more-desc").text($obj.find(".more-desc").text());
-        $("#more-jbu li").eq(0).find("span").text($obj.attr("data-pro")*coef);
-        $("#more-jbu li").eq(1).find("span").text($obj.attr("data-fat")*coef);
-        $("#more-jbu li").eq(2).find("span").text($obj.attr("data-car")*coef);
-        $("#more-jbu li").eq(3).find("span").text($obj.attr("data-cal")*coef);
-        $("#more-price").text($obj.attr("data-pri")*coef);
+        $("#more-jbu li").eq(0).find("span").text(roundPlus($obj.attr("data-pro")*coef,3));
+        $("#more-jbu li").eq(1).find("span").text(roundPlus($obj.attr("data-fat")*coef,3));
+        $("#more-jbu li").eq(2).find("span").text(roundPlus($obj.attr("data-car")*coef,3));
+        $("#more-jbu li").eq(3).find("span").text(roundPlus($obj.attr("data-cal")*coef,3));
+        $("#more-price").text(Math.round($obj.attr("data-pri")*coef));
     }
 
     function set_day($page) {

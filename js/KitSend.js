@@ -219,28 +219,4 @@ function fancy_init() {
 				}
 			});
 		});
-
-		$(".more-butt-menu").each(function(){
-			$(this).fancybox({ 
-				padding : 0,
-				content : $("#b-popup-more"),
-				afterClose: function(){  
-			        $.fancybox({ 
-			        	content: $("#b-popup-menu"),
-			            helpers:  {
-			                overlay : true
-			            },
-			            beforeShow: function() {
-			            	$(".fancybox-wrap").appendTo(".fancybox-overlay");
-
-						  // Add the missing classes to <html>
-						  $("html").addClass("fancybox-margin fancybox-lock");
-			            },
-			            afterShow:function(){   
-			                $.fancybox.helpers.overlay.open({parent: $('body')});
-			            }
-			        });
-			    }
-			});
-        });
 	}

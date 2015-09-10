@@ -228,9 +228,10 @@
                         <select class="right" name="day-select" id="day-select">
                             <option value="1">1</option>
                         </select>
+                        <input type="hidden" name="day-count" id="day-count" value="1">
                         <!-- <a href="#" class="b-add-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
                     </div>
-                    <?php $this->renderPartial('daytime', array('daytime'=> $daytime)); ?>          
+                    <?php $this->renderPartial('daytime', array('daytime'=> $daytime, 'dayname' => $dayname, 'set_id' => $set_id)); ?>          
                 </div>
                 <div class="b-green-bottom b-time-all clearfix">
                     <div class="left">

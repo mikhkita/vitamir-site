@@ -24,9 +24,8 @@ class LandController extends Controller
 	public function actionIndex($partial = false)
 	{	
 		$set_id = file_get_contents('set_number.txt');
-		$this->render('index',array(
-			'daytime'=>$this->actionDayTime($set_id,false)
-		));
+		$options = $this->actionDayTime($set_id,false);
+		$this->render('index',$options);
 	}
 
 	public function actionFullMenu()
@@ -78,7 +77,7 @@ class LandController extends Controller
 		$model->price = $_POST["price"];
 		$model->payment = 0;
 		$model->type = $_POST["type"];
-		$model->day = isset($_POST["day-select"])?$_POST["day-select"]:1;
+		$model->day = $_POST["day-count"];
 		if($model->save()){
 			$order_id = $model->id;
 			if(isset($_POST['day']))
@@ -94,8 +93,7 @@ class LandController extends Controller
 					$temp->save();
 				}
 			}
-			
-			session_start();
+			if(!isset($_SESSION)) session_start();
 			$_SESSION['order_id'] = $order_id;
 			$_SESSION['order_price'] = $_POST["price"];
 
@@ -107,8 +105,7 @@ class LandController extends Controller
 
 	public function actionBasket($partial = false)
 	{
-		session_start();
-
+		if(!isset($_SESSION)) session_start();
 		if( isset($_SESSION['order_id']) ){
 			$model = Order::model()->findByPk($_SESSION["order_id"]);
 
@@ -121,23 +118,25 @@ class LandController extends Controller
 		}
 	}
 
-	public function actionOrder($partial = false)
-	{
-		session_start();
+	// public function actionOrder($partial = false)
+	// {
+	// 	// session_start();
 
-		if( isset($_SESSION['order_id']) ){
-			$model = Order::model()->findByPk($_SESSION["order_id"]);
+	// 	if( isset($_SESSION['order_id']) ){
+	// 		$model = Order::model()->findByPk($_SESSION["order_id"]);
 
-			$this->render('order',array(
-				'order' => $model,
-				'price' => $_SESSION['order_price'],
-			));
-		}else{
-			header("Location: /");
-		}
-	}
+	// 		$this->render('order',array(
+	// 			'order' => $model,
+	// 			'price' => $_SESSION['order_price'],
+	// 		));
+	// 	}else{
+	// 		header("Location: /");
+	// 	}
+	// }
 
 	public function actionUpdateOrder(){
+
+		if(!isset($_SESSION)) session_start();
 		if( isset($_SESSION['order_id']) ){
 			if( count($_POST) ){
 				$login = $this->getLogin($_POST["phone"]);
@@ -314,6 +313,7 @@ class LandController extends Controller
 		$set_id = ($model[$set_id]->id == end($model)->id) ? 0 : $set_id+1;
 		$model = $model[$set_id]->dishes;
 		$daytime = array();
+		$dayname = array();
 		foreach ($model as $dish) {
 			$temp = array();
 			$temp['id'] = $dish->dish->id;
@@ -336,15 +336,16 @@ class LandController extends Controller
 			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;			
 		}
 		ksort($daytime);
-		$daytime['set_id'] = $set_id;
-		$daytime['daytime']["1"] = "Утро";
-		$daytime['daytime']["2"] = "День";
-		$daytime['daytime']["3"] = "Вечер";
+		$dayname["1"] = "Утро";
+		$dayname["2"] = "День";
+		$dayname["3"] = "Вечер";
 		if($html) {	
 			$this->renderPartial('daytime',array(
-				'daytime'=>$daytime
+				'daytime' => $daytime,
+				'dayname' => $dayname,
+				'set_id' => $set_id
 			));	
-		} else return $daytime;
+		} else return array('daytime' => $daytime,'dayname' => $dayname, 'set_id' => $set_id);
 	}
 	public function loadModel($id)
 	{

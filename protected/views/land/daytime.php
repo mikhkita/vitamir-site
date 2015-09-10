@@ -1,7 +1,6 @@
-<div class="daytime-cont" data-set-id="<?=$daytime['set_id']?>">
+<div class="daytime-cont" data-set-id="<?=$set_id?>">
 <? foreach($daytime as $key => $value): ?>
-    <? if($key!="set_id" && $key!="daytime"): ?>
-    <div class="b-time b-time-<?=$key?>" data-id="<?=$key?>" data-day="<?=$daytime['daytime'][$key]?>">
+    <div class="b-time b-time-<?=$key?>" data-id="<?=$key?>" data-day="<?=$dayname[$key]?>">
             <div class="b-header clearfix">
                 <h3 class="left"><?=$daytime['daytime'][$key]?></h3>
                 <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
@@ -12,7 +11,7 @@
                         <div class="left b-image" style="background-image: url('<?=Yii::app()->baseUrl.'/'.$item['image']?>');"></div>
                         <div class="left">
                             <h4><?=$item['name']?></h4>
-                            <a href="#" class="b-more more-butt-main fancy" data-block="#b-popup-more">Подробнее</a>
+                            <a href="#" class="b-more more-butt-main modal" data-block="#b-popup-more">Подробнее</a>
                             <p class="more-desc hidden"><?=$item['description']?></p>
                         </div>
                         <div class="del-cross"></div>
@@ -21,7 +20,8 @@
                                 <span>Кол-во:</span>
                             </div>
                             <div class="right">
-                                <select name="count" id="">
+                                <? CHtml::dropDownList('count', string $select, array $data) ?>
+                                <select name="count">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -39,7 +39,6 @@
                 <? endforeach; ?>  
             </ul>
             <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на <?=$daytime['daytime'][$key]?></a></div>
-        </div>
-    <? endif; ?>      
+        </div>   
 <? endforeach; ?>  
 </div>

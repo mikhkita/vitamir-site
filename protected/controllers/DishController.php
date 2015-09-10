@@ -60,9 +60,11 @@ class DishController extends Controller
 
 	public function actionAdminDelete($id)
 	{
-		$this->loadModel($id)->delete();
 
+		$this->loadModel($id)->delete();
 		$this->actionAdminIndex(true);
+
+
 	}
 
 	public function actionAdminIndex($partial = false)

@@ -13,7 +13,7 @@
                     </div>
                     <div class="clearfix b-price-cont">
                         <div class="left"><span><?=round($item['price']*$item[$_POST['coef']])?></span> руб.</div>
-                        <a href='#' class="more-butt-menu right">Подробнее</a>
+                        <a href='#' data-block="#b-popup-more" class="modal more-butt-menu right">Подробнее</a>
                         <p class="more-desc hidden"><?=$item['description']?></p>
                     </div>
                     <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
