@@ -2,7 +2,7 @@
 <? foreach($daytime as $key => $value): ?>
     <div class="b-time b-time-<?=$key?>" data-id="<?=$key?>" data-day="<?=$dayname[$key]?>">
             <div class="b-header clearfix">
-                <h3 class="left"><?=$daytime['daytime'][$key]?></h3>
+                <h3 class="left"><?=$dayname[$key]?></h3>
                 <h6 class="left"><span class="cal"></span> кКал. <span class="car"></span>г углеводов, <span class="pro"></span>г белков, <span class="fat"></span>г жиров</h6>
             </div>
             <ul class="b-eat">
@@ -20,7 +20,7 @@
                                 <span>Кол-во:</span>
                             </div>
                             <div class="right">
-                                <? CHtml::dropDownList('count', string $select, array $data) ?>
+                                <!-- <? CHtml::dropDownList('count', string $select, array $data) ?> -->
                                 <select name="count">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
@@ -38,7 +38,7 @@
                     </li>
                 <? endforeach; ?>  
             </ul>
-            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на <?=$daytime['daytime'][$key]?></a></div>
+            <div class="b-add-butt-cont clearfix"><a href='#' class="b-add-butt fancy" data-block="#b-popup-menu">Добавить на <?=$dayname[$key]?></a></div>
         </div>   
 <? endforeach; ?>  
 </div>
