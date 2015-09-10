@@ -59,7 +59,7 @@ function roundPlus(x, n) { //x - число, n - количество знако
     return Math.round(x*m)/m;
 }
 function menuFilter() {
-    var form = $("#fullmenu"),daytime,rate,detail_dish_id;
+    var daytime,rate,detail_dish_id;
     $('body').on('click',".b-menu-pages a:not(.active)",function() {
         $(".b-menu-pages a.active").removeClass("active");
         $(this).addClass('active');
@@ -70,11 +70,12 @@ function menuFilter() {
     $("#fullmenu input").change(function(){
         $.ajax({
             type: "POST",
-            url: form.attr("action"),
-            data:  form.serialize()+"&coef="+$(".b-filter input[name='sex-2']:checked").val()+"_"+$(".b-filter input[name='for']:checked").val(),
+            url: $("#fullmenu").attr("action"),
+            data:  $("#fullmenu").serialize()+"&coef="+$(".b-filter input[name='sex-2']:checked").val()+"_"+$(".b-filter input[name='for']:checked").val(),
             success: function(msg){
                $(".b-menu-items").empty().append(msg);
                $(".b-menu-pages a").eq(0).click();
+               fancy_init();
             }
         });
     });
@@ -83,16 +84,8 @@ function menuFilter() {
         $(this).change();
     });
     $("body").on("click",".b-add-butt",function(){
-    	$("#no-add").val('');
-    	var no_add = [];
         daytime = $(this).closest('.b-time').attr("data-id");
-        $(this).closest(".b-time").find(".b-eat li").each(function(){
-        	no_add.push($(this).attr("data-dish-id"));
-        });
-        $("#no-add").val(no_add.join(","));
         $("#fullmenu input").eq(0).change();
-        
-
     });
     $("body").on("click",".b-add-cart",function(){
     	var o = $(this).closest(".dish-item");
@@ -163,17 +156,12 @@ function menuFilter() {
     });
 
     $("body").on("click",".more-butt-menu",function() {
-        $.fancybox.close(); 
         var o = $(this).closest(".dish-item"),
         day = $('.b-time[data-id="'+daytime+'"]').attr("data-day"),
         coef = o.attr("data-"+$(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val());
         set_more(o,day,coef);
         detail_dish_id = o.attr("data-dish-id");
         $("#more-add-butt").show();
-        $.fancybox({
-            content: $("#b-popup-more"),
-            padding: 0
-        });
         return false; 
     });  
 
