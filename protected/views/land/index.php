@@ -216,7 +216,7 @@
                         </div>
                     </li>
                 </ul>
-                <h5 class="b-time-all"><font class="cal">2450</font> кКал. <span>+ 1,8 л воды</span></h5>
+                <h5 class="b-time-all"><font class="cal">2450 </font> <p> кКал.</p> <span>+ 1,8 л воды</span></h5>
                 <a href="#" class="ajax b-orange-butt rounded fancy" href="#" data-block="#b-popup-programm">Получить персональную<br>программу питания</a>
             </div>
             <form action="<?=$this->createUrl('/land/createorder')?>" method="POST" id="menu-order">
@@ -225,13 +225,10 @@
                     <div class="clearfix b-header">
                         <h3 class="left">Меню на день</h3>
                         <a href="#" class="right b-add-day">Добавить еще день</a>
-                        <select class="right" name="day-select" id="day-select">
-                            <option value="1">1</option>
-                        </select>
-                        <input type="hidden" name="day-count" id="day-count" value="1">
-                        <!-- <a href="#" class="b-add-link right" data-block="#b-popup-menu">Посмотреть все меню</a> -->
+                        <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
+                        <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
                     </div>
-                    <?php $this->renderPartial('daytime', array('daytime'=> $daytime, 'dayname' => $dayname, 'set_id' => $set_id)); ?>          
+                    <?php $this->renderPartial('day', array('days'=> $days, 'dayname' => $dayname, 'set_id' => $set_id)); ?>          
                 </div>
                 <div class="b-green-bottom b-time-all clearfix">
                     <div class="left">

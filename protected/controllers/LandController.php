@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','import','basket','getpromo','fullMenu','dayTime','createOrder','order','updateOrder','thanks'),
+				'actions'=>array('index','import','basket','getpromo','fullMenu','day','createOrder','order','updateOrder','thanks'),
 				'users'=>array('*'),
 			),
 		);
@@ -24,8 +24,74 @@ class LandController extends Controller
 	public function actionIndex($partial = false)
 	{	
 		$set_id = file_get_contents('set_number.txt');
-		$options = $this->actionDayTime($set_id,false);
+		$day_select = array();
+		$day_select[1] = 1;
+		if(!isset($_SESSION)) session_start();
+		if(isset($_SESSION['order_id']) && $model = Order::model()->findbyPk($_SESSION['order_id'])) {
+			$days = array();
+			for ($i=1; $i <= $model->day; $i++) { 
+				$day_select[$i] = $i; 
+				$dishes = OrderDish::model()->findAll('order_id='.$_SESSION['order_id'].' AND day='.$i);
+				$days[$i-1] = $this->actionSetShow($dishes);
+			}
+			$dayname = array();
+			$dayname["1"] = "Утро";
+			$dayname["2"] = "День";
+			$dayname["3"] = "Вечер";
+			
+			$options = array('day_select' => $day_select, 'days' => $days,'dayname' => $dayname, 'set_id' => $set_id);
+		} else {
+			$options = $this->actionDay($set_id,false);
+			$options['day_select'] = $day_select;
+		}	
 		$this->render('index',$options);
+	}
+
+	public function actionDay($set_id,$html = true)
+	{
+		$model = Set::model()->findAll(array('order' => 'sort'));
+		$set_id = ($model[$set_id]->id == end($model)->id) ? 0 : $set_id+1;
+		$model = $model[$set_id]->dishes;
+		$days = array();
+		$days[0] = $this->actionSetShow($model);
+		$dayname = array();
+		$dayname["1"] = "Утро";
+		$dayname["2"] = "День";
+		$dayname["3"] = "Вечер";
+		if($html) {	
+			$this->renderPartial('day',array(
+				'days' => $days,
+				'dayname' => $dayname,
+				'set_id' => $set_id
+			));	
+		} else return array('days' => $days,'dayname' => $dayname, 'set_id' => $set_id);
+	}
+
+	public function actionSetShow($dishes) {
+		$day = array();
+		foreach ($dishes as $dish) {
+			$temp = array();
+			$temp['id'] = $dish->dish->id;
+			$temp['name'] = $dish->dish->name;
+			$temp['image'] = $dish->dish->image;
+			$temp['description'] = $dish->dish->description;
+			$temp['m_1'] = $dish->dish->m_1;
+			$temp['m_2'] = $dish->dish->m_2;
+			$temp['m_3'] = $dish->dish->m_3;
+			$temp['w_1'] = $dish->dish->w_1;
+			$temp['w_2'] = $dish->dish->w_2;
+			$temp['w_3'] = $dish->dish->w_3;
+			$temp['weight'] = $dish->dish->weight;
+			$temp['fat'] = $dish->dish->fat;
+			$temp['pro'] = $dish->dish->protein;
+			$temp['car'] = $dish->dish->carbohydrate;
+			$temp['cal'] = $dish->dish->calories;
+			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
+			$temp['count'] = isset($dish->count) ? $dish->count : 1;
+			$day[$dish['daytime_id']][$dish['dish_id']] = $temp;			
+		}
+		ksort($day);
+		return $day;
 	}
 
 	public function actionFullMenu()
@@ -70,7 +136,11 @@ class LandController extends Controller
 	public function actionCreateOrder($partial = false)
 	{
 		date_default_timezone_set("Europe/Moscow");
-
+		if(!isset($_SESSION)) session_start();
+		if(isset($_SESSION['order_id'])) { 
+			Order::model()->deleteByPk($_SESSION['order_id']);
+			OrderDish::model()->deleteAll("order_id=".$_SESSION['order_id']); 
+		}
 		$model = new Order;	
 		$model->date = date("Y-m-d H:i:s");
 		$model->delivery = 0;
@@ -93,7 +163,6 @@ class LandController extends Controller
 					$temp->save();
 				}
 			}
-			if(!isset($_SESSION)) session_start();
 			$_SESSION['order_id'] = $order_id;
 			$_SESSION['order_price'] = $_POST["price"];
 
@@ -307,46 +376,6 @@ class LandController extends Controller
 		));
 	}
 
-	public function actionDayTime($set_id,$html = true)
-	{
-		$model = Set::model()->findAll(array('order' => 'sort'));
-		$set_id = ($model[$set_id]->id == end($model)->id) ? 0 : $set_id+1;
-		$model = $model[$set_id]->dishes;
-		$daytime = array();
-		$dayname = array();
-		foreach ($model as $dish) {
-			$temp = array();
-			$temp['id'] = $dish->dish->id;
-			$temp['name'] = $dish->dish->name;
-			$temp['description'] = $dish->dish->description;
-			$temp['m_1'] = $dish->dish->m_1;
-			$temp['m_2'] = $dish->dish->m_2;
-			$temp['m_3'] = $dish->dish->m_3;
-			$temp['w_1'] = $dish->dish->w_1;
-			$temp['w_2'] = $dish->dish->w_2;
-			$temp['w_3'] = $dish->dish->w_3;
-			$temp['weight'] = $dish->dish->weight;
-			$temp['fat'] = $dish->dish->fat;
-			$temp['pro'] = $dish->dish->protein;
-			$temp['car'] = $dish->dish->carbohydrate;
-			$temp['cal'] = $dish->dish->calories;
-			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
-			$temp['image'] = $dish->dish->image;
-			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;
-			$daytime[$dish['daytime_id']][$dish['dish_id']] = $temp;			
-		}
-		ksort($daytime);
-		$dayname["1"] = "Утро";
-		$dayname["2"] = "День";
-		$dayname["3"] = "Вечер";
-		if($html) {	
-			$this->renderPartial('daytime',array(
-				'daytime' => $daytime,
-				'dayname' => $dayname,
-				'set_id' => $set_id
-			));	
-		} else return array('daytime' => $daytime,'dayname' => $dayname, 'set_id' => $set_id);
-	}
 	public function loadModel($id)
 	{
 		$model=Good::model()->findByPk($id);

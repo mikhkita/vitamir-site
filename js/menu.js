@@ -111,7 +111,7 @@ function menuFilter() {
             if(set_id >=0)
             $.ajax({
                 type: "GET",
-                url: "/land/daytime",
+                url: "/land/day",
                 data:  { set_id: set_id},
                 success: function(msg){
                     $(".daytime-cont").hide(); 
@@ -169,6 +169,7 @@ function menuFilter() {
         return false; 
     });  
     $("#fullmenu input").eq(0).change();
+    if($("#day-select option").length == 1) $("#day-select").hide();
 
     function dish_clone(o,daytime) {
         var daynumber,$clone,exit = false;

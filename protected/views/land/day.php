@@ -1,6 +1,6 @@
-<? foreach($days as $day => $day_dish): ?>
-    <div class="daytime-cont" data-set-id="<?=$set_id?>">
-    <? foreach($day_dish as $key => $value): ?>
+<? foreach($days as $number => $daytime): ?>
+    <div class="daytime-cont <? if($number) echo 'hidden' ?>" data-set-id="<?=$set_id?>">
+    <? foreach($daytime as $key => $value): ?>
         <div class="b-time b-time-<?=$key?>" data-id="<?=$key?>" data-day="<?=$dayname[$key]?>">
                 <div class="b-header clearfix">
                     <h3 class="left"><?=$dayname[$key]?></h3>
@@ -21,10 +21,10 @@
                                     <span>Кол-во:</span>
                                 </div>
                                 <div class="right">
-                                    <? CHtml::dropDownList('count', $item['count'], array ("1"=>1,"2"=>2,"3"=>3,"4"=>4,"5"=>5,"6"=>6,"7"=>7,"8"=>8,"9"=>9)) ?>
+                                    <? echo CHtml::dropDownList('count', $item['count'], array ("1"=>1,"2"=>2,"3"=>3,"4"=>4,"5"=>5,"6"=>6,"7"=>7,"8"=>8,"9"=>9)) ?>
                                 </div>
                             </div>
-                            <input type="hidden" name="day[<?$day?>][]" value="<?=$item['id']?>;1;1">
+                            <input type="hidden" name="day[<?=$number?>][]" value="<?=$item['id'].';'.$key?>;1">
                         </li>
                     <? endforeach; ?>  
                 </ul>

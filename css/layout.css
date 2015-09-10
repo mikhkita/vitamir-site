@@ -255,9 +255,7 @@ input.error,textarea.error{
 	left: 50%;
 	margin-left: -585px;
 }
-.hidden {
-	display: none !important;
-}
+
 /*.b-popup form input::-webkit-input-placeholder {
 	color: rgba(71,62, 66, 0.6);
     font-family: "latobold";
@@ -1440,9 +1438,13 @@ margin-bottom: 6px;
 					text-align: left;
 					margin-top: 14px;
 				}
+					.b-3 .b-filter h5 p {
+						display: inline-block;
+					}
 					.b-3 .b-filter h5 span{
 						font-size: 16px;
 						font-family: "latoregular";
+						display: inline-block !important;
 					}
 				.b-3 .b-filter .b-orange-butt{
 					margin-top: 20px;
@@ -1588,7 +1590,6 @@ margin-bottom: 6px;
 								    width: 52px;
 								    padding: 0px 8px;
     								box-sizing: border-box;
-    								display: none;
 								}
 								.b-time ul.b-eat li>.right select{
 								    margin-top: 3px;
@@ -3022,6 +3023,12 @@ margin-bottom: 6px;
 	opacity: 0;
 }
 
+.more-desc {
+	display: none !important;
+}
+.hidden {
+	display: none;
+}
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;
