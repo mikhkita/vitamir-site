@@ -44,17 +44,14 @@ class OrderController extends Controller
 	public function actionAdminUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
-		if(isset($_POST['Order']))
-		{
-			$model->attributes=$_POST['Order'];
-			if($model->save())
-				$this->actionAdminIndex(true);
-		}else{
-			$this->renderPartial('adminUpdate',array(
-				'model'=>$model,
-			));
+		$days = array();
+		for ($i=1; $i <= $model->day; $i++) { 
+			$dishes = OrderDish::model()->findAll('order_id='.$id.' AND day='.$i);
+			array_push($days,$this->actionSetShow($dishes));
 		}
+		$this->renderPartial('adminUpdate',array(
+			'days'=>$days,
+		));
 	}
 
 	public function actionAdminDelete($id)
@@ -97,6 +94,33 @@ class OrderController extends Controller
 			$this->renderPartial('adminIndex',$option);
 		}
 	}
+
+	public function actionSetShow($dishes) {
+		$day = array();
+		foreach ($dishes as $dish) {
+			$temp = array();
+			$temp['id'] = $dish->dish->id;
+			$temp['name'] = $dish->dish->name;
+			$temp['image'] = $dish->dish->image;
+			$temp['description'] = $dish->dish->description;
+			$temp['m_1'] = $dish->dish->m_1;
+			$temp['m_2'] = $dish->dish->m_2;
+			$temp['m_3'] = $dish->dish->m_3;
+			$temp['w_1'] = $dish->dish->w_1;
+			$temp['w_2'] = $dish->dish->w_2;
+			$temp['w_3'] = $dish->dish->w_3;
+			$temp['weight'] = $dish->dish->weight;
+			$temp['fat'] = $dish->dish->fat;
+			$temp['pro'] = $dish->dish->protein;
+			$temp['car'] = $dish->dish->carbohydrate;
+			$temp['cal'] = $dish->dish->calories;
+			$temp['price'] = ($dish->dish->action) ? $dish->dish->action : $dish->dish->price;
+			$temp['count'] = isset($dish->count) ? $dish->count : 1;
+			$day[$dish['daytime_id']][$dish['dish_id']] = $temp;			
+		}
+		return $day;
+	}
+	
 	public function loadModel($id)
 	{
 		$model=Order::model()->findByPk($id);

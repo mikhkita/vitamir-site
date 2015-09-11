@@ -110,6 +110,57 @@ $(document).ready(function(){
   		}
   		return false;
   	});
+	
+	// $("#login-form").validate({
+	// 	validClass: "success",
+	// 	rules: {
+	// 		phone: 'customPhone'
+	// 	}
+	// });
+	// if( $(this).find(".phone").length ){
+	// 	$(this).find(".phone").mask(tePhone,{placeholder:"_"});
+	// }
+
+	
+	$("#login-form").submit(function(){
+  		if( $(this).valid() ){
+  			var $this = $(this),
+  				$thanks = $($this.attr("data-block"));
+
+  			if( $this.attr("data-beforeAjax") && customHandlers[$this.attr("data-beforeAjax")] ){
+				customHandlers[$this.attr("data-beforeAjax")]($this);
+			}
+
+  			$.ajax({
+			  	type: $(this).attr("method"),
+			  	url: $(this).attr("action"),
+			  	data:  $this.serialize(),
+				success: function(msg){
+					if(msg=='1' || msg=='0') {
+						if( msg == "1" ){
+							$form = $($this.attr("data-block"));
+						}else{
+							$form = $("#b-popup-error");
+						}
+
+						if( $this.attr("data-afterAjax") && customHandlers[$this.attr("data-afterAjax")] ){
+							customHandlers[$this.attr("data-afterAjax")]($this);
+						}
+
+						$this.find("input[type=text],textarea").val("");
+						$.fancybox.open({
+							content : $form,
+							padding : 0
+						});
+					} else {
+						// $.parseJSON(msg);
+						console.log(msg);
+					}	
+				}
+			});
+  		}
+  		return false;
+  	});
 
 	$("#b-order-form").submit(function(){
 		$("input[name='phone'].success").parent("div").removeClass("error");

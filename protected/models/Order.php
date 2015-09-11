@@ -17,8 +17,8 @@
 class Order extends CActiveRecord
 {
 
-	public $delivery = array("Самовывоз","Курьерская доставка");
-	public $payment = array("Наличными","Банковской картой");
+	public $delivery = array("Данные не указаны","Самовывоз","Курьерская доставка");
+	public $payment = array("Данные не указаны","Наличными","Банковской картой");
 	public $types = array(
 		"m-1" => "Мужчине для похудения",
 		"m-2" => "Мужчине для набора массы",

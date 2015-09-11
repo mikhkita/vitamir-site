@@ -1,34 +1,67 @@
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'faculties-form',
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('maxlength'=>255,'required'=>true,'disabled'=> !( $this->getUserRole() == "root" ) )); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-<? if( $this->getUserRole() == "root" ):  ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('maxlength'=>255,'required'=>true)); ?>
-		<?php echo $form->error($model,'code'); ?>
-	</div>
-<? endif; ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'value'); ?>
-		<?php echo $form->textArea($model,'value',array('class'=>"b-settings-textarea")); ?>
-		<?php echo $form->error($model,'value'); ?>
-	</div>
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить'); ?>
-		<input type="button" onclick="$.fancybox.close(); return false;" value="Отменить">
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+<ul>
+<? foreach($days as $number => $daytime): ?>
+	<li class="day-cont">
+		<h2>День <?=$number+1?></h2>
+	    <div class="daytime-cont">
+	        <h3>Утро</h3>
+	        <table  class="b-table" border="1"> 
+	        	<tbody>
+	        	<tr class="b-filter">
+	        		<td class="align-left">Название</td>
+	        		<td>Количество</td>
+	        	</tr>
+	            <? if(isset($daytime[1])): ?>
+	                <? foreach($daytime[1] as $item): ?>
+						<tr>
+	                        <td class="align-left"><?=$item['name']?></td>
+	                    	<td><?=$item['count']?></td>
+	                    </tr> 
+	                <? endforeach; ?>  
+	            <? endif; ?>
+	            </tbody>
+	        </table>
+	    </div>
+	    <div class="daytime-cont">
+	        <h3>День</h3>
+	        <table  class="b-table" border="1"> 
+	        	<tbody>
+	        	<tr class="b-filter">
+	        		<td class="align-left">Название</td>
+	        		<td>Количество</td>
+	        	</tr>
+	            <? if(isset($daytime[2])): ?>
+	                <? foreach($daytime[2] as $item): ?>
+						<tr>
+	                        <td class="align-left"><?=$item['name']?></td>
+	                    	<td><?=$item['count']?></td>
+	                    </tr> 
+	                <? endforeach; ?>  
+	            <? endif; ?>
+	            </tbody>
+	        </table>
+	    </div>
+	    <div class="daytime-cont">
+	        <h3>Вечер</h3>
+	        <table  class="b-table" border="1"> 
+	        	<tbody>
+	        	<tr class="b-filter">
+	        		<td class="align-left">Название</td>
+	        		<td>Количество</td>
+	        	</tr>
+	            <? if(isset($daytime[3])): ?>
+	                <? foreach($daytime[3] as $item): ?>
+						<tr>
+	                        <td class="align-left"><?=$item['name']?></td>
+	                    	<td><?=$item['count']?></td>
+	                    </tr> 
+	                <? endforeach; ?>  
+	            <? endif; ?>
+	            </tbody>
+	        </table>
+	    </div>
+	</li>
+<? endforeach; ?>  
+</ul>
+<div class="row buttons clearfix left">
+	<input type="button" onclick="$.fancybox.close(); return false;" value="ОК">
+</div>
