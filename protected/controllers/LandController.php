@@ -23,7 +23,6 @@ class LandController extends Controller
 
 	public function actionIndex($partial = false)
 	{	
-		$login = $this->actionLogin();
 		$set_id = file_get_contents('set_number.txt');
 		if($set_id === false) $set_id = 0;
 		$day_select = array("1" => 1);
@@ -359,30 +358,6 @@ class LandController extends Controller
 		$this->render('thanks',array(
 
 		));
-	}
-
-	public function actionLogin()
-	{
-		if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
-			throw new CHttpException(500,"This application requires that PHP was compiled with Blowfish support for crypt().");
-
-		$model=new LoginForm;
-
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			if($model->validate() && $model->login()) {
-				if($this->getUserRole() != "client") {  
-				    return $this->createUrl(Yii::app()->params['defaultAdminRedirect']);
-	            } else {
-	                return $this->createUrl(Yii::app()->params['defaultUserRedirect']);
-	            }
-	        } else {
-	        	return 0;
-	        }
-		}
-
-		return $model;
 	}
 
 	/**

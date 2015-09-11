@@ -68,7 +68,7 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
         $this->layout='service';
-		if( !Yii::app()->user->isGuest ) $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
+		if($this->getUserRole() != "client" ) $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
 
 		// $this->layout='admin';
 		if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
@@ -88,8 +88,18 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
+            if($model->validate() && $model->login()) {
+                if($this->getUserRole() != "client" ) {  
+                    echo $this->createUrl(Yii::app()->params['defaultAdminRedirect']);
+                    $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
+                } else {
+                    echo $this->createUrl(Yii::app()->params['defaultUserRedirect']);
+                    $this->redirect($this->createUrl(Yii::app()->params['defaultUserRedirect']));
+                }
+            } else {
+                echo 0;
+                return 0;
+            }
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));

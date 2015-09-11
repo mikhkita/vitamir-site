@@ -499,22 +499,15 @@
         <div class="b-popup" >
             <h2>Войдите в систему</h2>
             <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
-            <?php $form=$this->beginWidget('CActiveForm', array(
-                'id'=>'login-form',
-                'enableAjaxValidation'=>false,
-                'action' => "/land/login"
-            )); ?>
+            <form id="login-form" action="<?=$this->createUrl('/site/login')?>">
                 <div class="b-popup-form">
                     <label for="phone-login">Введите Ваш телефон:</label>
-                    <?php echo $form->textField($model,'username', array("id" => 'phone-login', 'class' => 'phone write','maxlength'=>255,'required'=>true)); ?>
+                    <input type="text" id="phone-login" name="Login[username]" class="phone write" required>
                     <label for="password-login">Ваш пароль:</label>
-                    <?php echo $form->passwordField($model,'password',array("id" => 'password-login', 'class' => 'pass','maxlength'=>255,'required'=>true)); ?>
-                    <?php echo $form->error($model,'username'); ?>
-                    <?php echo $form->error($model,'password'); ?>
+                    <input type="password" id="password-login" name="Login[password]" class="pass" required>
                     <?php echo CHtml::submitButton('Войти',array('class' => 'b-orange-butt rounded sys')); ?>
                 </div>
-
-            <?php $this->endWidget(); ?>
+            </form>
         </div>
     </div>
 </div>

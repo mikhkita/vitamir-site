@@ -44,13 +44,23 @@
     <div class="b b-0">
         <div class="b-block clearfix">
             <div class="cabinet right">
+
                 <ul class="clearfix">
-                    <li class="right">
-                        <a class="fancy" href="#"  data-block="#b-popup-system"><p>Войти</p></a>
-                    </li>
-                    <li class="right">
-                        <a class="fancy" href="#" data-block="#b-popup-registration"><p>Зарегистрироваться</p></a>
-                    </li>
+                    <? if(Yii::app()->user->isGuest): ?>
+                        <li class="right">
+                            <a class="fancy" href="#"  data-block="#b-popup-system"><p>Войти</p></a>
+                        </li>
+                        <li class="right">
+                            <a class="fancy" href="#" data-block="#b-popup-registration"><p>Зарегистрироваться</p></a>
+                        </li>
+                    <? else: ?>
+                        <li class="right">
+                            <a href="<?=$this->createUrl('/site/logout')?>"><p>Выйти</p></a>
+                        </li>
+                        <li class="right">
+                            <a class="fancy" href="#"  data-block="#b-popup-system"><p>Личный кабинет</p></a>
+                        </li>
+                    <? endif; ?>
                 </ul>
             </div>
             <div class="percent right clearfix">

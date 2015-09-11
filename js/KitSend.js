@@ -123,39 +123,16 @@ $(document).ready(function(){
 
 	
 	$("#login-form").submit(function(){
+		var form = $(this);
   		if( $(this).valid() ){
-  			var $this = $(this),
-  				$thanks = $($this.attr("data-block"));
-
-  			if( $this.attr("data-beforeAjax") && customHandlers[$this.attr("data-beforeAjax")] ){
-				customHandlers[$this.attr("data-beforeAjax")]($this);
-			}
-
   			$.ajax({
-			  	type: $(this).attr("method"),
-			  	url: $(this).attr("action"),
-			  	data:  $this.serialize(),
-				success: function(msg){
-					if(msg=='1' || msg=='0') {
-						if( msg == "1" ){
-							$form = $($this.attr("data-block"));
-						}else{
-							$form = $("#b-popup-error");
-						}
-
-						if( $this.attr("data-afterAjax") && customHandlers[$this.attr("data-afterAjax")] ){
-							customHandlers[$this.attr("data-afterAjax")]($this);
-						}
-
-						$this.find("input[type=text],textarea").val("");
-						$.fancybox.open({
-							content : $form,
-							padding : 0
-						});
-					} else {
-						// $.parseJSON(msg);
-						console.log(msg);
-					}	
+			  	type: form.attr("method"),
+			  	url: form.attr("action"),
+			  	data:  form.serialize(),
+				success: function(url){
+					if(url) {
+						window.location.replace(url);
+					}
 				}
 			});
   		}

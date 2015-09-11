@@ -37,7 +37,6 @@ class Controller extends CController
 
     public function init() {
         parent::init();
-        
         $this->user = User::model()->findByPk(Yii::app()->user->id);
 
         $this->adminMenu["items"] = ModelNames::model()->findAll(array("order" => "sort ASC","condition" => "admin_menu=1"));
