@@ -24,22 +24,17 @@ class LandController extends Controller
 	public function actionIndex($partial = false)
 	{	
 		$set_id = file_get_contents('set_number.txt');
-		$day_select = array();
-		$day_select[1] = 1;
+		if($set_id === false) $set_id = 0;
+		$day_select = array("1" => 1);
 		if(!isset($_SESSION)) session_start();
 		if(isset($_SESSION['order_id']) && $model = Order::model()->findbyPk($_SESSION['order_id'])) {
 			$days = array();
 			for ($i=1; $i <= $model->day; $i++) { 
 				$day_select[$i] = $i; 
 				$dishes = OrderDish::model()->findAll('order_id='.$_SESSION['order_id'].' AND day='.$i);
-				$days[$i-1] = $this->actionSetShow($dishes);
+				array_push($days,$this->actionSetShow($dishes));
 			}
-			$dayname = array();
-			$dayname["1"] = "Утро";
-			$dayname["2"] = "День";
-			$dayname["3"] = "Вечер";
-			
-			$options = array('day_select' => $day_select, 'days' => $days,'dayname' => $dayname, 'set_id' => $set_id);
+			$options = array('day_select' => $day_select, 'days' => $days, 'set_id' => $set_id);
 		} else {
 			$options = $this->actionDay($set_id,false);
 			$options['day_select'] = $day_select;
@@ -51,20 +46,9 @@ class LandController extends Controller
 	{
 		$model = Set::model()->findAll(array('order' => 'sort'));
 		$set_id = ($model[$set_id]->id == end($model)->id) ? 0 : $set_id+1;
-		$model = $model[$set_id]->dishes;
-		$days = array();
-		$days[0] = $this->actionSetShow($model);
-		$dayname = array();
-		$dayname["1"] = "Утро";
-		$dayname["2"] = "День";
-		$dayname["3"] = "Вечер";
-		if($html) {	
-			$this->renderPartial('day',array(
-				'days' => $days,
-				'dayname' => $dayname,
-				'set_id' => $set_id
-			));	
-		} else return array('days' => $days,'dayname' => $dayname, 'set_id' => $set_id);
+		$days = array("0" => $this->actionSetShow($model[$set_id]->dishes));
+		$options = array('days' => $days,'set_id' => $set_id);
+		if($html) $this->renderPartial('day',$options);	else return $options;
 	}
 
 	public function actionSetShow($dishes) {
@@ -90,7 +74,6 @@ class LandController extends Controller
 			$temp['count'] = isset($dish->count) ? $dish->count : 1;
 			$day[$dish['daytime_id']][$dish['dish_id']] = $temp;			
 		}
-		ksort($day);
 		return $day;
 	}
 

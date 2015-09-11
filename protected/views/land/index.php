@@ -228,7 +228,7 @@
                         <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
                         <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
                     </div>
-                    <?php $this->renderPartial('day', array('days'=> $days, 'dayname' => $dayname, 'set_id' => $set_id)); ?>          
+                    <?php $this->renderPartial('day', array('days'=> $days, 'set_id' => $set_id)); ?>          
                 </div>
                 <div class="b-green-bottom b-time-all clearfix">
                     <div class="left">

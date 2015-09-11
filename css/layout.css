@@ -225,16 +225,15 @@ input.error,textarea.error{
 	}
 .fancybox-inner{
 	overflow: visible !important;
-	/*padding-bottom: 30px !important;*/
 }
 .fancybox-skin {
-	background: none;
+	background: url("../i/popup-pattern-2.jpg");
 }
-.fancybox-opened .fancybox-skin {
+./*fancybox-opened .fancybox-skin {
 	box-shadow: none;
 	-webkit-box-shadow: none;
     -moz-box-shadow: none;
-}
+}*/
 .underline{
 	text-decoration: underline;
 }
@@ -362,9 +361,13 @@ textarea{
 			color: #4A4A4A;
 			font-family: "latoblack";
 		}
+#b-popup-menu {
+	margin-bottom: 20px;
+}
 .b-popup.menu{
 	background-image: url("../i/popup-pattern-2.jpg");
 	width: 780px;
+	position: relative;
 	padding: 25px 40px 25px 25px;
 }
 	.b-popup.menu h2{
@@ -2966,6 +2969,7 @@ margin-bottom: 6px;
 }
 .b-layout.showed{
 	opacity: 1;
+
 }
 .b-modal{
 	display: none;
@@ -2978,7 +2982,22 @@ margin-bottom: 6px;
 	box-sizing: border-box;
 	z-index: 1000;
 	border: 0px !important;
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
+	.modal-close {
+		position: absolute;
+	    top: 0;
+	    right: 0;
+	    width: 36px;
+	    height: 36px;
+	    padding: 10px;
+	    cursor: pointer;
+	    width: 8px;
+	    height: 8px;
+	    background: url('../i/close.png') center center no-repeat;
+	}
 .b-callback{
 	opacity: 0;
 }
@@ -2988,13 +3007,13 @@ margin-bottom: 6px;
 	top: 300px;
 }
 .b-modal{
-	-webkit-transition: all 300ms ease-out;
-	   -moz-transition: all 300ms ease-out;
-	    -ms-transition: all 300ms ease-out;
-	   	 -o-transition: all 300ms ease-out;
-			transition: all 300ms ease-out;
+	-webkit-transition: all 200ms ease-out;
+	   -moz-transition: all 200ms ease-out;
+	    -ms-transition: all 200ms ease-out;
+	   	 -o-transition: all 200ms ease-out;
+			transition: all 200ms ease-out;
 }
-.b-from-top{
+/*.b-from-top{
 	opacity: 0;
 	-webkit-transform: translate(0px, -20px);
 	   -moz-transform: translate(0px, -20px);
@@ -3009,7 +3028,7 @@ margin-bottom: 6px;
 	    -ms-transform: translate(0px, 20px);
 	   	 -o-transform: translate(0px, 20px);
 			transform: translate(0px, 20px);
-}
+}*/
 .b-from-bottom.showed,
 .b-from-top.showed{
 	-webkit-transform: translate(0px, 0px);

@@ -83,6 +83,7 @@
 </div>
 <div id="b-popup-more" class="b-modal b-callback b-callback-1 b-form-cont b-from-top">
     <div class="b-popup menu">
+        <span class="modal-close"></span>
         <h2><span class="green"><span id="more-day">Утро</span>:</span> <span id="more-name">Оладьи на пару с рисом </span><span id="more-weight"> (<span>250</span>г)</span></h2>
         <div class="more-cont clearfix">
             <img class="left" id="more-img" src="">
@@ -103,226 +104,226 @@
     </div>
 </div>
 <div class="b-layout"></div>
-    <div style="display:none;">
-        <div id="b-popup-question">
-            <div class="b-popup" >
-                <h2>Задайте вопрос нашему менеджеру</h2>
-                <h3>В форме ниже, и мы ответим на него в течение 40 минут</h3>
-                <form action="kitsend.php" method="POST" id="b-form-3" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Вопрос менеджеру"/>
-                        <label for="email-1">Введите Ваш e-mail:</label>
-                        <input type="text" id="email-1" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
-                        <label for="question">Чем мы можем Вам помочь?</label>
-                        <p><textarea id="question" name="1" required></textarea></p>
-                        <input type="hidden" name="1-name" value="Вопрос" required/>
-                        <input type="submit" class="ajax b-orange-butt rounded" value="Отправить запрос!">
-                    </div>
-                </form>
-                <p>Или позвоните нам по телефону<br>
-                <b>+7 (495) 542-60-01</b></p>
-            </div>
-        </div>
-        <div id="b-popup-system">
-            <div class="b-popup" >
-                <h2>Войдите в систему</h2>
-                <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
-                <form action="kitsend.php" method="POST" id="b-form-4" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Вход в систему"/>
-                        <label for="email-2">Введите Ваш e-mail:</label>
-                        <input type="text" id="email-2" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
-                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
-                        <label for="password-1">Ваш пароль:</label>
-                        <input type="text" id="password-1" class="pass" name="password" required/>
-                        <input type="submit" class="ajax b-orange-butt rounded sys" value="войти">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div id="b-popup-registration">
-            <div class="b-popup" >
-                <h2>Зарегистрируйтесь в системе</h2>
-                <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
-                <form action="kitsend.php" method="POST" id="b-form-5" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Регистрация в системе"/>
-                        <label for="email-3">Введите Ваш e-mail:</label>
-                        <input type="text" id="email-3" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
-                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
-                        <label for="password-2">Придумайте пароль:</label>
-                        <input type="text" id="password-2" class="pass" name="password" required/>
-                        <input type="submit" class="ajax b-orange-butt rounded sys" value="зарегистрироваться">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div id="b-popup-callback">
-            <div class="b-popup" >
-                <h2>Заказать обратный звонок</h2>
-                <h3>Оставьте Ваши данные, и наш менеджер свяжется с Вами в течение 10 минут</h3>
-                <form action="kitsend.php" method="POST" id="b-form-6" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Обратный звонок"/>
-                        <label for="email-4">Введите Ваше имя:</label>
-                        <input type="text" id="email-4" class="write" name="email" placeholder="Иванов Иван"required/>
-                        <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
-                        <label for="phone-3">Введите Ваш телефон:</label>
-                        <div class="clearfix">
-                            <div class="left phone-img"></div>
-                            <input class="left" type="text" id="phone-3" name="phone" placeholder="+7 (___) ___-__-__" required/>
-                        </div>
-                        <input type="submit" class="ajax b-orange-butt rounded sys" value="Заказать звонок">
-                    </div>
-                </form>
-                <p>Или позвоните нам по телефону<br>
-                <b>+7 (495) 542-60-01</b></p>
-            </div>
-        </div>
-        <div id="b-popup-programm">
-        <div class="b-popup" >
-                <h2>Получите персональную программу питания</h2>
-                <h4>под Ваши цели и с учетом Ваших пожеланий</h4>
-                <h3>Оставьте заявку, и наши специалисты перезвонят Вам в течение 10 минут</h3>
-                <form action="kitsend.php" method="POST" id="b-form-7" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Персональная программа питания"/>
-                        <label for="phone-4">Введите Ваш телефон:</label>
-                        <div class="clearfix">
-                            <div class="left phone-img"></div>
-                            <input class="left" type="text" id="phone-4" name="phone" placeholder="+7 (___) ___-__-__" required/>
-                        </div>
-                        <input type="submit" class="ajax b-orange-butt rounded sys" value="получить программу питания">
-                    </div>
-                </form>
-                <p>Сегодня мы составили уже <span>&nbsp;17&nbsp;</span> программ<br>
-            </div>
-        </div>
-        <div id="b-popup-code">
-            <div class="b-popup" >
-                <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
-                <h3>Введите телефон, и промокод автоматически будет выслан</h3>
-                <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="b-form-8" data-block="#b-popup-2">
-                    <div class="b-popup-form">
-                        <input type="hidden" name="subject" value="Заявка на промокод"/>
-                        <label for="phone-5">Введите Ваш телефон:</label>
-                        <div class="clearfix">
-                            <div class="left phone-img"></div>
-                            <input class="left" type="text" id="phone-5" name="phone" placeholder="+7 (___) ___-__-__" required/>
-                        </div>
-                        <input type="submit" class="ajax b-orange-butt rounded sys" value="получить промокод">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div id="b-popup-menu">
-            <div class="b-popup menu">
-                <h2>Полное меню</h2>
-                <h2 class="sub-title"><span class="green">100%</span> здоровое питание делает вас энергичнее!</h2>
-                <div class="menu-cont clearfix">
-                    <div class="filter left">
-                        <form action="<?=$this->createUrl('/land/fullmenu')?>" id="fullmenu">
-                        <div class="filter-item">
-                            <h5>Показывать:</h5>
-                            <div class="b-inputs checkbox">
-                                <div class="clearfix">
-                                    <input id="daytime-1" type="checkbox" checked name="daytime[]" value="1">
-                                    <label for="daytime-1">На утро</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="daytime-2" type="checkbox" checked name="daytime[]" value="2">
-                                    <label for="daytime-2">На день</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="daytime-3" type="checkbox" checked name="daytime[]" value="3">
-                                    <label for="daytime-3">На вечер</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item">
-                            <h5>Сортировать по:</h5>
-                            <div class="b-inputs radio">
-                                <!-- <div class="clearfix">
-                                    <input id="order-1" type="radio" name="order" value="1">
-                                    <label for="order-1">По популярности</label>
-                                </div> -->
-                                <div class="clearfix">
-                                    <input id="order-2" type="radio" name="order" value="2" checked>
-                                    <label for="order-2">По цене</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="order-3" type="radio" name="order" value="3">
-                                    <label for="order-3">Товарам по акции</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item">
-                            <h5>Состав:</h5>
-                            <div class="b-inputs checkbox">
-                                <div class="clearfix">
-                                    <input id="type-1" type="checkbox" checked name="type[]" value="1">
-                                    <label for="type-1">Рыба и морепродукты</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="type-2" type="checkbox" checked name="type[]" value="2">
-                                    <label for="type-2">Курица и мясо</label>
-                                </div>
-                                <div class="clearfix">
-                                    <input id="type-3" type="checkbox" checked name="type[]" value="3">
-                                    <label for="type-3">Вегетарианское</label>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="no-add" name="no-add">
-                        </form>
-                    </div>
-                    <div class="right b-menu-items"></div>
+<div style="display:none;">
+    <div id="b-popup-question">
+        <div class="b-popup">
+            <h2>Задайте вопрос нашему менеджеру</h2>
+            <h3>В форме ниже, и мы ответим на него в течение 40 минут</h3>
+            <form action="kitsend.php" method="POST" id="b-form-3" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Вопрос менеджеру"/>
+                    <label for="email-1">Введите Ваш e-mail:</label>
+                    <input type="text" id="email-1" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                    <label for="question">Чем мы можем Вам помочь?</label>
+                    <p><textarea id="question" name="1" required></textarea></p>
+                    <input type="hidden" name="1-name" value="Вопрос" required/>
+                    <input type="submit" class="ajax b-orange-butt rounded" value="Отправить запрос!">
                 </div>
-            </div>
+            </form>
+            <p>Или позвоните нам по телефону<br>
+            <b>+7 (495) 542-60-01</b></p>
         </div>
-       
-               
-        <div id="b-popup-2">
-            <div class="b-thanks b-popup">
-                <h3>Спасибо!</h3>
-                <h4>Ваша заявка успешно отправлена.<br/>Наш менеджер свяжется с Вами в течение часа.</h4>
-                <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
-            </div>
-        </div>
-        <div id="b-popup-error">
-            <div class="b-thanks b-popup">
-                <h3>Ошибка отправки!</h3>
-                <h4>Приносим свои извинения. Пожалуйста, попробуйте отправить Вашу заявку позже.</h4>
-                <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
-            </div>
-        </div>
-        <li class="dish-item clearfix" data-dish-id="" data-img="" data-name="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-weight="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
-            <div class="left b-image" style=""></div>
-            <div class="left">
-                <h4></h4>
-                <a href="#" class="b-more more-butt-main modal" data-block="#b-popup-more">Подробнее</a>
-                <p class="more-desc hidden"></p>
-            </div>
-            <div class="del-cross"></div>
-            <div class="right clearfix">
-                <div class="left"><span>Кол-во:</span></div>
-                <div class="right">
-                <select name="count" id="">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                </div>
-            </div>
-            <input type="hidden" name="" value="">
-        </li>
     </div>
+    <div id="b-popup-system">
+        <div class="b-popup" >
+            <h2>Войдите в систему</h2>
+            <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+            <form action="kitsend.php" method="POST" id="b-form-4" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Вход в систему"/>
+                    <label for="email-2">Введите Ваш e-mail:</label>
+                    <input type="text" id="email-2" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                    <label for="password-1">Ваш пароль:</label>
+                    <input type="text" id="password-1" class="pass" name="password" required/>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="войти">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="b-popup-registration">
+        <div class="b-popup" >
+            <h2>Зарегистрируйтесь в системе</h2>
+            <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+            <form action="kitsend.php" method="POST" id="b-form-5" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Регистрация в системе"/>
+                    <label for="email-3">Введите Ваш e-mail:</label>
+                    <input type="text" id="email-3" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                    <label for="password-2">Придумайте пароль:</label>
+                    <input type="text" id="password-2" class="pass" name="password" required/>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="зарегистрироваться">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="b-popup-callback">
+        <div class="b-popup" >
+            <h2>Заказать обратный звонок</h2>
+            <h3>Оставьте Ваши данные, и наш менеджер свяжется с Вами в течение 10 минут</h3>
+            <form action="kitsend.php" method="POST" id="b-form-6" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Обратный звонок"/>
+                    <label for="email-4">Введите Ваше имя:</label>
+                    <input type="text" id="email-4" class="write" name="email" placeholder="Иванов Иван"required/>
+                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                    <label for="phone-3">Введите Ваш телефон:</label>
+                    <div class="clearfix">
+                        <div class="left phone-img"></div>
+                        <input class="left" type="text" id="phone-3" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                    </div>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="Заказать звонок">
+                </div>
+            </form>
+            <p>Или позвоните нам по телефону<br>
+            <b>+7 (495) 542-60-01</b></p>
+        </div>
+    </div>
+    <div id="b-popup-programm">
+    <div class="b-popup" >
+            <h2>Получите персональную программу питания</h2>
+            <h4>под Ваши цели и с учетом Ваших пожеланий</h4>
+            <h3>Оставьте заявку, и наши специалисты перезвонят Вам в течение 10 минут</h3>
+            <form action="kitsend.php" method="POST" id="b-form-7" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Персональная программа питания"/>
+                    <label for="phone-4">Введите Ваш телефон:</label>
+                    <div class="clearfix">
+                        <div class="left phone-img"></div>
+                        <input class="left" type="text" id="phone-4" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                    </div>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="получить программу питания">
+                </div>
+            </form>
+            <p>Сегодня мы составили уже <span>&nbsp;17&nbsp;</span> программ<br>
+        </div>
+    </div>
+    <div id="b-popup-code">
+        <div class="b-popup" >
+            <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
+            <h3>Введите телефон, и промокод автоматически будет выслан</h3>
+            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="b-form-8" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Заявка на промокод"/>
+                    <label for="phone-5">Введите Ваш телефон:</label>
+                    <div class="clearfix">
+                        <div class="left phone-img"></div>
+                        <input class="left" type="text" id="phone-5" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                    </div>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="получить промокод">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="b-popup-menu">
+        <div class="b-popup menu">
+            <h2>Полное меню</h2>
+            <h2 class="sub-title"><span class="green">100%</span> здоровое питание делает вас энергичнее!</h2>
+            <div class="menu-cont clearfix">
+                <div class="filter left">
+                    <form action="<?=$this->createUrl('/land/fullmenu')?>" id="fullmenu">
+                    <div class="filter-item">
+                        <h5>Показывать:</h5>
+                        <div class="b-inputs checkbox">
+                            <div class="clearfix">
+                                <input id="daytime-1" type="checkbox" checked name="daytime[]" value="1">
+                                <label for="daytime-1">На утро</label>
+                            </div>
+                            <div class="clearfix">
+                                <input id="daytime-2" type="checkbox" checked name="daytime[]" value="2">
+                                <label for="daytime-2">На день</label>
+                            </div>
+                            <div class="clearfix">
+                                <input id="daytime-3" type="checkbox" checked name="daytime[]" value="3">
+                                <label for="daytime-3">На вечер</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <h5>Сортировать по:</h5>
+                        <div class="b-inputs radio">
+                            <!-- <div class="clearfix">
+                                <input id="order-1" type="radio" name="order" value="1">
+                                <label for="order-1">По популярности</label>
+                            </div> -->
+                            <div class="clearfix">
+                                <input id="order-2" type="radio" name="order" value="2" checked>
+                                <label for="order-2">По цене</label>
+                            </div>
+                            <div class="clearfix">
+                                <input id="order-3" type="radio" name="order" value="3">
+                                <label for="order-3">Товарам по акции</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <h5>Состав:</h5>
+                        <div class="b-inputs checkbox">
+                            <div class="clearfix">
+                                <input id="type-1" type="checkbox" checked name="type[]" value="1">
+                                <label for="type-1">Рыба и морепродукты</label>
+                            </div>
+                            <div class="clearfix">
+                                <input id="type-2" type="checkbox" checked name="type[]" value="2">
+                                <label for="type-2">Курица и мясо</label>
+                            </div>
+                            <div class="clearfix">
+                                <input id="type-3" type="checkbox" checked name="type[]" value="3">
+                                <label for="type-3">Вегетарианское</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="no-add" name="no-add">
+                    </form>
+                </div>
+                <div class="right b-menu-items"></div>
+            </div>
+        </div>
+    </div>
+   
+           
+    <div id="b-popup-2">
+        <div class="b-thanks b-popup">
+            <h3>Спасибо!</h3>
+            <h4>Ваша заявка успешно отправлена.<br/>Наш менеджер свяжется с Вами в течение часа.</h4>
+            <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
+        </div>
+    </div>
+    <div id="b-popup-error">
+        <div class="b-thanks b-popup">
+            <h3>Ошибка отправки!</h3>
+            <h4>Приносим свои извинения. Пожалуйста, попробуйте отправить Вашу заявку позже.</h4>
+            <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
+        </div>
+    </div>
+    <li class="dish-item clearfix" data-dish-id="" data-img="" data-name="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-weight="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
+        <div class="left b-image" style=""></div>
+        <div class="left">
+            <h4></h4>
+            <a href="#" class="b-more more-butt-main modal" data-block="#b-popup-more">Подробнее</a>
+            <p class="more-desc hidden"></p>
+        </div>
+        <div class="del-cross"></div>
+        <div class="right clearfix">
+            <div class="left"><span>Кол-во:</span></div>
+            <div class="right">
+            <select name="count" id="">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            </div>
+        </div>
+        <input type="hidden" name="" value="">
+    </li>
+</div>
 </body>
 </html>

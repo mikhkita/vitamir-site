@@ -16,6 +16,7 @@ $(document).ready(function(){
             myWidth = document.body.clientWidth;
             myHeight = document.body.clientHeight;
         }
+        
     }
     $(window).resize(resize);
     resize();
@@ -51,7 +52,7 @@ $(document).ready(function(){
 		$(".b-time-"+daytime).find(".b-add-butt").click();
 	});
 
-	$("body").on("click",".b-add-cart-detail",function(){
+	$("body").on("click",".b-add-cart-detail,.modal-close",function(){
 		hideLayout();
 		
 
