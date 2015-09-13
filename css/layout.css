@@ -259,6 +259,10 @@ input.error,textarea.error{
 ::-moz-placeholder          {color: rgba(71,62, 66, 0.6); font-family: "latobold";  font-size: 14px;}/* Firefox 19+ */
 :-moz-placeholder           {color: rgba(71,62, 66, 0.6); font-family: "latobold";  font-size: 14px;}/* Firefox 18- */
 :-ms-input-placeholder      {color: rgba(71,62, 66, 0.6); font-family: "latobold";  font-size: 14px;}
+input[name='phone']::-webkit-input-placeholder {color: rgba(71,62, 66, 0.6);     font-family: 'Lucida Grande'; letter-spacing: 2px; font-size: 15px;}
+input[name='phone']::-moz-placeholder          {color: rgba(71,62, 66, 0.6);     font-family: 'Lucida Grande'; letter-spacing: 2px; font-size: 15px;}/* Firefox 19+ */
+input[name='phone']:-moz-placeholder           {color: rgba(71,62, 66, 0.6);     font-family: 'Lucida Grande'; letter-spacing: 2px; font-size: 15px;}/* Firefox 18- */
+input[name='phone']:-ms-input-placeholder      {color: rgba(71,62, 66, 0.6);     font-family: 'Lucida Grande'; letter-spacing: 2px; font-size: 15px;}
 
 textarea{
 	height: 80px;
