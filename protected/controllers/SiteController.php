@@ -93,7 +93,9 @@ class SiteController extends Controller
                 if( !$partial ){
                     $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
                 }else{
-                    echo json_encode(array("result"=>"success","redirect"=>$this->createUrl('/land/userprofile')));
+                    $user = User::model()->with("role")->findByPk(Yii::app()->user->id);
+                    $redirect = $this->createUrl(( $user->role->code == "root" )?Yii::app()->params['defaultAdminRedirect']:Yii::app()->params['defaultUserRedirect']);
+                    echo json_encode(array("result"=>"success","redirect"=>$redirect));
                     return true;
                 }
             }
