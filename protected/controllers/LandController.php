@@ -123,8 +123,6 @@ class LandController extends Controller
 
 	public function actionCreateOrder($order_id = NULL)
 	{
-		date_default_timezone_set("Europe/Moscow");
-
 		$model = new Order;	
 		$model->date = date("Y-m-d H:i:s");
 		$model->delivery = 0;

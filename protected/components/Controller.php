@@ -37,6 +37,9 @@ class Controller extends CController
 
     public function init() {
         parent::init();
+
+        date_default_timezone_set("Europe/Moscow");
+        
         $this->user = User::model()->findByPk(Yii::app()->user->id);
 
         $this->adminMenu["items"] = ModelNames::model()->findAll(array("order" => "sort ASC","condition" => "admin_menu=1"));
