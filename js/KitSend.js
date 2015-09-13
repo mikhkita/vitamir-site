@@ -129,9 +129,16 @@ $(document).ready(function(){
 			  	type: form.attr("method"),
 			  	url: form.attr("action"),
 			  	data:  form.serialize(),
-				success: function(url){
-					if(url) {
-						window.location.replace(url);
+				success: function(msg){
+					var json = JSON.parse(msg);
+					if(json.result == "success") {
+						window.location.replace(json.redirect);
+					}else{
+						if( json.message ){
+							alert(json.message);
+						}else{
+							alert("Неизвестная ошибка авторизации");
+						}
 					}
 				}
 			});

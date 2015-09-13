@@ -65,7 +65,7 @@ class SiteController extends Controller
 		$this->redirect(array('login'));
 	}
 
-	public function actionLogin()
+	public function actionLogin($partial=false)
 	{
         $this->layout='service';
 		if(!Yii::app()->user->isGuest ) $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
@@ -87,13 +87,24 @@ class SiteController extends Controller
 		if(isset($_POST['LoginForm']))
 		{
 			$model->attributes=$_POST['LoginForm'];
+
 			// validate user input and redirect to the previous page if valid
-            if($model->validate() && $model->login()) 
+            if($model->validate() && $model->login()){
+                if( !$partial ){
                     $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
+                }else{
+                    echo json_encode(array("result"=>"success","redirect"=>$this->createUrl('/land/userprofile')));
+                    return true;
+                }
+            }
 
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+        if( !$partial ){
+            $this->render('login',array('model'=>$model));
+        }else{
+            echo json_encode(array("result"=>"error","message"=>"Неправильная пара логин/пароль"));
+        }
 	}
 
 	/**

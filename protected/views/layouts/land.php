@@ -259,8 +259,38 @@
             </div>
         </div>
     </div>
-   
-           
+    <div id="b-popup-registration">
+        <div class="b-popup" >
+            <h2>Зарегистрируйтесь в системе</h2>
+            <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+            <form action="kitsend.php" method="POST" id="b-form-5" data-block="#b-popup-2">
+                <div class="b-popup-form">
+                    <input type="hidden" name="subject" value="Регистрация в системе"/>
+                    <label for="email-3">Введите Ваш телефон:</label>
+                    <input type="text" id="email-3" class="write" name="phone" required/>
+                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                    <label for="password-2">Придумайте пароль:</label>
+                    <input type="text" id="password-2" class="pass" name="password" required/>
+                    <input type="submit" class="ajax b-orange-butt rounded sys" value="зарегистрироваться">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="b-popup-system">
+        <div class="b-popup" >
+            <h2>Войдите в систему</h2>
+            <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
+            <form id="login-form" method="POST" action="<?=$this->createUrl('/site/login',array('partial'=>'1'))?>">
+                <div class="b-popup-form">
+                    <label for="phone-login">Введите Ваш телефон:</label>
+                    <input type="text" id="phone-login" name="LoginForm[username]" class="phone write" required>
+                    <label for="password-login">Ваш пароль:</label>
+                    <input type="password" id="password-login" name="LoginForm[password]" class="pass" required>
+                    <?php echo CHtml::submitButton('Войти',array('class' => 'b-orange-butt rounded sys')); ?>
+                </div>
+            </form>
+        </div>
+    </div> 
     <div id="b-popup-2">
         <div class="b-thanks b-popup">
             <h3>Спасибо!</h3>
