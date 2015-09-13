@@ -18,6 +18,10 @@ class LandController extends Controller
 				'actions'=>array('index','import','basket','getpromo','fullMenu','day','createOrder','order','updateOrder','thanks'),
 				'users'=>array('*'),
 			),
+			array('allow',
+				'actions'=>array('orderHistory','userProfile'),
+				'roles'=>array('client'),
+			),
 		);
 	}
 
@@ -39,7 +43,7 @@ class LandController extends Controller
 			$options = $this->actionDay($set_id,false);
 			$options['day_select'] = $day_select;
 		}
-		$options['model'] = $login;	
+		// $options['model'] = $login;	
 		$this->render('index',$options);
 	}
 
@@ -117,43 +121,71 @@ class LandController extends Controller
 		));
 	}
 
-	public function actionCreateOrder($partial = false)
+	public function actionCreateOrder($order_id = NULL)
 	{
 		date_default_timezone_set("Europe/Moscow");
-		if(!isset($_SESSION)) session_start();
-		if(isset($_SESSION['order_id'])) { 
-			Order::model()->deleteByPk($_SESSION['order_id']);
-			OrderDish::model()->deleteAll("order_id=".$_SESSION['order_id']); 
-		}
+
 		$model = new Order;	
 		$model->date = date("Y-m-d H:i:s");
 		$model->delivery = 0;
-		$model->price = $_POST["price"];
 		$model->payment = 0;
-		$model->type = $_POST["type"];
-		$model->day = $_POST["day-count"];
-		if($model->save()){
-			$order_id = $model->id;
-			if(isset($_POST['day']))
-			foreach ($_POST['day'] as $key => $item) {
-				foreach ($item as $value) {
-					$arr = explode(";", $value);
-					$temp = new OrderDish;
-					$temp->order_id = $order_id;
-					$temp->dish_id = $arr[0];
-					$temp->daytime_id = $arr[1];
-					$temp->count = $arr[2];
-					$temp->day = $key+1;
-					$temp->save();
+		
+		if($order_id) {
+			if($new_order = Order::model()->findbyPk($order_id)) {
+				$model->price = $new_order->price;
+				$model->type = $new_order->type;
+				$model->day = $new_order->day;
+				$model->user_id = $new_order->user_id;
+				if($model->save()){
+					$order_id = $model->id;
+					foreach ($new_order->dishes as $item) {
+						$temp = new OrderDish;
+						$temp->order_id = $order_id;
+						$temp->dish_id = $item->dish_id;
+						$temp->daytime_id = $item->daytime_id;
+						$temp->count = $item->count;
+						$temp->day = $item->day;
+						$temp->save();
+					}	
+					$_SESSION['order_price'] = $new_order->price;	
+				} else {
+					echo "Ошибка создания заказа";
 				}
+			} else {
+				echo "Ошибка создания заказа";
 			}
-			$_SESSION['order_id'] = $order_id;
-			$_SESSION['order_price'] = $_POST["price"];
-
-			header("Location: ".$this->createUrl('/land/basket'));
-		}else{
-			echo "Ошибка создания заказа";
+		} else {
+			if(!isset($_SESSION)) session_start();
+			if(isset($_SESSION['order_id'])) { 
+				Order::model()->deleteByPk($_SESSION['order_id']);
+				OrderDish::model()->deleteAll("order_id=".$_SESSION['order_id']); 
+			}
+			$model->price = $_POST["price"];
+			$model->type = $_POST["type"];
+			$model->day = $_POST["day-count"];
+			if($model->save()){
+				$order_id = $model->id;
+				if(isset($_POST['day']))
+				foreach ($_POST['day'] as $key => $item) {
+					foreach ($item as $value) {
+						$arr = explode(";", $value);
+						$temp = new OrderDish;
+						$temp->order_id = $order_id;
+						$temp->dish_id = $arr[0];
+						$temp->daytime_id = $arr[1];
+						$temp->count = $arr[2];
+						$temp->day = $key+1;
+						$temp->save();
+					}
+				}
+				$_SESSION['order_price'] = $_POST["price"];
+			} else {
+				echo "Ошибка создания заказа";
+			}
 		}
+		$_SESSION['order_id'] = $order_id;
+		
+		header("Location: ".$this->createUrl('/land/basket'));	
 	}
 
 	public function actionBasket($partial = false)
@@ -171,24 +203,99 @@ class LandController extends Controller
 		}
 	}
 
-	// public function actionOrder($partial = false)
-	// {
-	// 	// session_start();
+	public function actionUserProfile()
+	{
+		$model = User::model()->findByPk(Yii::app()->user->id);
 
-	// 	if( isset($_SESSION['order_id']) ){
-	// 		$model = Order::model()->findByPk($_SESSION["order_id"]);
+		if(isset($_POST['User']))
+		{
+			$model->attributes=$_POST['User'];
+			
+			if($model->save()){
+				header("Location: ".$this->createUrl('/land/userprofile'));
+			}
+				
+		}else{
+			$this->render('userProfile',array(
+				'model'=>$model,
+			));
+		}
 
-	// 		$this->render('order',array(
-	// 			'order' => $model,
-	// 			'price' => $_SESSION['order_price'],
-	// 		));
-	// 	}else{
-	// 		header("Location: /");
-	// 	}
-	// }
+	}
+
+	public function actionUserPassword()
+	{
+		$model = User::model()->findByPk(Yii::app()->user->id);
+
+		if(isset($_POST['User']))
+		{
+			$model->prevRole = $model->role->code;
+			if( isset($_POST["User"]["usr_password"]) ){
+
+				$new_password = md5($_POST["User"]["usr_password"]."eduplan");
+				$old_password = md5($_POST["old_password"]."eduplan");
+
+				if( $old_password == $new_password || $new_password == $model->usr_password) {
+					echo "Новый и старый пароль не должны совпадать";
+					return false;
+				}
+
+				if( $new_password == $model->usr_password ) {
+					echo "Новый и старый пароль не должны совпадать";
+					return false;
+				}
+
+				if( $old_password != $new_password && $new_password != $model->usr_password )
+					$model->newPass = $_POST["User"]["usr_password"];
+			}
+			
+			if($model->save()){
+				echo "Вы успешно изменили пароль";
+			}
+				
+		}else{
+			$this->render('changePassword',array(
+				'model'=>$model,
+			));
+		}
+
+	}
+
+	public function actionOrder($partial = false)
+	{
+		if(!isset($_SESSION)) session_start();
+		if( isset($_SESSION['order_id']) ){
+			$model = Order::model()->findByPk($_SESSION["order_id"]);
+
+			$this->render('order',array(
+				'order' => $model,
+				'price' => $_SESSION['order_price'],
+			));
+		}else{
+			header("Location: /");
+		}
+	}
+
+	public function actionOrderHistory($partial = false)
+	{
+		$user = User::model()->findByPk(Yii::app()->user->id);
+		$criteria = new CDbCriteria();
+		$criteria->order = "id DESC";
+		$condition = 'user_id='.$user->usr_id;
+		$criteria->condition = $condition.' AND (state=1 OR state=2)';
+		$new_orders = Order::model()->findAll($criteria);
+
+		$criteria->condition = $condition.' AND state=3';
+		$old_orders = Order::model()->findAll($criteria);
+		$this->render('orderHistory',array(
+			"user" => $user,
+			'new_orders' => $new_orders,
+			'old_orders' => $old_orders,
+		));
+
+	}
 
 	public function actionUpdateOrder(){
-
 		if(!isset($_SESSION)) session_start();
 		if( isset($_SESSION['order_id']) ){
 			if( count($_POST) ){
@@ -358,15 +465,6 @@ class LandController extends Controller
 		$this->render('thanks',array(
 
 		));
-	}
-
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-		$this->redirect("/");
 	}
 
 	public function loadModel($id)

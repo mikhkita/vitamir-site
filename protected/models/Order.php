@@ -13,12 +13,13 @@
  * @property string $type
  * @property integer $price
  * @property integer $day
+ * @property integer $state
  */
 class Order extends CActiveRecord
 {
-
 	public $delivery = array("Данные не указаны","Самовывоз","Курьерская доставка");
 	public $payment = array("Данные не указаны","Наличными","Банковской картой");
+	public $states = array("Не оформлен","Новый","Оплачено","Доставлено");
 	public $types = array(
 		"m-1" => "Мужчине для похудения",
 		"m-2" => "Мужчине для набора массы",
@@ -45,13 +46,13 @@ class Order extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date, type, price, day', 'required'),
-			array('delivery, payment, price, day', 'numerical', 'integerOnly'=>true),
+			array('delivery, payment, price, day, state', 'numerical', 'integerOnly'=>true),
 			array('user_id', 'length', 'max'=>10),
 			array('location', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>3),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, date, user_id, delivery, payment, location, type, price, day', 'safe', 'on'=>'search'),
+			array('id, date, user_id, delivery, payment, location, type, price, day, state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +83,7 @@ class Order extends CActiveRecord
 			'type' => 'Тип',
 			'price' => 'Цена',
 			'day' => 'Количество дней',
+			'state' => 'Статус',
 		);
 	}
 
@@ -97,6 +99,11 @@ class Order extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
+	public function beforeDelete() {
+		OrderDish::model()->deleteAll("order_id=".$this->id);
+        return true;
+    }
+    
 	public function search()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
@@ -112,16 +119,12 @@ class Order extends CActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('day',$this->day);
+		$criteria->compare('state',$this->state);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-	public function beforeDelete() {
-		OrderDish::model()->deleteAll("order_id=".$this->id);
-        return true;
-    }
 
 	/**
 	 * Returns the static model of the specified AR class.

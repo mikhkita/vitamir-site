@@ -11,6 +11,7 @@ $(document).ready(function(){
             myWidth = document.body.clientWidth;
             myHeight = document.body.clientHeight;
         }
+        $(".b-content").css("min-height",myHeight-79);
     }
     $(window).resize(resize);
     resize();

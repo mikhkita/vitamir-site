@@ -69,7 +69,9 @@
             </div>
         </div>
     </div>
-<?php echo $content;?>
+    <div class="b-content">
+        <?php echo $content;?>
+    </div>
 <div class="b b-10">
     <div class="b-block clearfix">
         <div class="left">
