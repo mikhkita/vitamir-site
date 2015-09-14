@@ -60,7 +60,7 @@ $(document).ready(function(){
 	fancy_init();
 
 	if(window.location.hash=="#login") {
-		alert();
+		$("a[data-block='#b-popup-system']").click();
 	}
 
 	$(".b-go").click(function(){
@@ -128,7 +128,7 @@ $(document).ready(function(){
 		$(this).find(".phone").mask(tePhone,{placeholder:"_"});
 	}
 
-	
+
 	$("#login-form").submit(function(){
 		var form = $(this);
   		if( $(this).valid() ){
@@ -179,6 +179,43 @@ $(document).ready(function(){
   		return false;
 	});
 	
+	$("#promocode-form").submit(function(){
+		var form = $(this);
+  		if( $(this).valid() ){
+  			$.ajax({
+			  	type: form.attr("method"),
+			  	url: form.attr("action"),
+			  	data:  form.serialize(),
+			  	beforeSend: function() {
+			  		form.find("input,button").prop("disabled",true);
+			  	},
+				success: function(msg){
+					var message = JSON.parse(msg);
+					var popup = $("#b-popup-2").clone();
+					popup.find("h3").text("Сообщение");
+					if(message.result == "1") {
+						popup.find("h4").text("Вы успешно использовали промокод!");
+						var price = $("#price-calc").text()*1;
+						var discount = 0;
+						if($("#discount-calc").length) discount = $("#discount-calc").text()*1;
+						var fullprice = price+discount;
+						var promo = Math.round(fullprice*5/100);
+						$("#price-calc").text(fullprice-promo-discount);
+						$("#price-basket").val(fullprice-promo-discount);
+						if($("#discount-basket").length) $("#discount-basket").val(promo+discount);
+						if($("#discount-calc").length) $("#discount-calc").text(promo+discount);
+					} else popup.find("h4").text(message.result);
+					$.fancybox.open({
+						content : popup,
+						padding : 0
+					});
+					form.find("input,button").prop("disabled",false);
+				}
+			});
+  		}
+  		return false;
+	});
+
 	$("#b-order-form").submit(function(){
 		$("input[name='phone'].success").parent("div").removeClass("error");
 		$("input[name='phone'].error").parent("div").addClass("error");

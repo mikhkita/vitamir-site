@@ -3115,6 +3115,29 @@ margin-bottom: 6px;
 	    font-family: "latoregular";
 	    font-size: 14px;
 	}
+.menu-phone{
+	display: inline-block;
+	margin-right: 40px;
+}
+.menu-phone .phone-img{
+	width: 40px;
+	height: 40px;
+	background-color: #FFF;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border-radius: 5px 0px 0px 5px;
+	background-image: url('../i/phone.png');
+	border: 1px solid rgba(168, 168, 168, 0.5);
+	border-right: 0px;
+}
+.menu-phone input{
+	border: 1px solid rgba(168, 168, 168, 0.5);
+	height: 40px;
+	width: 229px;
+	font-size: 15px;
+	border-radius: 0px 5px 5px 0px;
+	padding-left: 10px;
+}
 
 .b-layout{
 	display: none;
