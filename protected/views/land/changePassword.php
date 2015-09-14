@@ -73,7 +73,7 @@
                         </div>
                     </div>  
                     <div class="clearfix">
-                        <button type="submit" class="left b-orange-butt cabinet-butt">Сохранить</button>
+                        <button type="submit" class="left b-orange-butt cabinet-butt">Сменить</button>
                     </div>
                 </form>
             </div>       
