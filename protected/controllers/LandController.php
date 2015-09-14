@@ -557,13 +557,15 @@ class LandController extends Controller
 				
 				if(isset($_POST["password"])) {
 					$user->newPass = $_POST["password"];
+					$user->usr_password = $_POST["password"];
 					$result = "Поздравляем, Вы успешно зарегистрированны! Также вы получаете промокод на 5%-ю скидку! Он будет отправлен Вам по смс";
 				} else {
 					$user->newPass = "123123";
+					$user->usr_password = "123123";
 					$result = "Промокод и пароль от личного кабинета отправлены Вам по смс";
 				}
 				
-				$user->usr_password = "123123";
+				
 				$user->usr_rol_id = 4;
 
 				if(!$user->save()){
