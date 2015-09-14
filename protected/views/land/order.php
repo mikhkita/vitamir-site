@@ -71,9 +71,15 @@
         <? if(isset($promocode)): ?>
             <input type="hidden" name="promocode" value="<?=$promocode?>"/>
         <? endif; ?>
-        <? if(isset($user) && $user->usr_email && $user->usr_name): ?>
+        <? if(isset($user) && $user->usr_name): ?>
             <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/>
-            <input type="hidden" id="sale-email" class="write" name="email" placeholder="" value="<?=$user->usr_email?>"/>
+            <? if(!$user->usr_email): ?>
+                <div class="b-sale-block">
+                    <h3 class="edit">Введите Ваши контактные данные:</h3>
+                    <label for="sale-email">Введите Ваш e-mail:</label>
+                    <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>       
+                </div>
+            <? endif; ?>  
         <? elseif(isset($user) && !$user->usr_name): ?>
             <div class="b-sale-block">
                 <h3 class="edit">Введите Ваши контактные данные:</h3>
