@@ -102,7 +102,7 @@ function menuFilter() {
     });
 
     $(".b-add-day").click(function(){
-        if($("#day-select option").length < 31) {
+        if($("#day-select option").length < 30) {
             $("#day-select").show();
             var opt_length = $("#day-select option").length+1;
             $("#day-select option").prop("selected",false);

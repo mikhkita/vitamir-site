@@ -15,11 +15,11 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','import','basket','getpromo','fullMenu','day','createOrder','order','updateOrder','thanks'),
+				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks','setPromo'),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('orderHistory','userProfile'),
+				'actions'=>array('orderHistory','userProfile','changePassword'),
 				'roles'=>array('client'),
 			),
 		);
@@ -127,7 +127,24 @@ class LandController extends Controller
 		$model->date = date("Y-m-d H:i:s");
 		$model->delivery = 0;
 		$model->payment = 0;
+
+		$user = (isset($_POST['phone'])) ? User::model()->find("usr_login='".$this->getLogin($_POST["phone"])."'") : User::model()->findByPk(Yii::app()->user->id);
+
+		$discount = 0;
 		
+		if( !$user ){
+			$user = new User();
+
+			$user->usr_login = $this->getLogin($_POST["phone"]);
+			$user->newPass = "123123";
+			$user->usr_password = "123123";
+			$user->usr_rol_id = 4;
+
+			if(!$user->save()){
+				header("Location: /");
+			}
+		} 
+
 		if($order_id) {
 			if($new_order = Order::model()->findbyPk($order_id)) {
 				$model->price = $new_order->price;
@@ -147,10 +164,10 @@ class LandController extends Controller
 					}	
 					$_SESSION['order_price'] = $new_order->price;	
 				} else {
-					echo "Ошибка создания заказа";
+					header("Location: /");
 				}
 			} else {
-				echo "Ошибка создания заказа";
+				header("Location: /");
 			}
 		} else {
 			if(!isset($_SESSION)) session_start();
@@ -158,9 +175,27 @@ class LandController extends Controller
 				Order::model()->deleteByPk($_SESSION['order_id']);
 				OrderDish::model()->deleteAll("order_id=".$_SESSION['order_id']); 
 			}
-			$model->price = $_POST["price"];
+
+			
 			$model->type = $_POST["type"];
 			$model->day = $_POST["day-count"];
+			$model->price = $_POST["price"];
+
+			if($_POST["day-count"] > 9 && $_POST["day-count"] < 30) {
+				$discount = 3;
+			}
+			if($_POST["day-count"] == 30) {
+				$discount = 10;
+			}
+			$user->usr_discount = ( ($user->usr_discount+$discount) < 25 ) ? ($user->usr_discount+$discount) : 25;
+			$discount  = $user->usr_discount;
+			$discount += $user->usr_pers_discount;
+
+			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount +=5;
+			$discount = $_POST["price"]*$discount/100;
+			$_POST["price"] = round($_POST["price"]-$discount);
+			$_POST["price"] = ($_POST["price"] < 0) ? 0 : $_POST["price"];
+
 			if($model->save()){
 				$order_id = $model->id;
 				if(isset($_POST['day']))
@@ -177,8 +212,9 @@ class LandController extends Controller
 					}
 				}
 				$_SESSION['order_price'] = $_POST["price"];
+				$_SESSION['order_discount'] = $discount;
 			} else {
-				echo "Ошибка создания заказа";
+				header("Location: /");
 			}
 		}
 		$_SESSION['order_id'] = $order_id;
@@ -188,21 +224,52 @@ class LandController extends Controller
 
 	public function actionBasket($partial = false)
 	{
+
 		if(!isset($_SESSION)) session_start();
 		if( isset($_SESSION['order_id']) ){
 			$model = Order::model()->findByPk($_SESSION["order_id"]);
 
+			if(!Yii::app()->user->isGuest ) $user = User::model()->findbyPk(Yii::app()->user->id);
+
 			$this->render('basket',array(
 				'order' => $model,
 				'price' => $_SESSION['order_price'],
+				'discount' => $_SESSION['order_discount'],
 			));
 		}else{
 			header("Location: /");
 		}
 	}
+	public function actionSetPromo()
+	{
+		if(!Yii::app()->user->isGuest ) {
+			$user = User::model()->findbyPk(Yii::app()->user->id);
+
+			if(isset($_POST['promocode']) && $_POST['promocode'] && $user->usr_promo == "use") {
+				echo json_encode(array("result"=>"Промокод уже был использован!"));
+				return true;
+
+			} elseif(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] != $user->usr_promo) {
+				echo json_encode(array("result"=>"Неверный промокод!"));
+				return true;
+
+			} elseif(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
+				if(!isset($_SESSION)) session_start();
+				$user->usr_promo = "use";
+				if(!$user->save()) header("Location: /");
+				$_SESSION['order_promo'] = 1;
+				echo json_encode(array("result"=>"1"));
+			}
+		} else {
+			echo json_encode(array("result"=>"Для использования промокода необходимо авторизоваться!"));
+		}
+		
+	}
 
 	public function actionUserProfile()
 	{
+		if(Yii::app()->user->isGuest ) $this->redirect($this->createUrl('/land',array("#" => 'login')));
+
 		$model = User::model()->findByPk(Yii::app()->user->id);
 
 		if(isset($_POST['User']))
@@ -223,6 +290,8 @@ class LandController extends Controller
 
 	public function actionChangePassword()
 	{
+		if(Yii::app()->user->isGuest ) $this->redirect($this->createUrl('/land',array("#" => 'login')));
+
 		$model = User::model()->findByPk(Yii::app()->user->id);
 
 		if( isset($_POST["User"]["usr_password"]) ){
@@ -247,6 +316,7 @@ class LandController extends Controller
 			}
 
 			$model->newPass = $_POST["User"]["usr_password"];
+			$model->usr_password = $_POST["User"]["usr_password"];
 			if($model->save()) {
 				echo json_encode(array("result"=>"Вы успешно изменили пароль!"));
 			} else {
@@ -271,11 +341,29 @@ class LandController extends Controller
 				'price' => $_SESSION['order_price'],
 
 			);
+			$discount = 0;
 			if(!Yii::app()->user->isGuest ) $options['user'] = User::model()->findByPk(Yii::app()->user->id);
-			if(isset($_POST['promocode']) && $_POST['promocode']) {
-				$options['promocode'] = $_POST['promocode'];
+
+			if($model->day > 9 && $model->day < 30) {
+				$discount = 3;
 			}
+			if($model->day == 30) {
+				$discount = 10;
+			}
+			if(isset($options['user']) && $options['user']) {
+				$options['user']->usr_discount = ( ($options['user']->usr_discount+$discount) < 25 ) ? ($options['user']->usr_discount+$discount) : 25;
+				$discount  = $options['user']->usr_discount;
+				$discount += $options['user']->usr_pers_discount;
+			}
+
+			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount +=5;
+			$discount = $_POST["price"]*$discount/100;
+			$_POST["price"] = round($_POST["price"]-$discount);
+			$_POST["price"] = ($_POST["price"] < 0) ? 0 : $_POST["price"];
+			$options['price'] = $_POST["price"];
+
 			$this->render('order',$options);
+
 		}else{
 			header("Location: /");
 		}
@@ -283,6 +371,7 @@ class LandController extends Controller
 
 	public function actionOrderHistory($partial = false)
 	{
+		if(Yii::app()->user->isGuest ) $this->redirect($this->createUrl('/land',array("#" => 'login')));
 		$user = User::model()->findByPk(Yii::app()->user->id);
 		$criteria = new CDbCriteria();
 		$criteria->order = "id DESC";
@@ -310,6 +399,13 @@ class LandController extends Controller
 				$user = User::model()->find("usr_login='".$login."'");
 
 				$discount = 0;
+				if($model->day > 9 && $model->day < 30) {
+					$discount = 3;
+				}
+				if($model->day == 30) {
+					$discount = 10;
+				}
+				
 				if( !$user ){
 					$user = new User();
 
@@ -324,24 +420,20 @@ class LandController extends Controller
 						die("Ошибка создания заказа");
 					}
 				} else {
+					$user->usr_discount = ( ($user->usr_discount+$discount) < 25 ) ? $user->usr_discount+$discount : 25;
 					$discount = $user->usr_discount;
-					if($model->day > 9 && $model->day < 30) {
-						$discount = ($discount <= 22) ? $discount + 3 : 25;
-					}
-					if($model->day >= 30) {
-						$discount = ($discount <= 15) ? $discount + 10 : 25;
-					}
-					$user->usr_discount = $discount;
-					if(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
+					if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) {
 						$discount += 5;
 						$user->usr_promo = "use";
 					}
+		
 					$discount += $user->usr_pers_discount;
 					$user->usr_name = $_POST["name"];
 					$user->usr_email = $_POST["email"];
 					$user->save();
 				}
 				if($discount) {
+
 					$model->price = round($model->price-($model->price*$discount/100));
 					$model->price = ($model->price < 0) ? 0 : $model->price;
 				}
@@ -353,6 +445,7 @@ class LandController extends Controller
 				if($model->save()){
 					unset($_SESSION['order_id']);
 					unset($_SESSION['order_price']);
+					unset($_SESSION['order_promo']);
 					header("Location: ".$this->createUrl('/land/thanks'));
 				}
 			}
@@ -455,9 +548,9 @@ class LandController extends Controller
 		}
 	}
 
-	public function actionGetPromo($phone = NULL){
-		if( isset($_POST["phone"]) || $phone){
-			$login = ($phone) ? $this->getLogin($phone) : $this->getLogin($_POST["phone"]);
+	public function actionGetPromo(){
+		if( isset($_POST["phone"])){
+			$login = $this->getLogin($_POST["phone"]);
 			$user = User::model()->find("usr_login='".$login."'");	
 			if( !$user ){
 				$user = new User();

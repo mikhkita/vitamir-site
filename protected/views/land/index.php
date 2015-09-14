@@ -237,6 +237,12 @@
                     <div class="right">
                         <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
                     </div>
+                    <? if(Yii::app()->user->isGuest): ?>
+                        <div class="right menu-phone clearfix">
+                            <div class="left phone-img"></div>
+                            <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required>
+                        </div>
+                    <? endif; ?>
                 </div>
             </div>
             </form>

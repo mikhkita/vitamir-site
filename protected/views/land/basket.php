@@ -81,17 +81,20 @@
                             <div class="b-arrow"><?=$this->declOfNum($order->day,array("день","дня","дней"));?></div>
                         </div>
                         <div class="td left">
-                            <h4><?=$price?> руб.</h4>
-                            <!-- <h5>Экономия 450 руб.</h5> -->
-                            <!-- <h6>Цифра экономии меняется в зависимости от количества дней</h6> -->
+                            <h4><span id="price-calc"><?=$price?></span> руб.</h4>
+
+                            <? if($discount): ?>
+                                <h5 >Экономия <span id="discount-calc"><?=$discount?></span> руб.</h5>
+                                <h6>Цифра экономии меняется в зависимости от количества дней</h6>
+                            <? endif; ?>
                         </div>
                     </div>
             </div>
             <h4>Введите промокод</h4>
             <div class="clearfix">
-                <form action="<?=$this->createUrl('/land/order')?>" method="POST" id="promocode-form">
-                <input class="left" type="text" name="promocode">
-                <!-- <button type="button" class="b-orange-butt left">готово</button> -->
+                <form action="<?=$this->createUrl('/land/setpromo')?>" method="POST" id="promocode-form">
+                    <input class="left" type="text" name="promocode">
+                    <button type="submit" class="b-orange-butt left">готово</button>
                 </form>
             </div>
             <div class="clearfix">
@@ -100,7 +103,13 @@
             </div>
         </div>
         <div class="clearfix">
-            <a href="#" onclick="$('#promocode-form').submit(); return false;" class="right b-orange-butt b-order-butt">оформить заказ</a>
+            <form action="<?=$this->createUrl('/land/order')?>" method="POST" id="basket-form">
+                <input type="hidden" name="price" id="price-basket" value="<?=$order->price?>">
+                <? if($discount): ?>
+                    <input type="hidden" id="discount-basket" name="discount" value="<?=$discount?>">
+                <? endif; ?>
+                <a href="#" onclick="$('#basket-form').submit(); return false;" class="right b-orange-butt b-order-butt">оформить заказ</a>
+            </form>
         </div>
     </div>
     <div class="b-question">
