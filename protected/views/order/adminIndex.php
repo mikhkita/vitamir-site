@@ -28,8 +28,8 @@
 				<tr>
 					<td><?=$item->id?></td>
 					<td class="align-left"><?=Order::model()->types[$item->type]?></td>
-					<td class="align-left"><? $date = new DateTime($item->date); echo date_format($date, 'd-m-Y H:i:s'); ?></td>
-					<td class="align-left"><?=$item->user_id?></td>
+					<td class="align-left"><? $date = new DateTime($item->date); echo date_format($date, 'd.m.Y H:i:s'); ?></td>
+					<td class="align-left"><a class="phone ajax-form ajax-update" href="<?php echo Yii::app()->createUrl('/user/adminUpdate',array('id'=>$item->user_id))?>"><? $m = User::model()->findByPk($item->user_id); echo $m['usr_login']; ?></a></td>
 					<td class="align-left"><?=Order::model()->delivery[$item->delivery]?></td>
 					<td class="align-left"><?=Order::model()->payment[$item->payment]?></td>
 					<td class="align-left"><?=$item->location?></td>

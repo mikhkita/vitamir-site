@@ -86,6 +86,7 @@ class SiteController extends Controller
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
+            $_POST['LoginForm']['username'] = $this->getLogin($_POST['LoginForm']['username']);
 			$model->attributes=$_POST['LoginForm'];
 
 			// validate user input and redirect to the previous page if valid
@@ -94,7 +95,7 @@ class SiteController extends Controller
                     $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
                 }else{
                     $user = User::model()->with("role")->findByPk(Yii::app()->user->id);
-                    $redirect = $this->createUrl(( $user->role->code == "root" )?Yii::app()->params['defaultAdminRedirect']:Yii::app()->params['defaultUserRedirect']);
+                    $redirect = $this->createUrl(( $user->role->code == "client" )?Yii::app()->params['defaultUserRedirect']:Yii::app()->params['defaultAdminRedirect']);
                     echo json_encode(array("result"=>"success","redirect"=>$redirect));
                     return true;
                 }

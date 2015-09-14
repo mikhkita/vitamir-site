@@ -64,12 +64,12 @@
             </ul>
             <div class="left inputs-cont">
                 <h4>Профиль:</h4>
-                <form action="<?=$this->createUrl('/land/userprofile')?>" id="change-password">
+                <form action="<?=$this->createUrl('/land/changepassword')?>" id="change-password" method="POST">
                     <div class="inputs clearfix">
                         <div class="left">
-                            <input type="password" name="old_password" maxlength="255" required>  
-                            <input type="password" name="User[usr_password]" maxlength="255" required> 
-                            <input type="password" name="repeat_password" maxlength="255" required> 
+                            <input type="password" name="old_password" maxlength="255" placeholder="Старый пароль" required>  
+                            <input type="password" name="User[usr_password]" maxlength="255" placeholder="Новый пароль" required> 
+                            <input type="password" name="repeat_password" maxlength="255" placeholder="Подтвердите пароль" required> 
                         </div>
                     </div>  
                     <div class="clearfix">

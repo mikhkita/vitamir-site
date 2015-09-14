@@ -89,8 +89,10 @@
             </div>
             <h4>Введите промокод</h4>
             <div class="clearfix">
-                <input class="left" type="text" placeholder="">
-                <button type="button" class="b-orange-butt left">готово</button>
+                <form action="<?=$this->createUrl('/land/order')?>" method="POST" id="promocode-form">
+                <input class="left" type="text" name="promocode">
+                <!-- <button type="button" class="b-orange-butt left">готово</button> -->
+                </form>
             </div>
             <div class="clearfix">
                 <b class="left">%</b>
@@ -98,7 +100,7 @@
             </div>
         </div>
         <div class="clearfix">
-            <a href="<?=$this->createUrl('/land/order')?>" type="submit" class="right b-orange-butt b-order-butt">оформить заказ</a>
+            <a href="#" onclick="$('#promocode-form').submit(); return false;" class="right b-orange-butt b-order-butt">оформить заказ</a>
         </div>
     </div>
     <div class="b-question">

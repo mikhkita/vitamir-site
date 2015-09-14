@@ -12,6 +12,10 @@ $(document).ready(function(){
 	var rePhone = /^\+\d \(\d\d\d\) \d\d\d-\d\d-\d\d$/,
 		tePhone = '+7 (999) 999-99-99';
 
+	if( $("body").find(".phone,[name=phone]").length ){
+		$("body").find(".phone,[name=phone]").mask(tePhone,{placeholder:"_"});
+	}
+
 	$.validator.addMethod('customPhone', function (value) {
 		return rePhone.test(value);
 	});
@@ -111,15 +115,15 @@ $(document).ready(function(){
   		return false;
   	});
 	
-	// $("#login-form").validate({
-	// 	validClass: "success",
-	// 	rules: {
-	// 		phone: 'customPhone'
-	// 	}
-	// });
-	// if( $(this).find(".phone").length ){
-	// 	$(this).find(".phone").mask(tePhone,{placeholder:"_"});
-	// }
+	$("#login-form,#registration-form,#get-promo").validate({
+		validClass: "success",
+		rules: {
+			phone: 'customPhone'
+		}
+	});
+	if( $(this).find(".phone").length ){
+		$(this).find(".phone").mask(tePhone,{placeholder:"_"});
+	}
 
 	
 	$("#login-form").submit(function(){
@@ -146,6 +150,32 @@ $(document).ready(function(){
   		return false;
   	});
 
+	$("#change-password,#registration-form,#get-promo").submit(function(){
+		var form = $(this);
+  		if( $(this).valid() ){
+  			$.ajax({
+			  	type: form.attr("method"),
+			  	url: form.attr("action"),
+			  	data:  form.serialize(),
+			  	beforeSend: function() {
+			  		form.find("input,button").prop("disabled",true);
+			  	},
+				success: function(msg){
+					var message = JSON.parse(msg);
+					var popup = $("#b-popup-2").clone();
+					popup.find("h3").text("Сообщение");
+					popup.find("h4").text(message.result);
+					$.fancybox.open({
+						content : popup,
+						padding : 0
+					});
+					form.find("input,button").prop("disabled",false);
+				}
+			});
+  		}
+  		return false;
+	});
+	
 	$("#b-order-form").submit(function(){
 		$("input[name='phone'].success").parent("div").removeClass("error");
 		$("input[name='phone'].error").parent("div").addClass("error");

@@ -86,7 +86,7 @@
 
                     </div>
                     <div class="right">
-                        <?php echo $form->textField($model,'usr_login',array('maxlength'=>255,'required'=>true,'placeholder' => 'Телефон')); ?>
+                        <?php echo $form->textField($model,'usr_login',array('class' => 'phone','maxlength'=>255,'required'=>true,'placeholder' => 'Телефон', 'disabled' => true)); ?>
                         <?php echo $form->error($model,'usr_login'); ?>
 
                         <?php echo $form->emailField($model,'usr_email',array('maxlength'=>255,'required'=>true,'placeholder' => 'E-mail')); ?>

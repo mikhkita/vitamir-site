@@ -43,7 +43,7 @@ class LandController extends Controller
 			$options = $this->actionDay($set_id,false);
 			$options['day_select'] = $day_select;
 		}
-		// $options['model'] = $login;	
+		// $options['model'] = $login;	sdsd
 		$this->render('index',$options);
 	}
 
@@ -221,36 +221,38 @@ class LandController extends Controller
 
 	}
 
-	public function actionUserPassword()
+	public function actionChangePassword()
 	{
 		$model = User::model()->findByPk(Yii::app()->user->id);
 
-		if(isset($_POST['User']))
-		{
+		if( isset($_POST["User"]["usr_password"]) ){
+
 			$model->prevRole = $model->role->code;
-			if( isset($_POST["User"]["usr_password"]) ){
+			$new_password = md5($_POST["User"]["usr_password"]."eduplan");
+			$old_password = md5($_POST["old_password"]."eduplan");
 
-				$new_password = md5($_POST["User"]["usr_password"]."eduplan");
-				$old_password = md5($_POST["old_password"]."eduplan");
-
-				if( $old_password == $new_password || $new_password == $model->usr_password) {
-					echo "Новый и старый пароль не должны совпадать";
-					return false;
-				}
-
-				if( $new_password == $model->usr_password ) {
-					echo "Новый и старый пароль не должны совпадать";
-					return false;
-				}
-
-				if( $old_password != $new_password && $new_password != $model->usr_password )
-					$model->newPass = $_POST["User"]["usr_password"];
+			if( $old_password != $model->usr_password) {
+				echo json_encode(array("result"=>"Неверный пароль!"));
+				return true;
 			}
-			
-			if($model->save()){
-				echo "Вы успешно изменили пароль";
+
+			if( $new_password == $model->usr_password) {
+				echo json_encode(array("result"=>"Новый и старый пароль не должны совпадать!"));
+				return true;
 			}
-				
+
+			if( $_POST["User"]["usr_password"] != $_POST["repeat_password"] ) {
+				echo json_encode(array("result"=>"Неверное подтверждение пароля!"));
+				return true;
+			}
+
+			$model->newPass = $_POST["User"]["usr_password"];
+			if($model->save()) {
+				echo json_encode(array("result"=>"Вы успешно изменили пароль!"));
+			} else {
+				echo json_encode(array("result"=>"Ошибка! Попробуйте еще раз"));
+			}	
+			return true;
 		}else{
 			$this->render('changePassword',array(
 				'model'=>$model,
@@ -264,11 +266,16 @@ class LandController extends Controller
 		if(!isset($_SESSION)) session_start();
 		if( isset($_SESSION['order_id']) ){
 			$model = Order::model()->findByPk($_SESSION["order_id"]);
-
-			$this->render('order',array(
+			$options = array(
 				'order' => $model,
 				'price' => $_SESSION['order_price'],
-			));
+
+			);
+			if(!Yii::app()->user->isGuest ) $options['user'] = User::model()->findByPk(Yii::app()->user->id);
+			if(isset($_POST['promocode']) && $_POST['promocode']) {
+				$options['promocode'] = $_POST['promocode'];
+			}
+			$this->render('order',$options);
 		}else{
 			header("Location: /");
 		}
@@ -302,6 +309,7 @@ class LandController extends Controller
 
 				$user = User::model()->find("usr_login='".$login."'");
 
+				$discount = 0;
 				if( !$user ){
 					$user = new User();
 
@@ -315,21 +323,40 @@ class LandController extends Controller
 					if(!$user->save()){
 						die("Ошибка создания заказа");
 					}
+				} else {
+					$discount = $user->usr_discount;
+					if($model->day > 9 && $model->day < 30) {
+						$discount = ($discount <= 22) ? $discount + 3 : 25;
+					}
+					if($model->day >= 30) {
+						$discount = ($discount <= 15) ? $discount + 10 : 25;
+					}
+					$user->usr_discount = $discount;
+					if(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
+						$discount += 5;
+						$user->usr_promo = "use";
+					}
+					$discount += $user->usr_pers_discount;
+					$user->usr_name = $_POST["name"];
+					$user->usr_email = $_POST["email"];
+					$user->save();
 				}
-
+				if($discount) {
+					$model->price = round($model->price-($model->price*$discount/100));
+					$model->price = ($model->price < 0) ? 0 : $model->price;
+				}
 				$model->delivery = $_POST["delivery"];
 				$model->payment = $_POST["payment"];
 				$model->location = $_POST["location"];
+				$model->state = 1;
 				$model->user_id = $user->usr_id;
 				if($model->save()){
+					unset($_SESSION['order_id']);
+					unset($_SESSION['order_price']);
 					header("Location: ".$this->createUrl('/land/thanks'));
 				}
 			}
-			
 
-			$this->render('basket',array(
-				'order' => $model
-			));
 		}else{
 			header("Location: /");
 		}
@@ -428,34 +455,49 @@ class LandController extends Controller
 		}
 	}
 
-	public function actionGetPromo(){
-		if( isset($_POST["phone"]) ){
-			$login = $this->getLogin($_POST["phone"]);
-			$user = User::model()->find("usr_login='".$login."'");
-
+	public function actionGetPromo($phone = NULL){
+		if( isset($_POST["phone"]) || $phone){
+			$login = ($phone) ? $this->getLogin($phone) : $this->getLogin($_POST["phone"]);
+			$user = User::model()->find("usr_login='".$login."'");	
 			if( !$user ){
 				$user = new User();
-
 				$user->usr_login = $login;
-				$user->newPass = "123123";
+				
+				if(isset($_POST["password"])) {
+					$user->newPass = $_POST["password"];
+					$result = "Поздравляем, Вы успешно зарегистрированны! Также вы получаете промокод на 5%-ю скидку! Он будет отправлен Вам по смс";
+				} else {
+					$user->newPass = "123123";
+					$result = "Промокод и пароль от личного кабинета отправлены Вам по смс";
+				}
+				
 				$user->usr_password = "123123";
 				$user->usr_rol_id = 4;
 
 				if(!$user->save()){
-					die("Ошибка создания пользователя");
+					echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+					return true;
+				}
+			} else {
+				$result = "Промокод успешно отправлен Вам по смс";
+				if(isset($_POST["password"])) {
+				echo json_encode(array("result"=>"Такой пользователь уже существует!"));
+				return true;
 				}
 			}
 
 			if( $user->usr_promo == NULL ){
 				$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
 				if( !$user->save() ){
-					die("Ошибка создания промокода");
+					echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+					return true;
 				}
 			}
+			if( $user->usr_promo == "use" ) $result = "На данном аккаунте уже был активирован промокод!";
 
-			echo "1";
+			echo json_encode(array("result"=>$result));
 		}else{
-			echo "0";
+			echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
 		}
 	}
 

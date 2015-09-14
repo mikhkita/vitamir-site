@@ -65,6 +65,26 @@
         </div>
         <form action="<?=$this->createUrl('/land/updateorder')?>" method="POST" id="b-order-form">
         <div class="b-sale">
+        <? if(isset($user)): ?>
+            <input class="left" type="hidden" id="phone-1" name="phone" value="<?=$user->usr_login?>"/>
+        <? endif; ?> 
+        <? if(isset($promocode)): ?>
+            <input type="hidden" name="promocode" value="<?=$promocode?>"/>
+        <? endif; ?>
+        <? if(isset($user) && $user->usr_email && $user->usr_name): ?>
+            <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/>
+            <input type="hidden" id="sale-email" class="write" name="email" placeholder="" value="<?=$user->usr_email?>"/>
+        <? elseif(isset($user) && !$user->usr_name): ?>
+            <div class="b-sale-block">
+                <h3 class="edit">Введите Ваши контактные данные:</h3>
+                <label for="sale-name">Введите Ваше имя:</label>
+                <input type="text" id="sale-name" class="write" name="name" placeholder="Иванов Иван" required/>
+                <? if(!$user->usr_email): ?>
+                    <label for="sale-email">Введите Ваш e-mail:</label>
+                    <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
+                <? endif; ?>   
+            </div>
+        <? else: ?>
             <div class="b-sale-block">
                 <h3 class="edit">Введите Ваши контактные данные:</h3>
                 <label for="sale-name">Введите Ваше имя:</label>
@@ -77,6 +97,7 @@
                 <label for="sale-email">Введите Ваш e-mail:</label>
                 <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
             </div>
+        <? endif; ?>       
             <div class="b-sale-block clearfix">
                 <div class="left">
                     <h3 class="delivery">Доставка</h3>
@@ -87,7 +108,11 @@
                         <label for="sale-courier">Курьерская доставка до дома или офиса</label>
                     </div>
                     <h3 class="location">Введите адрес</h3>
-                    <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1" required/>
+                    <? if(isset($user)): ?>
+                       <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1"  value="<?=$user->usr_address?>" required/> 
+                    <? else: ?>
+                        <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1" required/>
+                    <? endif; ?>
                 </div>
                 <div class="right">
                     <h3 class="payment">Оплата</h3>

@@ -1,8 +1,10 @@
 $(document).ready(function(){	
-    $(".b-filter input,select[name='count']").change(calculateMenu);
-    var daytime,rate,detail_dish_id,show_menu;
-    calculateMenu();
-    menuFilter();
+    if($(".b-time").length) {
+        $(".b-filter input,select[name='count']").change(calculateMenu);
+        var daytime,rate,detail_dish_id,show_menu;
+        calculateMenu();
+        menuFilter();
+    }
 });
 
 function calculateMenu(){

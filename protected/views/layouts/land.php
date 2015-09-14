@@ -44,7 +44,6 @@
     <div class="b b-0">
         <div class="b-block clearfix">
             <div class="cabinet right">
-
                 <ul class="clearfix">
                     <? if(Yii::app()->user->isGuest): ?>
                         <li class="right">
@@ -58,15 +57,24 @@
                             <a href="<?=$this->createUrl('/site/logout')?>"><p>Выйти</p></a>
                         </li>
                         <li class="right">
-                            <a class="fancy" href="#"  data-block="#b-popup-system"><p>Личный кабинет</p></a>
+                            <a href="<?=$this->createUrl('/land/orderhistory')?>"><p>Личный кабинет</p></a>
                         </li>
                     <? endif; ?>
                 </ul>
             </div>
-            <div class="percent right clearfix">
-                <a class="fancy right" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
-                <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/percent.png">
-            </div>
+            <? if(!Yii::app()->user->isGuest): ?>
+                <? $user = User::model()->findByPk(Yii::app()->user->id); if($user->usr_promo!="use"): ?>
+                    <div class="percent right clearfix">
+                        <a class="fancy right" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
+                        <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/percent.png">
+                    </div>
+                <? endif; ?>   
+            <? else: ?>
+                <div class="percent right clearfix">
+                    <a class="fancy right" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
+                    <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/percent.png">
+                </div>
+            <? endif; ?>
         </div>
     </div>
     <div class="b-content">
@@ -178,18 +186,18 @@
         </div>
     </div>
     <div id="b-popup-code">
-        <div class="b-popup" >
+        <div class="b-popup">
             <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
             <h3>Введите телефон, и промокод автоматически будет выслан</h3>
-            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="b-form-8" data-block="#b-popup-2">
+            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="get-promo">
                 <div class="b-popup-form">
                     <input type="hidden" name="subject" value="Заявка на промокод"/>
                     <label for="phone-5">Введите Ваш телефон:</label>
                     <div class="clearfix">
                         <div class="left phone-img"></div>
-                        <input class="left" type="text" id="phone-5" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                        <input class="left phone" type="text" id="phone-5" name="phone" required value=""/>
                     </div>
-                    <input type="submit" class="ajax b-orange-butt rounded sys" value="получить промокод">
+                    <input type="submit" class="b-orange-butt rounded sys" value="получить промокод">
                 </div>
             </form>
         </div>
@@ -263,15 +271,13 @@
         <div class="b-popup" >
             <h2>Зарегистрируйтесь в системе</h2>
             <h3>В личном кабинете будут Ваши заказы и результаты тренировок</h3>
-            <form action="kitsend.php" method="POST" id="b-form-5" data-block="#b-popup-2">
+            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="registration-form">
                 <div class="b-popup-form">
-                    <input type="hidden" name="subject" value="Регистрация в системе"/>
-                    <label for="email-3">Введите Ваш телефон:</label>
-                    <input type="text" id="email-3" class="write" name="phone" required/>
-                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
-                    <label for="password-2">Придумайте пароль:</label>
-                    <input type="text" id="password-2" class="pass" name="password" required/>
-                    <input type="submit" class="ajax b-orange-butt rounded sys" value="зарегистрироваться">
+                    <label for="phone-reg">Введите Ваш телефон:</label>
+                    <input type="text" id="phone-reg" class="write phone" name="phone" required/>
+                    <label for="password-reg">Придумайте пароль:</label>
+                    <input type="text" id="password-reg" class="pass" name="password" required minlength="4"/>
+                    <input type="submit" class="b-orange-butt rounded sys" value="зарегистрироваться">
                 </div>
             </form>
         </div>
@@ -285,7 +291,7 @@
                     <label for="phone-login">Введите Ваш телефон:</label>
                     <input type="text" id="phone-login" name="LoginForm[username]" class="phone write" required>
                     <label for="password-login">Ваш пароль:</label>
-                    <input type="password" id="password-login" name="LoginForm[password]" class="pass" required>
+                    <input type="password" id="password-login" name="LoginForm[password]" class="pass" required minlength="4">
                     <?php echo CHtml::submitButton('Войти',array('class' => 'b-orange-butt rounded sys')); ?>
                 </div>
             </form>
