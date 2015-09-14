@@ -356,7 +356,6 @@ class LandController extends Controller
 				$discount += $options['user']->usr_pers_discount;
 			}
 
-			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount +=5;
 			$discount = $_POST["price"]*$discount/100;
 			$_POST["price"] = round($_POST["price"]-$discount);
 			$_POST["price"] = ($_POST["price"] < 0) ? 0 : $_POST["price"];

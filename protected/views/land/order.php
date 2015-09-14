@@ -84,7 +84,7 @@
                     <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
                 <? endif; ?>   
             </div>
-        <? else: ?>
+        <? elseif(!isset($user)): ?>
             <div class="b-sale-block">
                 <h3 class="edit">Введите Ваши контактные данные:</h3>
                 <label for="sale-name">Введите Ваше имя:</label>

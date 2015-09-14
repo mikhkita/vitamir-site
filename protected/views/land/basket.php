@@ -104,10 +104,12 @@
         </div>
         <div class="clearfix">
             <form action="<?=$this->createUrl('/land/order')?>" method="POST" id="basket-form">
-                <input type="hidden" name="price" id="price-basket" value="<?=$order->price?>">
                 <? if($discount): ?>
+                    <input type="hidden" name="price" id="price-basket" value="<?=($order->price-$discount)?>">
                     <input type="hidden" id="discount-basket" name="discount" value="<?=$discount?>">
-                <? endif; ?>
+                <? else: ?>
+                    <input type="hidden" name="price" id="price-basket" value="<?=$order->price?>">
+                <? endif;?>
                 <a href="#" onclick="$('#basket-form').submit(); return false;" class="right b-orange-butt b-order-butt">оформить заказ</a>
             </form>
         </div>
