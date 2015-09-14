@@ -40,6 +40,7 @@ $(document).ready(function(){
 			$popup.find("input").eq(0).focus();
 
 			// scrollToBlock($popup);
+			$popup.css("top",myHeight/2-$popup.height()/2);
 		},320);
 
 		return false;
@@ -48,8 +49,6 @@ $(document).ready(function(){
 	$(".b-layout").click(function(){
 		if( $opened != null )
 			hideLayout();
-		if(show_menu)
-		$(".b-time-"+daytime).find(".b-add-butt").click();
 	});
 
 	$("body").on("click",".b-add-cart-detail,.modal-close",function(){
@@ -84,6 +83,8 @@ $(document).ready(function(){
 			$layout.hide();
 		},500);
 		$("html").css("overflow","auto");
+		if(show_menu)
+		$(".b-time-"+daytime).find(".b-add-butt").click();
 	}
 
 });

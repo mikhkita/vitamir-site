@@ -525,7 +525,7 @@ textarea{
 					}
 						.b-menu-items .b-page ul li .b-image-cont .b-image{
 							width: 170px;
-							height: 170px;
+							height: 113px;
 							background-position: 50% 50%;
 							background-size: cover;
 							background-repeat: no-repeat;
@@ -3172,11 +3172,11 @@ margin-bottom: 6px;
 	top: 300px;
 }
 .b-modal{
-	-webkit-transition: all 200ms ease-out;
+	/*-webkit-transition: all 200ms ease-out;
 	   -moz-transition: all 200ms ease-out;
 	    -ms-transition: all 200ms ease-out;
 	   	 -o-transition: all 200ms ease-out;
-			transition: all 200ms ease-out;
+			transition: all 200ms ease-out;*/
 }
 /*.b-from-top{
 	opacity: 0;
