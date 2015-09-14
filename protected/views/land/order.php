@@ -67,30 +67,35 @@
         <div class="b-sale">
         <? if(isset($user)): ?>
             <input class="left" type="hidden" id="phone-1" name="phone" value="<?=$user->usr_login?>"/>
-        <? endif; ?> 
-        <? if(isset($promocode)): ?>
-            <input type="hidden" name="promocode" value="<?=$promocode?>"/>
-        <? endif; ?>
-        <? if(isset($user) && $user->usr_name): ?>
-            <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/>
-            <? if(!$user->usr_email): ?>
+            <? if($user->usr_name && $user->usr_email): ?>
+                <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/>
+                <input type="hidden" id="sale-email" class="write" name="email" placeholder="" required value="<?=$user->usr_email?>"/>   
+            <? endif; ?> 
+            <? if(!$user->usr_name): ?>
+                    <div class="b-sale-block">
+                        <h3 class="edit">Введите Ваши контактные данные:</h3>
+                        <label for="sale-name">Введите Ваше имя:</label>
+                        <input type="text" id="sale-name" class="write" name="name" placeholder="Иванов Иван" required/>   
+                        <? if(!$user->usr_email): ?>
+                            <label for="sale-email">Введите Ваш e-mail:</label>
+                            <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
+                        <? else: ?>  
+                            <input type="hidden" id="sale-email" class="write" name="email" placeholder="" required value="<?=$user->usr_email?>"/>   
+                        <? endif; ?>  
+                    </div>
+            <? else: ?> 
                 <div class="b-sale-block">
                     <h3 class="edit">Введите Ваши контактные данные:</h3>
-                    <label for="sale-email">Введите Ваш e-mail:</label>
-                    <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>       
+                    <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/> 
+                    <? if(!$user->usr_email): ?>
+                        <label for="sale-email">Введите Ваш e-mail:</label>
+                        <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
+                    <? else: ?>  
+                        <input type="hidden" id="sale-email" class="write" name="email" placeholder="" required value="<?=$user->usr_email?>"/>   
+                    <? endif; ?>  
                 </div>
-            <? endif; ?>  
-        <? elseif(isset($user) && !$user->usr_name): ?>
-            <div class="b-sale-block">
-                <h3 class="edit">Введите Ваши контактные данные:</h3>
-                <label for="sale-name">Введите Ваше имя:</label>
-                <input type="text" id="sale-name" class="write" name="name" placeholder="Иванов Иван" required/>
-                <? if(!$user->usr_email): ?>
-                    <label for="sale-email">Введите Ваш e-mail:</label>
-                    <input type="text" id="sale-email" class="write" name="email" placeholder="" required/>
-                <? endif; ?>   
-            </div>
-        <? elseif(!isset($user)): ?>
+            <? endif; ?> 
+        <? else: ?>
             <div class="b-sale-block">
                 <h3 class="edit">Введите Ваши контактные данные:</h3>
                 <label for="sale-name">Введите Ваше имя:</label>
