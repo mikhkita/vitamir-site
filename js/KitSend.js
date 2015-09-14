@@ -59,6 +59,9 @@ $(document).ready(function(){
 
 	fancy_init();
 
+	if(window.location.hash=="#login") {
+		alert();
+	}
 
 	$(".b-go").click(function(){
 		var block = $( $(this).attr("data-block") ),

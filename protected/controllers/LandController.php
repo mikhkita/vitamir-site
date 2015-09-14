@@ -15,11 +15,11 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','import','basket','getpromo','fullMenu','day','createOrder','order','updateOrder','thanks'),
+				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks'),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('orderHistory','userProfile'),
+				'actions'=>array('orderHistory','userProfile','changePassword'),
 				'roles'=>array('client'),
 			),
 		);
@@ -203,6 +203,8 @@ class LandController extends Controller
 
 	public function actionUserProfile()
 	{
+		if(Yii::app()->user->isGuest ) $this->redirect($this->createUrl('',array("#" => 'login')));
+
 		$model = User::model()->findByPk(Yii::app()->user->id);
 
 		if(isset($_POST['User']))
@@ -247,6 +249,7 @@ class LandController extends Controller
 			}
 
 			$model->newPass = $_POST["User"]["usr_password"];
+			$model->usr_password = $_POST["User"]["usr_password"];
 			if($model->save()) {
 				echo json_encode(array("result"=>"Вы успешно изменили пароль!"));
 			} else {
@@ -455,9 +458,9 @@ class LandController extends Controller
 		}
 	}
 
-	public function actionGetPromo($phone = NULL){
-		if( isset($_POST["phone"]) || $phone){
-			$login = ($phone) ? $this->getLogin($phone) : $this->getLogin($_POST["phone"]);
+	public function actionGetPromo(){
+		if( isset($_POST["phone"])){
+			$login = $this->getLogin($_POST["phone"]);
 			$user = User::model()->find("usr_login='".$login."'");	
 			if( !$user ){
 				$user = new User();
