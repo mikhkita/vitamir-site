@@ -95,7 +95,7 @@
                 <form action="<?=$this->createUrl('/land/setpromo')?>" method="POST" id="promocode-form">
                     <input class="left" type="text" name="promocode">
                     <button type="submit" class="b-orange-butt left">готово</button>
-                
+                </form>
             </div>
             <div class="clearfix">
                 <b class="left">%</b>

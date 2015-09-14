@@ -360,6 +360,7 @@ class LandController extends Controller
 			$discount = $_POST["price"]*$discount/100;
 			$_POST["price"] = round($_POST["price"]-$discount);
 			$_POST["price"] = ($_POST["price"] < 0) ? 0 : $_POST["price"];
+			$options['price'] = $_POST["price"];
 
 			$this->render('order',$options);
 
@@ -401,7 +402,7 @@ class LandController extends Controller
 				if($model->day > 9 && $model->day < 30) {
 					$discount = 3;
 				}
-				if($model->day = 30) {
+				if($model->day == 30) {
 					$discount = 10;
 				}
 				
@@ -421,7 +422,7 @@ class LandController extends Controller
 				} else {
 					$user->usr_discount = ( ($user->usr_discount+$discount) < 25 ) ? $user->usr_discount+$discount : 25;
 					$discount = $user->usr_discount;
-					if(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
+					if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) {
 						$discount += 5;
 						$user->usr_promo = "use";
 					}
@@ -444,6 +445,7 @@ class LandController extends Controller
 				if($model->save()){
 					unset($_SESSION['order_id']);
 					unset($_SESSION['order_price']);
+					unset($_SESSION['order_promo']);
 					header("Location: ".$this->createUrl('/land/thanks'));
 				}
 			}
