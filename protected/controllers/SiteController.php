@@ -95,7 +95,14 @@ class SiteController extends Controller
                     $this->redirect($this->createUrl(Yii::app()->params['defaultAdminRedirect']));
                 }else{
                     $user = User::model()->with("role")->findByPk(Yii::app()->user->id);
-                    $redirect = $this->createUrl(( $user->role->code == "client" )?Yii::app()->params['defaultUserRedirect']:Yii::app()->params['defaultAdminRedirect']);
+
+                    if(isset($_POST['login-promo']) && $_POST['login-promo']!= "use" && $_POST['login-promo'] == $user->usr_promo) {
+                        if(!isset($_SESSION)) session_start();
+                        $user->usr_promo = "use";
+                        if($user->save()) $_SESSION['order_promo'] = 1;
+                    }
+
+                    $redirect = ( $user->role->code != "client" ) ? $this->createUrl(Yii::app()->params['defaultUserRedirect']) : "reload";
                     echo json_encode(array("result"=>"success","redirect"=>$redirect));
                     return true;
                 }

@@ -292,6 +292,7 @@
                     <input type="text" id="phone-login" name="LoginForm[username]" class="phone write" required>
                     <label for="password-login">Ваш пароль:</label>
                     <input type="password" id="password-login" name="LoginForm[password]" class="pass" required minlength="4">
+                    <input type="hidden" id="login-promo" name="login-promo">
                     <?php echo CHtml::submitButton('Войти',array('class' => 'b-orange-butt rounded sys')); ?>
                 </div>
             </form>

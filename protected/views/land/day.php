@@ -21,7 +21,7 @@
                                     <span>Кол-во:</span>
                                 </div>
                                 <div class="right">
-                                    <? echo CHtml::dropDownList('count', $item['count'], array ("1"=>1,"2"=>2,"3"=>3,"4"=>4,"5"=>5,"6"=>6,"7"=>7,"8"=>8,"9"=>9)) ?>
+                                    <? echo CHtml::dropDownList('count', $item['count'], array ("1"=>1,"2"=>2,"3"=>3,"4"=>4,"5"=>5,"6"=>6,"7"=>7,"8"=>8,"9"=>9), array("id" => "")) ?>
                                 </div>
                             </div>
                             <input type="hidden" name="day[<?=$number?>][]" value="<?=$item['id']?>;1;1">

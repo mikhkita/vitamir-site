@@ -118,7 +118,7 @@ $(document).ready(function(){
   		return false;
   	});
 	
-	$("#login-form,#registration-form,#get-promo").validate({
+	$("#login-form,#registration-form,#get-promo,#promocode-form").validate({
 		validClass: "success",
 		rules: {
 			phone: 'customPhone'
@@ -139,7 +139,7 @@ $(document).ready(function(){
 				success: function(msg){
 					var json = JSON.parse(msg);
 					if(json.result == "success") {
-						window.location.replace(json.redirect);
+						if(json.redirect == "reload") window.location.reload(true); else window.location.replace(json.redirect);
 					}else{
 						if( json.message ){
 							alert(json.message);
@@ -193,22 +193,27 @@ $(document).ready(function(){
 					var message = JSON.parse(msg);
 					var popup = $("#b-popup-2").clone();
 					popup.find("h3").text("Сообщение");
-					if(message.result == "1") {
-						popup.find("h4").text("Вы успешно использовали промокод!");
-						var price = $("#price-calc").text()*1;
-						var discount = 0;
-						if($("#discount-calc").length) discount = $("#discount-calc").text()*1;
-						var fullprice = price+discount;
-						var promo = Math.round(fullprice*5/100);
-						$("#price-calc").text(fullprice-promo-discount);
-						$("#price-basket").val(fullprice-promo-discount);
-						if($("#discount-basket").length) $("#discount-basket").val(promo+discount);
-						if($("#discount-calc").length) $("#discount-calc").text(promo+discount);
-					} else popup.find("h4").text(message.result);
-					$.fancybox.open({
-						content : popup,
-						padding : 0
-					});
+					if(message.result != "0") {
+						if(message.result == "1") {
+							popup.find("h4").text("Вы успешно использовали промокод!");
+							$.fancybox.open({
+								content : popup,
+								padding : 0,
+								afterClose: function () {
+									window.location.reload(true);
+								}
+							});
+						} else {
+							popup.find("h4").text(message.result);
+							$.fancybox.open({
+								content : popup,
+								padding : 0
+							});
+						}
+					} else {
+						$('a[data-block="#b-popup-system"]').click();
+						$("#login-promo").val($("input[name='promocode']").val());
+					}
 					form.find("input,button").prop("disabled",false);
 				}
 			});

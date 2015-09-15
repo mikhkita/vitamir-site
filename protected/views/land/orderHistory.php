@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="b-block cabinet-cont">
-       <h3>Здравствуйте, <?=$user->usr_name?>!</h3>
+       <h3>Здравствуйте, <? if($user->usr_name) echo $user->usr_name; else echo "дорогой клиент" ?>!</h3>
        <div class="clearfix history">
             <ul class="left">
                <li class="active"><a href="#" onclick="return false;">История заказов</a></li>

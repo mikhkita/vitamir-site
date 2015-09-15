@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="b-block cabinet-cont">
-        <h3>Здравствуйте, <?=$model->usr_name?>!</h3>
+        <h3>Здравствуйте, <? if($model->usr_name) echo $model->usr_name; else echo "дорогой клиент" ?>!</h3>
         <div class="clearfix">
             <ul class="left">
                <li><a href="<?=$this->createUrl('/land/orderhistory')?>">История заказов</a></li>

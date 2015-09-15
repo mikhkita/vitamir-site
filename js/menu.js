@@ -1,9 +1,10 @@
 $(document).ready(function(){	
     if($(".b-time").length) {
-        $(".b-filter input,select[name='count']").change(calculateMenu);
+        $(".b-filter input").change(calculateMenu);
         var daytime,rate,detail_dish_id,show_menu;
         calculateMenu();
         menuFilter();
+        if($("#day-select option").length == 30) $(".b-add-day").prop("disabled",true);
     }
 });
 
@@ -50,7 +51,7 @@ function calculateDaytime(daytime,daytime1,type){
         }
     });
 
-    console.log(sum);
+    // console.log(sum);
 
     for( i in sum ){
         $(".b-time-"+daytime1+" ."+i).text(roundPlus(sum[i],3));
@@ -103,6 +104,7 @@ function menuFilter() {
 
     $(".b-add-day").click(function(){
         if($("#day-select option").length < 30) {
+            $(".b-add-day").prop("disabled",false);
             $("#day-select").show();
             var opt_length = $("#day-select option").length+1;
             $("#day-select option").prop("selected",false);
@@ -115,14 +117,20 @@ function menuFilter() {
                 type: "GET",
                 url: "/land/day",
                 data:  { set_id: set_id},
+                beforeSend: function() {
+                    $(".b-add-day").prop("disabled",true);
+                },
                 success: function(msg){
                     $(".daytime-cont").hide(); 
                     $(".daytime-cont:last").after(msg);
                     set_day($(".daytime-cont:last"));
                     fancy_init();
                     calculateMenu();
+                    $(".b-add-day").prop("disabled",false);
                 }
             });
+        } else {
+            $(".b-add-day").prop("disabled",true);
         }
 
         return false;
@@ -141,6 +149,7 @@ function menuFilter() {
         var arr = $(this).closest("li").find("input[type='hidden']").val().split(";");
         arr[2] = $(this).val();
         $(this).closest("li").find("input[type='hidden']").val(arr.join(";"));
+        calculateMenu();
     });
     $("#menu-order").submit(function() {
         if($(".b-eat li").length == 0) return false;

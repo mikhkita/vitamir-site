@@ -224,7 +224,7 @@
                 <div class="b-padding">
                     <div class="clearfix b-header">
                         <h3 class="left">Меню на день</h3>
-                        <a href="#" class="right b-add-day">Добавить еще день</a>
+                        <button type="button" class="right b-add-day">Добавить еще день</button>
                         <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
                         <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
                     </div>
@@ -237,12 +237,12 @@
                     <div class="right">
                         <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
                     </div>
-                    <? if(Yii::app()->user->isGuest): ?>
+                   <!--  <? if(Yii::app()->user->isGuest): ?>
                         <div class="right menu-phone clearfix">
                             <div class="left phone-img"></div>
                             <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required>
                         </div>
-                    <? endif; ?>
+                    <? endif; ?> -->
                 </div>
             </div>
             </form>

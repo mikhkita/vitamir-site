@@ -90,17 +90,19 @@
                         </div>
                     </div>
             </div>
-            <h4>Введите промокод</h4>
-            <div class="clearfix">
-                <form action="<?=$this->createUrl('/land/setpromo')?>" method="POST" id="promocode-form">
-                    <input class="left" type="text" name="promocode">
-                    <button type="submit" class="b-orange-butt left">готово</button>
-                </form>
-            </div>
-            <div class="clearfix">
-                <b class="left">%</b>
-                <a class="sale left fancy" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
-            </div>
+            <? $user = (!Yii::app()->user->isGuest) ? User::model()->findByPk(Yii::app()->user->id) : false; if(!$user || $user->usr_promo!="use"): ?>
+                <h4>Введите промокод</h4>
+                <div class="clearfix">
+                    <form action="<?=$this->createUrl('/land/setpromo')?>" method="POST" id="promocode-form">
+                        <input class="left" type="text" name="promocode" minlength="4" maxlength="4" required>
+                        <button type="submit" class="b-orange-butt left">готово</button>
+                    </form>
+                </div>
+                <div class="clearfix">
+                    <b class="left">%</b>
+                    <a class="sale left fancy" href="#" data-block="#b-popup-code">Получить промокод на скидку</a>
+                </div>
+            <? endif;?>
         </div>
         <div class="clearfix">
             <form action="<?=$this->createUrl('/land/order')?>" method="POST" id="basket-form">

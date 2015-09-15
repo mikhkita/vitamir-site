@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="b-block cabinet-cont">
-        <h3>Здравствуйте, <?=$model->usr_name?>!</h3>
+        <h3>Здравствуйте, <? if($model->usr_name) echo $model->usr_name; else echo "дорогой клиент" ?>!</h3>
         <div class="clearfix">
             <ul class="left">
                <li><a href="<?=$this->createUrl('/land/orderhistory')?>">История заказов</a></li>
@@ -75,7 +75,7 @@
                             <?php echo $form->textField($model,'usr_surname',array('maxlength'=>255,'placeholder' => 'Фамилия')); ?>
                             <?php echo $form->error($model,'surname'); ?>
 
-                            <?php echo $form->textField($model,'usr_name',array('maxlength'=>255,'required'=>true, 'placeholder' => 'Имя')); ?>
+                            <?php echo $form->textField($model,'usr_name',array('maxlength'=>255, 'placeholder' => 'Имя')); ?>
                             <?php echo $form->error($model,'usr_name'); ?>
 
                             <?php echo $form->textField($model,'usr_middle',array('maxlength'=>255,'placeholder' => 'Отчество')); ?>
