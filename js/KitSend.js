@@ -63,6 +63,26 @@ $(document).ready(function(){
 		$("a[data-block='#b-popup-system']").click();
 	}
 
+	if(window.location.hash=="#error") {
+		var popup = $("#b-popup-2").clone();
+		popup.find("h3").text("Сообщение");
+		popup.find("h4").text("Вы ввели неверный промокод!");
+		$.fancybox.open({
+			content : popup,
+			padding : 0
+		});
+	}
+
+	if(window.location.hash=="#again") {
+		var popup = $("#b-popup-2").clone();
+		popup.find("h3").text("Сообщение");
+		popup.find("h4").text("Вы уже использовали промокод!");
+		$.fancybox.open({
+			content : popup,
+			padding : 0
+		});
+	}
+
 	$(".b-go").click(function(){
 		var block = $( $(this).attr("data-block") ),
 			off = $(this).attr("data-offset")||0;
@@ -139,7 +159,7 @@ $(document).ready(function(){
 				success: function(msg){
 					var json = JSON.parse(msg);
 					if(json.result == "success") {
-						if(json.redirect == "reload") window.location.reload(true); else window.location.replace(json.redirect);
+						if(json.redirect == "reload") window.location.reload(true); else { window.location.replace(json.redirect); window.location.reload(true); };
 					}else{
 						if( json.message ){
 							alert(json.message);
@@ -200,6 +220,7 @@ $(document).ready(function(){
 								content : popup,
 								padding : 0,
 								afterClose: function () {
+									window.location.hash = "";
 									window.location.reload(true);
 								}
 							});

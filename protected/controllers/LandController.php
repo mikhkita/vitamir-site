@@ -235,7 +235,7 @@ class LandController extends Controller
 				return true;
 
 			} elseif(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] != $user->usr_promo) {
-				echo json_encode(array("result"=>"Неверный промокод!"));
+				echo json_encode(array("result"=>"Вы ввели неверный промокод!"));
 				return true;
 
 			} elseif(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
@@ -343,6 +343,7 @@ class LandController extends Controller
 			$model = Order::model()->findByPk($_SESSION["order_id"]);
 			
 			$discount = 0;
+
 			if(!Yii::app()->user->isGuest ) $user = User::model()->findByPk(Yii::app()->user->id);
 
 			if($model->day > 9 && $model->day < 30) {
@@ -363,12 +364,9 @@ class LandController extends Controller
 			$price = round($model->price - $discount);
 			$price = ($price < 0) ? 0 : $price;
 
-			$this->render('order',array(
-				'order' => $model,
-				'price' => $price,
-				'user' => $user
-
-			));
+			$options = array('order' => $model,'price' => $price);
+			if(isset($user)) $options['user'] = $user;
+			$this->render('order',$options);
 
 		}else{
 			header("Location: /");

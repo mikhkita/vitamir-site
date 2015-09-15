@@ -9,9 +9,7 @@ return array(
 	'imageFolder'=>'upload/images',
 	'tempFolder'=>'upload/temp',
 	'adminPanel'=>'/admin/',
-	'defaultRedirect'=>'/',
 	'defaultAdminRedirect'=>'/admin/order',
-	'defaultUserRedirect'=>'/land/userprofile',
 	// the copyright information displayed in the footer section
 	'copyrightInfo'=>'Copyright &copy; 2015 by My Company.',
 	'debug' => true

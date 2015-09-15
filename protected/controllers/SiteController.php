@@ -96,13 +96,23 @@ class SiteController extends Controller
                 }else{
                     $user = User::model()->with("role")->findByPk(Yii::app()->user->id);
 
-                    if(isset($_POST['login-promo']) && $_POST['login-promo']!= "use" && $_POST['login-promo'] == $user->usr_promo) {
-                        if(!isset($_SESSION)) session_start();
-                        $user->usr_promo = "use";
-                        if($user->save()) $_SESSION['order_promo'] = 1;
-                    }
+                    $redirect = ( $user->role->code != "client" ) ? $this->createUrl(Yii::app()->params['defaultAdminRedirect']) : "reload";
 
-                    $redirect = ( $user->role->code != "client" ) ? $this->createUrl(Yii::app()->params['defaultUserRedirect']) : "reload";
+                    if(isset($_POST['login-promo']) && $_POST['login-promo']) {
+                        if($user->usr_promo=="use") {
+                            echo json_encode(array("result"=>"success","redirect"=>$this->createUrl('/land/basket',array("#" => "again")) ));
+                            return true;
+                        }
+                        if($_POST['login-promo']== "use" || $_POST['login-promo'] != $user->usr_promo) {
+                            echo json_encode(array("result"=>"success","redirect"=>$this->createUrl('/land/basket',array("#" => "error")) ));
+                            return true;
+                        }
+                        if($_POST['login-promo']!= "use" && $_POST['login-promo'] == $user->usr_promo) {
+                            if(!isset($_SESSION)) session_start();
+                            $user->usr_promo = "use";
+                            if($user->save()) $_SESSION['order_promo'] = 1;
+                        }
+                    }
                     echo json_encode(array("result"=>"success","redirect"=>$redirect));
                     return true;
                 }
