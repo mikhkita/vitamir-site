@@ -83,9 +83,9 @@ function menuFilter() {
         });
     });
 
-    $("#fullmenu input[type=checkbox]:checked").click(function(){
-        $(this).change();
-    });
+    // $("#fullmenu input[type=checkbox]:checked").click(function(){
+    //     $(this).change();
+    // });
     $("body").on("click",".b-add-butt",function(){
         daytime = $(this).closest('.b-time').attr("data-id");
     });
