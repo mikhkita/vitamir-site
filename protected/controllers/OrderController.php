@@ -13,13 +13,37 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('adminIndex','adminCreate','adminUpdate','adminDelete'),
+				'actions'=>array('adminIndex','adminCreate','adminUpdate','adminDelete','adminUserUpdate'),
 				'roles'=>array('manager'),
 			),
 			array('deny',
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionAdminUserUpdate($id)
+	{
+		$model = User::model()->findByPk($id);
+
+		if(isset($_POST['User']))
+		{
+			$model->prevRole = $model->role->code;
+			
+			if( $_POST["User"]["usr_password"] != $model->usr_password )
+				$model->newPass = $_POST["User"]["usr_password"];
+
+			$model->attributes=$_POST['User'];
+			
+			if($model->save()){
+				$this->actionAdminindex(true);
+			}
+				
+		}else{
+			$this->renderPartial('adminUserUpdate',array(
+				'model'=>$model,
+			));
+		}
 	}
 
 	public function actionAdminCreate()

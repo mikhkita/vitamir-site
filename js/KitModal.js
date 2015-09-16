@@ -83,8 +83,8 @@ $(document).ready(function(){
 			$layout.hide();
 		},500);
 		$("html").css("overflow","auto");
-		if(show_menu)
-		$(".b-time-"+daytime).find(".b-add-butt").click();
+		// if(show_menu)
+		// $(".b-time-"+daytime).find(".b-add-butt").click();
 	}
 
 });
