@@ -318,7 +318,8 @@ class LandController extends Controller
 
 	public function actionOrderHistory($partial = false)
 	{
-		if(Yii::app()->user->isGuest ) $this->redirect($this->createUrl('/land',array("#" => 'login')));
+		if( $this->getUserRole() == "root" ) $this->redirect(Yii::app()->params["defaultAdminRedirect"]);
+		if( Yii::app()->user->isGuest ) $this->redirect($this->createUrl('/land',array("#" => 'login')));
 		$user = User::model()->findByPk(Yii::app()->user->id);
 		$criteria = new CDbCriteria();
 		$criteria->order = "id DESC";

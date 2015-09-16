@@ -106,7 +106,7 @@ function menuFilter() {
         if($("#day-select option").length < 30) {
             $(".b-add-day").prop("disabled",false);
             $("#day-select").show();
-            var opt_length = $("#day-select option").length+1;
+            var opt_length = $("#day-select option").length*1+1;
             $("#day-select option").prop("selected",false);
             $("#day-select").append('<option value="'+opt_length+'">'+opt_length+'</option>');
             $("#day-select option").eq(opt_length-1).prop("selected",true);
@@ -169,7 +169,7 @@ function menuFilter() {
     });
 
     $("body").on("click",".more-butt-menu",function() {
-        $.fancybox.close();
+        // $.fancybox.close();
         var o = $(this).closest(".dish-item"),
         day = $('.b-time[data-id="'+daytime+'"]').attr("data-day"),
         coef = o.attr("data-"+$(".b-filter input[name='sex-2']:checked").val()+"-"+$(".b-filter input[name='for']:checked").val());
