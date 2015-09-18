@@ -1504,6 +1504,28 @@ margin-bottom: 6px;
 						.b-3 .b-menu .b-add-day:hover{
 							background-color: #B6C74D;
 						}
+
+					.b-3 .b-menu .b-del-day {
+					    display: block;
+					    text-decoration: underline;
+					    color: #473e42;
+					    font-size: 14px;
+					    margin-right: 20px;
+					    margin-top: 5px;
+					    border: none;
+    					background-color: #fff;
+    					cursor: pointer;
+					}
+						.b-3 .b-menu .b-del-day:hover {
+							text-decoration: none;
+						}
+						.b-3 .b-menu .b-del-day:disabled {
+							cursor: default;
+							color: #BBBDAC !important;
+						}
+						.b-3 .b-menu .b-del-day:hover:disabled {
+							text-decoration: underline;
+						}
 				.b-time{
 					margin-top: 20px;
 					border-bottom: 1px dashed #b9b9b9;

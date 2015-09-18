@@ -130,12 +130,13 @@ class LandController extends Controller
 
 		if($order_id) {
 			if($new_order = Order::model()->findbyPk($order_id)) {
-				$model->price = $new_order->price;
+				$price = 0;
 				$model->type = $new_order->type;
 				$model->day = $new_order->day;
 				$model->user_id = $new_order->user_id;
+				$model->price = $price;
 				if($model->save()){
-					$order_id = $model->id;
+					$order_id = $model->id;	
 					foreach ($new_order->dishes as $item) {
 						$temp = new OrderDish;
 						$temp->order_id = $order_id;
@@ -144,7 +145,17 @@ class LandController extends Controller
 						$temp->count = $item->count;
 						$temp->day = $item->day;
 						$temp->save();
-					}		
+						if($model->type=="m-1")	$dish_type = $item->dish->m_1;
+						if($model->type=="m-2")	$dish_type = $item->dish->m_2;
+						if($model->type=="m-3")	$dish_type = $item->dish->m_3;
+						if($model->type=="w-1")	$dish_type = $item->dish->w_1;
+						if($model->type=="w-2")	$dish_type = $item->dish->w_2;
+						if($model->type=="w-3")	$dish_type = $item->dish->w_2;
+						$dish_price = ($item->dish->action) ? $item->dish->action : $item->dish->price;
+						$price += $dish_price*$item->count*$dish_type;
+					}	
+					$model->price = $price;	
+					$model->save();
 				} else {
 					header("Location: /");
 				}
@@ -165,17 +176,21 @@ class LandController extends Controller
 
 			if($model->save()){
 				$order_id = $model->id;
-				if(isset($_POST['day']))
-				foreach ($_POST['day'] as $key => $item) {
-					foreach ($item as $value) {
-						$arr = explode(";", $value);
-						$temp = new OrderDish;
-						$temp->order_id = $order_id;
-						$temp->dish_id = $arr[0];
-						$temp->daytime_id = $arr[1];
-						$temp->count = $arr[2];
-						$temp->day = $key+1;
-						$temp->save();
+				if(isset($_POST['day'])) {
+					ksort($_POST['day']);
+					$key = 1;
+					foreach ($_POST['day'] as $item) {
+						foreach ($item as $value) {
+							$arr = explode(";", $value);
+							$temp = new OrderDish;
+							$temp->order_id = $order_id;
+							$temp->dish_id = $arr[0];
+							$temp->daytime_id = $arr[1];
+							$temp->count = $arr[2];
+							$temp->day = $key;
+							$temp->save();
+						}
+						$key++;
 					}
 				}
 			} else {
@@ -241,7 +256,10 @@ class LandController extends Controller
 			} elseif(isset($_POST['promocode']) && $_POST['promocode']!= "use" && $_POST['promocode'] == $user->usr_promo) {
 				if(!isset($_SESSION)) session_start();
 				$user->usr_promo = "use";
-				if(!$user->save()) header("Location: /");
+				if(!$user->save())  {
+					echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+					return true;
+				}
 				$_SESSION['order_promo'] = 1;
 				echo json_encode(array("result"=>"1"));
 			}
@@ -376,59 +394,70 @@ class LandController extends Controller
 
 	public function actionUpdateOrder(){
 		if(!isset($_SESSION)) session_start();
-		if( isset($_SESSION['order_id']) ){
-			if( count($_POST) ){
-				$login = $this->getLogin($_POST["phone"]);
-				$model = Order::model()->findByPk($_SESSION["order_id"]);
+		if( isset($_SESSION['order_id']) && count($_POST) ){
+			$text = "success";
+			$login = $this->getLogin($_POST["phone"]);
+			$model = Order::model()->findByPk($_SESSION["order_id"]);
 
-				$user = User::model()->find("usr_login='".$login."'");
+			$user = User::model()->find("usr_login='".$login."'");
 
-				$discount = 0;
-				if($model->day > 9 && $model->day < 30) {
-					$discount = 3;
-				}
-				if($model->day == 30) {
-					$discount = 10;
-				}
-
-				if( !$user ){
-					$user = new User();
-
-					$user->usr_login = $login;
-					$user->newPass = "123123";
-					$user->usr_password = "123123";
-					$user->usr_name = $_POST["name"];
-					$user->usr_email = $_POST["email"];
-					$user->usr_rol_id = 4;
-
-					if(!$user->save()){
-						die("Ошибка создания заказа");
-					}
-				} else {
-					$user->usr_discount = ( ($user->usr_discount+$discount) < 25 ) ? $user->usr_discount+$discount : 25;
-					$discount = $user->usr_discount;
-					$discount += $user->usr_pers_discount;
-					$user->usr_name = $_POST["name"];
-					$user->usr_email = $_POST["email"];
-					$user->save();
-				}
-				if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount += 5;
-				if($discount) {
-					$model->price = round($model->price - ($model->price*$discount/100));
-					$model->price = ($model->price < 0) ? 0 : $model->price;
-				}
-				$model->delivery = $_POST["delivery"];
-				$model->payment = $_POST["payment"];
-				$model->location = $_POST["location"];
-				$model->state = 1;
-				$model->user_id = $user->usr_id;
-				if($model->save()){
-					unset($_SESSION['order_id']);
-					unset($_SESSION['order_promo']);
-					header("Location: ".$this->createUrl('/land/thanks'));
-				}
+			$discount = 0;
+			if($model->day > 9 && $model->day < 30) {
+				$discount = 3;
+			}
+			if($model->day == 30) {
+				$discount = 10;
 			}
 
+			if( !$user ){
+				$user = new User();
+				$text = "new user";
+				$user->usr_login = $login;
+				$chars="qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP"; 
+				$max=6; 
+				$size=StrLen($chars)-1; 
+				$password=null; 
+			    while($max--) $password.=$chars[rand(0,$size)]; 
+				$user->newPass = $password;
+				$user->usr_password = $password;
+				$user->usr_name = $_POST["name"];
+				$user->usr_email = $_POST["email"];
+				$user->usr_rol_id = 4;
+				$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
+				$sms = "Ваш пароль: ".$password." Ваш промокод: ".$user->usr_promo;
+				if(!$user->save()){
+					$text = "error";
+					return true;
+				} else {
+					$message = file_get_contents("http://sms.ru/sms/send?api_id=44eeb913-e2cf-73f4-3943-aaa5e62955ff&to=".$login."&text=".urlencode($sms));
+				}
+			} else {
+				$user->usr_discount = ( ($user->usr_discount+$discount) < 25 ) ? $user->usr_discount+$discount : 25;
+				$discount = $user->usr_discount;
+				$discount += $user->usr_pers_discount;
+				$user->usr_name = $_POST["name"];
+				$user->usr_email = $_POST["email"];
+				$user->save();
+			}
+			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount += 5;
+			if($discount) {
+				$model->price = round($model->price - ($model->price*$discount/100));
+				$model->price = ($model->price < 0) ? 0 : $model->price;
+			}
+			$model->delivery = $_POST["delivery"];
+			$model->payment = $_POST["payment"];
+			$model->location = $_POST["location"];
+			$model->state = 1;
+			$model->user_id = $user->usr_id;
+			if($model->save()){
+				unset($_SESSION['order_id']);
+				unset($_SESSION['order_promo']);
+			} else {
+				$text = "error";
+			}
+			$this->render('thanks',array(
+				'text' => $text
+			));
 		}else{
 			header("Location: /");
 		}
@@ -531,54 +560,66 @@ class LandController extends Controller
 		if( isset($_POST["phone"])){
 			$login = $this->getLogin($_POST["phone"]);
 			$user = User::model()->find("usr_login='".$login."'");	
+
+			$sms ="";
 			if( !$user ){
 				$user = new User();
-				$user->usr_login = $login;
-				
+				$user->usr_login = $login;	
+				$user->usr_rol_id = 4;
+				$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
 				if(isset($_POST["password"])) {
 					$user->newPass = $_POST["password"];
 					$user->usr_password = $_POST["password"];
 					$result = "Поздравляем, Вы успешно зарегистрированны! Также вы получаете промокод на 5%-ю скидку! Он будет отправлен Вам по смс";
 				} else {
-					$user->newPass = "123123";
-					$user->usr_password = "123123";
+					$chars="qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP"; 
+					$max=6; 
+					$size=StrLen($chars)-1; 
+					$password=null; 
+				    while($max--) $password.=$chars[rand(0,$size)]; 
+					$user->newPass = $password;
+					$user->usr_password = $password;
 					$result = "Промокод и пароль от личного кабинета отправлены Вам по смс";
+					$sms = " Ваш пароль: ".$password." ";
 				}
 				
-				
-				$user->usr_rol_id = 4;
 
 				if(!$user->save()){
 					echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
 					return true;
-				}
+				} 
 			} else {
+				if( $user->usr_promo == "use" ) {
+					echo json_encode(array("result"=>"На данном аккаунте уже был активирован промокод!"));
+					return true;
+				}
+				if( $user->usr_promo == NULL ){
+					$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
+					if( !$user->save() ){
+						echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+						return true;
+					}
+				}	
+				
 				$result = "Промокод успешно отправлен Вам по смс";
 				if(isset($_POST["password"])) {
-				echo json_encode(array("result"=>"Такой пользователь уже существует!"));
-				return true;
-				}
-			}
-
-			if( $user->usr_promo == NULL ){
-				$user->usr_promo = rand(0, 9).rand(0, 9).rand(0, 9).rand(0, 9);
-				if( !$user->save() ){
-					echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+					echo json_encode(array("result"=>"Извините, но такой пользователь уже существует!"));
 					return true;
 				}
 			}
-			if( $user->usr_promo == "use" ) $result = "На данном аккаунте уже был активирован промокод!";
-
+			$sms .= "Ваш промокод: ".$user->usr_promo;
+	
+			$message = file_get_contents("http://sms.ru/sms/send?api_id=44eeb913-e2cf-73f4-3943-aaa5e62955ff&to=".$login."&text=".urlencode($sms));
+			$message = explode(PHP_EOL,$message);
+			if($message[0] != 100) {
+				echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
+				return true;
+			}
 			echo json_encode(array("result"=>$result));
+			
 		}else{
 			echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
 		}
-	}
-
-	public function actionThanks(){
-		$this->render('thanks',array(
-
-		));
 	}
 
 	public function loadModel($id)

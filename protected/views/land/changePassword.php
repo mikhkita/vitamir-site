@@ -67,9 +67,9 @@
                 <form action="<?=$this->createUrl('/land/changepassword')?>" id="change-password" method="POST">
                     <div class="inputs clearfix">
                         <div class="left">
-                            <input type="password" name="old_password" maxlength="255" placeholder="Старый пароль" required>  
-                            <input type="password" name="User[usr_password]" maxlength="255" placeholder="Новый пароль" required> 
-                            <input type="password" name="repeat_password" maxlength="255" placeholder="Подтвердите пароль" required> 
+                            <input type="password" name="old_password" maxlength="255" minlength="4" maxlength="16" placeholder="Старый пароль" required>  
+                            <input type="password" name="User[usr_password]" maxlength="255" minlength="4" maxlength="16" placeholder="Новый пароль" required> 
+                            <input type="password" name="repeat_password" maxlength="255" minlength="4" maxlength="16" placeholder="Подтвердите пароль" required> 
                         </div>
                     </div>  
                     <div class="clearfix">

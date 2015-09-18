@@ -68,14 +68,24 @@ class OrderController extends Controller
 	public function actionAdminUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		$days = array();
-		for ($i=1; $i <= $model->day; $i++) { 
-			$dishes = OrderDish::model()->findAll('order_id='.$id.' AND day='.$i);
-			array_push($days,$this->actionSetShow($dishes));
+
+		if(isset($_POST['Order']))
+		{
+			$model->attributes=$_POST['Order'];
+			if($model->save())
+				$this->actionAdminIndex(true);
+		}else{
+			$days = array();
+			for ($i=1; $i <= $model->day; $i++) { 
+				$dishes = OrderDish::model()->findAll('order_id='.$id.' AND day='.$i);
+				array_push($days,$this->actionSetShow($dishes));
+			}
+			$this->renderPartial('adminUpdate',array(
+				'days'=>$days,
+				'model' => $model
+			));
 		}
-		$this->renderPartial('adminUpdate',array(
-			'days'=>$days,
-		));
+		
 	}
 
 	public function actionAdminDelete($id)
@@ -104,7 +114,7 @@ class OrderController extends Controller
                 }
             }
         }
-  
+  		$criteria -> addSearchCondition("state", "0", true,'AND','NOT LIKE');
 		$model = Order::model()->findAll($criteria);
 
 		$option = array(

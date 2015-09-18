@@ -226,7 +226,9 @@
                         <h3 class="left">Меню на день</h3>
                         <button type="button" class="right b-add-day">Добавить еще день</button>
                         <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
+                        <button class="right b-del-day">удалить текущий день</button>
                         <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
+
                     </div>
                     <?php $this->renderPartial('day', array('days'=> $days, 'set_id' => $set_id)); ?>          
                 </div>

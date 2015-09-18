@@ -1,3 +1,13 @@
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'enableAjaxValidation'=>false,
+)); ?>
+<?php echo $form->errorSummary($model); ?>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'state'); ?>
+		<?php echo $form->dropDownList($model, 'state', array("1" =>"Новый","2"=>"Оплачено","3" => "Доставлено")); ?>
+		<?php echo $form->error($model,'state'); ?>
+	</div>
 <ul>
 <? foreach($days as $number => $daytime): ?>
 	<li class="day-cont">
@@ -63,5 +73,6 @@
 <? endforeach; ?>  
 </ul>
 <div class="row buttons clearfix left">
-	<input type="button" onclick="$.fancybox.close(); return false;" value="ОК">
+	<?php echo CHtml::submitButton('Сохранить'); ?>
 </div>
+<?php $this->endWidget(); ?>

@@ -83,9 +83,10 @@ function menuFilter() {
         });
     });
 
-    // $("#fullmenu input[type=checkbox]:checked").click(function(){
-    //     $(this).change();
-    // });
+    $(".b-filter input[name='sex-2'],.b-filter input[name='for']").change(function(){
+        $("#fullmenu input").change();
+    });
+
     $("body").on("click",".b-add-butt",function(){
         daytime = $(this).closest('.b-time').attr("data-id");
     });
@@ -105,7 +106,7 @@ function menuFilter() {
     $(".b-add-day").click(function(){
         if($("#day-select option").length < 30) {
             $(".b-add-day").prop("disabled",false);
-            $("#day-select").show();
+            $("#day-select,.b-del-day").show();
             var opt_length = $("#day-select option").length*1+1;
             $("#day-select option").prop("selected",false);
             $("#day-select").append('<option value="'+opt_length+'">'+opt_length+'</option>');
@@ -118,7 +119,7 @@ function menuFilter() {
                 url: "/land/day",
                 data:  { set_id: set_id},
                 beforeSend: function() {
-                    $(".b-add-day").prop("disabled",true);
+                    $("#menu-order input,#menu-order button,#menu-order select").prop("disabled",true);
                 },
                 success: function(msg){
                     $(".daytime-cont").hide(); 
@@ -126,11 +127,31 @@ function menuFilter() {
                     set_day($(".daytime-cont:last"));
                     fancy_init();
                     calculateMenu();
-                    $(".b-add-day").prop("disabled",false);
+                    $("#menu-order input,#menu-order button,#menu-order select").prop("disabled",false);
                 }
             });
         } else {
             $(".b-add-day").prop("disabled",true);
+        }
+
+    });
+    $(".b-del-day").click(function(){
+        if($("#day-select option").length > 1) {
+            if($("#day-select option").length == 2) $("#day-select,.b-del-day").hide();
+            $(".b-add-day").prop("disabled",false);
+            if($("#day-select").val() == $("#day-select option:last").val()) {
+                $(".daytime-cont:last").remove();
+                $(".daytime-cont:last").show();
+                $("#day-select option:last").remove();
+                $("#day-select option:last").prop("selected",true);
+            } else {
+                $(".daytime-cont").eq($("#day-select").val()*1-1).remove(); 
+                $(".daytime-cont").eq($("#day-select").val()*1-1).show();
+                $("#day-select option:last").remove(); 
+            }
+            $("#day-count").val($("#day-select option").length);
+            fancy_init();
+            calculateMenu();
         }
 
         return false;
@@ -180,7 +201,9 @@ function menuFilter() {
         return false; 
     });  
     $("#fullmenu input").eq(0).change();
-    if($("#day-select option").length == 1) $("#day-select").hide();
+    if($("#day-select option").length == 1) {
+        $("#day-select,.b-del-day").hide();
+    }
 
     function dish_clone(o,daytime) {
         var daynumber,$clone,exit = false;

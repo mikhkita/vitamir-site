@@ -193,6 +193,7 @@ $(document).ready(function(){
 						padding : 0
 					});
 					form.find("input,button").prop("disabled",false);
+					form.find("input[type='text']").val("");
 				}
 			});
   		}

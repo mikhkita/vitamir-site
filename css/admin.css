@@ -1670,7 +1670,7 @@ li.ui-autocomplete-category {
     line-height: 24px;
 }
 .b-popup.order {
-    width: 860px;
+    max-width: 860px;
 }
 .b-popup.order h2{
     width: 100%;
@@ -1680,8 +1680,11 @@ li.ui-autocomplete-category {
     margin-top: 10px;
     font-size: 20px;
 }    
+.b-popup.order ul {
+    display: inline-block;
+}
     .b-popup.order .day-cont {
-        width: 45%;
+        width: 387px;
         display: inline-block;
         vertical-align: top;
         margin: 0 20px;
