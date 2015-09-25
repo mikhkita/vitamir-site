@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks','setPromo'),
+				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks','setPromo','success','result'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -439,19 +439,35 @@ class LandController extends Controller
 				$user->usr_email = $_POST["email"];
 				$user->save();
 			}
-			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount += 5;
-			if($discount) {
-				$model->price = round($model->price - ($model->price*$discount/100));
-				$model->price = ($model->price < 0) ? 0 : $model->price;
-			}
 			$model->delivery = $_POST["delivery"];
 			$model->payment = $_POST["payment"];
 			$model->location = $_POST["location"];
 			$model->state = 1;
 			$model->user_id = $user->usr_id;
+			$model->price = $_POST["price"];
+			
+			if(isset($_SESSION['order_promo']) && $_SESSION['order_promo'] == 1) $discount += 5;
+			if($discount) {
+				$model->price = round($model->price - ($model->price*$discount/100));
+				$model->price = ($model->price < 0) ? 0 : $model->price;
+			}
+			
 			if($model->save()){
-				unset($_SESSION['order_id']);
 				unset($_SESSION['order_promo']);
+				unset($_SESSION['order_id']);
+				if($_POST["payment"] == 2) {
+					$mrh_login = "vitamir";
+					$mrh_pass1 = "qweasdzxc1";
+					$inv_id = $model->id;
+					$inv_desc = Order::model()->types[$model->type];
+					$out_summ = $model->price;
+					$email = $user->usr_email;
+					$culture = "ru";
+					$encoding = "utf-8";
+					$crc  = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
+					header("Location: https://auth.robokassa.ru/Merchant/Index.aspx?MrchLogin=$mrh_login&OutSum=$out_summ&InvId=$inv_id&Desc=$inv_desc&Email=$email&Culture=$culture&Encoding=$encoding&SignatureValue=$crc&IsTest=1");
+					
+				} 
 			} else {
 				$text = "error";
 			}
@@ -461,6 +477,53 @@ class LandController extends Controller
 		}else{
 			header("Location: /");
 		}
+	}
+
+	public function actionResult() {
+		$mrh_pass2 = "qweasdzxc2";  
+		$out_summ = $_REQUEST["OutSum"];
+		$inv_id = $_REQUEST["InvId"];
+		$crc = $_REQUEST["SignatureValue"];
+
+		// HTTP parameters: $out_summ, $inv_id, $crc
+		$crc = strtoupper($crc);   // force uppercase
+
+		// build own CRC
+		$my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
+
+		if (strtoupper($my_crc) == strtoupper($crc))
+		{	
+			$model = Order::model()->findByPk($inv_id);
+			$model->state = 2;
+			$model->save();
+		}
+		
+	}
+
+	public function actionSuccess() {
+		$mrh_pass1 = "qweasdzxc1";  
+		$out_summ = $_REQUEST["OutSum"];
+		$inv_id = $_REQUEST["InvId"];
+		$crc = $_REQUEST["SignatureValue"];
+
+		// HTTP parameters: $out_summ, $inv_id, $crc
+		$crc = strtoupper($crc);   // force uppercase
+
+		// build own CRC
+		$my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass1"));
+
+		$text = "errorPayment";
+		if (strtoupper($my_crc) == strtoupper($crc))
+		{	
+			$model = Order::model()->findByPk($inv_id);
+			$model->state = 2;
+			$model->save();
+			$text = "success";
+		}
+
+		$this->render('thanks',array(
+			'text' => $text
+		));
 	}
 
 	public function actionImport(){

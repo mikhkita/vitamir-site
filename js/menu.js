@@ -6,6 +6,18 @@ $(document).ready(function(){
         menuFilter();
         if($("#day-select option").length == 30) $(".b-add-day").prop("disabled",true);
     }
+    var price = $("#price").text()*1;
+    $("input[name='delivery']").change(function(){
+        if($(this).val()==2 && ($("#price").text()*1) < 2900 ) {
+            $("#price").text(price+300);
+            $("input[name='price']").val(price+300);
+            $("#delivery").text(300);
+        } else {
+            $("#price").text(price);
+            $("input[name='price']").val(price);
+            $("#delivery").text(0);
+        }
+    });
 });
 
 function calculateMenu(){

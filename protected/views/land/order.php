@@ -119,11 +119,7 @@
                         <label for="sale-courier">Курьерская доставка до дома или офиса</label>
                     </div>
                     <h3 class="location">Введите адрес</h3>
-                    <? if(isset($user)): ?>
-                       <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1"  value="<?=$user->usr_address?>" required/> 
-                    <? else: ?>
-                        <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1" required/>
-                    <? endif; ?>
+                    <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1"  value="<? if(isset($user)) echo $user->usr_address; ?>" required/> 
                 </div>
                 <div class="right">
                     <h3 class="payment">Оплата</h3>
@@ -136,6 +132,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="price" value="<?=$price?>">
         </form>
         <div class="clearfix" style="text-align: right;">
             <div class="clearfix b-sum">
@@ -144,8 +141,9 @@
                     <h5>Сумма заказа:</h5>
                 </div>
                 <div class="right">
-                    <h4><span>0</span> руб.</h4>
-                    <h5><span><?=$price?></span> руб.</h5>
+                    <h4><span id="delivery">0</span> руб.</h4>
+                    <h5><span id="price"><?=$price?></span> руб.</h5>
+                    
                 </div>
                 <button type="submit" class="right b-orange-butt b-order-butt" onclick="$('#b-order-form').submit();">оформить заказ</button>
             </div>
