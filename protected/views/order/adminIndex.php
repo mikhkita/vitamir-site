@@ -10,9 +10,10 @@
 			<th><? echo $labels['payment']; ?></th>
 			<th><? echo $labels['location']; ?></th>
 			<th><? echo $labels['price']; ?></th>
-			<th style="width: 150px;">Действия</th>
+			<th><? echo $labels['state']; ?></th>
+			<th style="width: 90px;">Действия</th>
 		</tr>
-		<tr class="b-filter">
+		<!-- <tr class="b-filter">
 			<td></td>
 			<td></td>
 			<td></td>
@@ -22,7 +23,7 @@
 			<td></td>
 			<td></td>
 			<td><a href="#" class="b-clear-filter">Сбросить фильтр</a></td>
-		</tr>
+		</tr> -->
 		<? if( count($data) ): ?>
 			<? foreach ($data as $i => $item): ?>
 				<tr>
@@ -33,7 +34,8 @@
 					<td class="align-left"><?=Order::model()->delivery[$item->delivery]?></td>
 					<td class="align-left"><?=Order::model()->payment[$item->payment]?></td>
 					<td class="align-left"><?=$item->location?></td>
-					<td class="align-left"><?=$item->price?> руб.</td>
+					<td class="align-left"><?=$item->price?>&nbsp;руб.</td>
+					<td class="align-left"><?=Order::model()->states[$item->state]?></td>
 					<td class="b-tool-cont">
 						<a href="<?php echo Yii::app()->createUrl('/'.$this->adminMenu["cur"]->code.'/adminupdate',array('id'=>$item->id))?>" class="ajax-form ajax-update b-tool b-tool-update" title="Редактировать <?=$this->adminMenu["cur"]->vin_name?>"></a>
 						<a href="<?php echo Yii::app()->createUrl('/'.$this->adminMenu["cur"]->code.'/admindelete',array('id'=>$item->id))?>" class="ajax-form ajax-delete b-tool b-tool-delete" title="Удалить <?=$this->adminMenu["cur"]->vin_name?>"></a>
