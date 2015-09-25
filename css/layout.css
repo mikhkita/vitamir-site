@@ -176,11 +176,11 @@ body {
 	text-align: center;
 	font-family: 'latoregular';
 	overflow-x: hidden;
-	color: #472275;
+	color: #333;
 }
 a{
 	text-decoration: none;
-	color: #472275;
+	color: #333;
 }
 b, a{
 	font-weight: 500;
@@ -2395,7 +2395,7 @@ margin-bottom: 6px;
 					display: inline-block;
 				}
 		.b-10 .copyright{
-			margin-top: 47px;
+			margin-top: 31px;
 			margin-right: 183px;
 		}
 			.b-10 .copyright p{
@@ -3263,6 +3263,16 @@ margin-bottom: 6px;
 .hidden {
 	display: none;
 }
+.b-dev{
+
+}
+	.b-dev a{
+		text-decoration: underline;
+		color: #333;
+	}
+	.b-dev a:hover{
+		text-decoration: none;
+	}
 form div.error div{
 	border: 1px solid rgba(255, 0, 0, 1) !important;
 	border-right: 0px !important;

@@ -7,7 +7,7 @@
             </a>
             <ul class="left clearfix">
                 <li class="left">
-                    <a href="#">
+                    <a href="#" class="b-go" data-block=".b-3 .b-back">
                         <div class="pict"></div>
                         <div class="text">
                             <p>выбрать еду</p>
@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="left">
-                    <a href="#">
+                    <a href="#" class="b-go" data-block=".b-2">
                         <div class="pict"></div>
                         <div class="text">
                             <p>100% здоровая пища</p>
@@ -23,15 +23,15 @@
                     </a>
                 </li>
                 <li class="left">
-                    <a href="#">
+                    <a href="#" class="b-go" data-block=".b-5">
                         <div class="pict"></div>
                         <div class="text">
-                            <p>составить режим питания</p>
+                            <p>Узнать режим питания</p>
                         </div>
                     </a>
                 </li>
                 <li class="left">
-                    <a href="#">
+                    <a href="#" class="b-go" data-block=".b-6">
                         <div class="pict"></div>
                         <div class="text">
                             <p>доставка</p>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="left">
-                    <a href="#">
+                    <a href="#" class="b-go" data-block="#map_canvas">
                         <div class="pict"></div>
                         <div class="text">
                             <p>адреса клубов</p>

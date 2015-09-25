@@ -98,6 +98,7 @@
         </div>
         <div class="right copyright">
             <p>Copyright © 1993-2015. Компания Здоровье. Все права защищены.</p>
+            <p class="b-dev">Разработано в <a href="http://line-up.ru/" target="_blank">LineUP</a></p>
         </div>
     </div>
 </div>
