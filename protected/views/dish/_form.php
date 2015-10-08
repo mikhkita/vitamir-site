@@ -61,6 +61,13 @@
 				<?php echo $form->textField($model,'price',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
 				<?php echo $form->error($model,'price'); ?>
 			</div>
+		</div>
+		<div class="clearfix">
+			<div class="row mt row-half">
+				<?php echo $form->labelEx($model,'weight'); ?>
+				<?php echo $form->textField($model,'weight',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
+				<?php echo $form->error($model,'weight'); ?>
+			</div>
 			<div class="row mt row-half">
 				<?php echo $form->labelEx($model,'action'); ?>
 				<?php echo $form->textField($model,'action',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
@@ -86,48 +93,6 @@
 				<?php echo $form->labelEx($model,'carbohydrate'); ?>
 				<?php echo $form->textField($model,'carbohydrate',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
 				<?php echo $form->error($model,'carbohydrate'); ?>
-			</div>
-		</div>
-	</div>
-
-	<div class="b-section">
-		<h3>Мужчине</h3>
-		<div class="clearfix">
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'m_1'); ?>
-				<?php echo $form->textField($model,'m_1',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'m_1'); ?>
-			</div>
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'m_2'); ?>
-				<?php echo $form->textField($model,'m_2',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'m_2'); ?>
-			</div>
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'m_3'); ?>
-				<?php echo $form->textField($model,'m_3',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'m_3'); ?>
-			</div>
-		</div>
-	</div>
-
-	<div class="b-section">
-		<h3>Женщине</h3>
-		<div class="clearfix">
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'w_1'); ?>
-				<?php echo $form->textField($model,'w_1',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'w_1'); ?>
-			</div>
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'w_2'); ?>
-				<?php echo $form->textField($model,'w_2',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'w_2'); ?>
-			</div>
-			<div class="row row-third">
-				<?php echo $form->labelEx($model,'w_3'); ?>
-				<?php echo $form->textField($model,'w_3',array('maxlength'=>255,'required'=>true,'class'=>'numeric')); ?>
-				<?php echo $form->error($model,'w_3'); ?>
 			</div>
 		</div>
 	</div>

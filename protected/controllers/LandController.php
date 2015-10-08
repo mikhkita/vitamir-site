@@ -67,9 +67,6 @@ class LandController extends Controller
 			$temp['m_1'] = $dish->dish->m_1;
 			$temp['m_2'] = $dish->dish->m_2;
 			$temp['m_3'] = $dish->dish->m_3;
-			$temp['w_1'] = $dish->dish->w_1;
-			$temp['w_2'] = $dish->dish->w_2;
-			$temp['w_3'] = $dish->dish->w_3;
 			$temp['weight'] = $dish->dish->weight;
 			$temp['fat'] = $dish->dish->fat;
 			$temp['pro'] = $dish->dish->protein;
@@ -148,9 +145,6 @@ class LandController extends Controller
 						if($model->type=="m-1")	$dish_type = $item->dish->m_1;
 						if($model->type=="m-2")	$dish_type = $item->dish->m_2;
 						if($model->type=="m-3")	$dish_type = $item->dish->m_3;
-						if($model->type=="w-1")	$dish_type = $item->dish->w_1;
-						if($model->type=="w-2")	$dish_type = $item->dish->w_2;
-						if($model->type=="w-3")	$dish_type = $item->dish->w_2;
 						$dish_price = ($item->dish->action) ? $item->dish->action : $item->dish->price;
 						$price += $dish_price*$item->count*$dish_type;
 					}	
@@ -455,6 +449,37 @@ class LandController extends Controller
 			if($model->save()){
 				unset($_SESSION['order_promo']);
 				unset($_SESSION['order_id']);
+
+				$email_admin = "p_e_a_c_e@mail.ru";
+				// $email_admin = 'vitamirzakaz@gmail.com';
+        		$from = "“Витамир”";
+        		$email_from = "robot@vitamir.club";
+
+        		$subject = "Заказ с vitamir.club";
+
+	        	$deafult = array("name"=>"Имя","phone"=>"Телефон", "email"=>"E-mail",'address' => "Адрес","date" => "Дата доставки","body"=>"Сообщение");
+
+	        	$fields = array();
+
+	        	if( count($_POST) ){
+
+	            foreach ($deafult  as $key => $value){
+	                if( isset($_POST[$key]) ){
+	                    $fields[$value] = $_POST[$key];
+	                }
+	            }
+
+	            $title = "Поступила заявка с сайта ".$from.":\n";
+
+	            $message = "<div><h3 style=\"color: #333;\">".$title."</h3>";
+
+	            foreach ($fields  as $key => $value){
+	                $message .= "<div><p><b>".$key.": </b>".$value."</p></div>";
+	            }
+	                
+	            $message .= "</div>";
+            	$this->send_mime_mail("Сайт ".$from,$email_from,$name,$email_admin,'UTF-8','UTF-8',$subject,$message,true);
+
 				if($_POST["payment"] == 2) {
 					$mrh_login = "vitamir";
 					$mrh_pass1 = "qweasdzxc1";
@@ -599,12 +624,9 @@ class LandController extends Controller
 			$model->name = $item[0];
 			$model->image = $item[7];
 			$model->description = $item[0];
-			$model->m_1 = "1";
-			$model->m_2 = "1.8";
+			$model->m_1 = "0.5";
+			$model->m_2 = "1";
 			$model->m_3 = "1.3";
-			$model->w_1 = "0.5";
-			$model->w_2 = "1.2";
-			$model->w_3 = "0.8";
 			$model->weight = $item[1];
 			$model->fat = $item[3];
 			$model->protein = $item[2];
@@ -684,6 +706,23 @@ class LandController extends Controller
 			echo json_encode(array("result"=>"Произошла ошибка, попробуйте еще раз!"));
 		}
 	}
+
+	public function send_mime_mail($name_from,$email_from,$name_to,$email_to,$data_charset,$send_charset,$subject,$body,$html = FALSE,$reply_to = FALSE) {
+        $to = $email_to;
+        $subject = $this->mime_header_encode($subject, $data_charset, $send_charset);
+        $from =  $this->mime_header_encode($name_from, $data_charset, $send_charset).' <' . $email_from . '>';
+        if($data_charset != $send_charset) {
+            $body = iconv($data_charset, $send_charset, $body);
+        }
+        $headers = "From: $from\r\n";
+        $type = ($html) ? 'html' : 'plain';
+        $headers .= "Content-type: text/$type; charset=$send_charset\r\n";
+        $headers .= "Mime-Version: 1.0\r\n";
+        if ($reply_to) {
+            $headers .= "Reply-To: $reply_to";
+        }
+        return mail($to, $subject, $body, $headers);
+    }
 
 	public function loadModel($id)
 	{

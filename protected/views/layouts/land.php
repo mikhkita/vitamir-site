@@ -91,7 +91,7 @@
         <div class="right question">
             <h3>Есть вопрос? Звоните - поможем!</h3>
             <div class="clearfix">
-                <p class="right">+7 495 12 345 67</p>
+                <p class="right">7 (929) 509-99-85</p>
                 <img class="right" src="<?php echo Yii::app()->request->baseUrl;?>/i/tel-2.png">
             </div>
             <a class="fancy" href="#" data-block="#b-popup-callback">Заказать звонок</a>
@@ -111,10 +111,10 @@
             <div class="right">
                 <p id="more-desc">Оладьи из кабачков на пару получаются очень нежными и сочными. Для их приготовления лучше всего брать молодые кабачки. Цуккини здесь не подойдут, так как их мякоть более водянистая, и придется добавлять больше муки, чтобы оладьи не расползались.</p>
                 <ul id="more-jbu" class="clearfix">
-                    <li class="clearfix"><h5>Белки</h5><span>11</span></li>
-                    <li class="clearfix"><h5>Жиры</h5><span>11</span></li>
-                    <li class="clearfix"><h5>Углеводы</h5><span>11</span></li>
-                    <li class="clearfix"><h5>Калории</h5><span>11</span></li>
+                    <li class="clearfix"><h5 style="color:#6fc617;">Белки</h5><span>11</span></li>
+                    <li class="clearfix"><h5 style="color:#bf2628;">Жиры</h5><span style="color:#bf2628;">11</span></li>
+                    <li class="clearfix"><h5 style="color:#d7683b;">Углеводы</h5><span style="color:#d7683b;">11</span></li>
+                    <li class="clearfix"><h5 style="color:#7a8382;">Калории</h5><span style="color:#7a8382;">11</span></li>
                 </ul>
                 <h4>Цена: <span class="green"><span id="more-price">190</span> руб.</span></h4>
                 <div class="clearfix">
@@ -142,7 +142,7 @@
                 </div>
             </form>
             <p>Или позвоните нам по телефону<br>
-            <b>+7 (495) 542-60-01</b></p>
+            <b>7 (929) 509-99-85</b></p>
         </div>
     </div>
     <div id="b-popup-callback">
@@ -164,7 +164,7 @@
                 </div>
             </form>
             <p>Или позвоните нам по телефону<br>
-            <b>+7 (495) 542-60-01</b></p>
+            <b>7 (929) 509-99-85</b></p>
         </div>
     </div>
     <div id="b-popup-programm">
@@ -313,7 +313,7 @@
             <input type="submit" class="b-orange-butt rounded sys" onclick="$.fancybox.close(); return false;" value="Закрыть">
         </div>
     </div>
-    <li class="dish-item clearfix" data-dish-id="" data-img="" data-name="" data-m-1="" data-m-2="" data-m-3="" data-w-1="" data-w-2="" data-w-3="" data-weight="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
+    <li class="dish-item clearfix" data-dish-id="" data-img="" data-name="" data-m-1="" data-m-2="" data-m-3="" data-weight="" data-fat="" data-pro="" data-car="" data-cal="" data-pri="" id="item-copy">
         <div class="left b-image" style=""></div>
         <div class="left">
             <h4></h4>

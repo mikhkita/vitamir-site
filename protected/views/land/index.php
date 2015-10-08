@@ -50,20 +50,18 @@
             <div class="back-call right">
                 <h3>Есть вопрос?</h3>
                 <h4>Звоните - поможем!</h4>
-                <p><span>+7(499)</span>399-35-09</p>
+                <p><span>+7(499)</span>509-99-85</p>
             </div>
         </div>
     </div>
     <div class="b-block">
-        <h2>Индивидуальные наборы<br>здорового питания на весь день от 390 руб.<br>с доставкой по ЮЗАО</h2>
+        <h2>Индивидуальные наборы<br>здорового питания на весь день.<br>с доставкой по ЮЗАО</h2>
         <div class="title">
             <h3>Новый сервис для тех, кто занимается фигурой</h3>
             <img src="<?php echo Yii::app()->request->baseUrl;?>/i/arrow-1.png">
         </div>
         <div class="content clearfix">
-            <div class="circle left">
-                
-            </div>
+            <!-- <div class="circle left"></div> -->
             <div class="green-block right">
                 <h2>Получите персональную программу питания</h2>
                 <h3>Наши специалисты составят ее под <b>Ваши цели и особенности</b></h3>
@@ -93,7 +91,7 @@
                 <div class="left-block grey-1">
                     <div class="inside">
                         <div class="clearfix">
-                            <h3 class="right">Доступные цены от 90 руб. за обед</h3>
+                            <h3 style="margin-top: 5px;" class="right">Доступные цены</h3>
                             <div class="screen right"></div>
                         </div>
                         <p>Мы закупаем продукты по оптовым ценам. Поэтому даже с доставкой наш обед стоит примерно столько же, как если бы Вы готовили дома.</p>
@@ -140,10 +138,10 @@
         <div class="b-block b-calc-cont clearfix">
             <div class="b-filter left">
                 <div class="radio">
-                    <input id="male-2" type="radio" name="sex-2" checked value="m">
-                    <label for="male-2">Мужской</label>
+                    <input style="display:none;" id="male-2" type="radio" name="sex-2" checked value="m">
+                    <!-- <label for="male-2">Мужской</label>
                     <input id="female-2" type="radio" name="sex-2" value="w">
-                    <label for="female-2">Женский</label>
+                    <label for="female-2">Женский</label> -->
                 </div>
                 <div class="b-toggle">
                     <input id="id-1" type="radio" name="for" checked value="1">
@@ -254,8 +252,8 @@
                 <div class="b-advantages clearfix">
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/1.png" alt="">
-                        <h3>Вакуумная<br>упаковка</h3>
-                        <p>Еда хранится 3-5 дней благодаря отсутствию воздуха</p>
+                        <h3>Экологически чистая упаковка</h3>
+                        <p>Не выделяющие вредные вещества упаковка позволяющая хранить продукты до 3х дней</p>
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/2.png" alt="">
@@ -265,7 +263,7 @@
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/3.png" alt="">
                         <h3>Вкусно. Разнообразная еда каждый день</h3>
-                        <p>95 вариантов блюд!</p>
+                        <p>Более 65 вариантов блюд!</p>
                     </li>
                 </div>
             </div>
@@ -451,7 +449,7 @@
                 и попробуйте 
                 наше меню
                 </h2>
-                <h3>г. Москва, улица тестовая, д 1 к 4</h3>
+                <h3>г. Москва, проспект Вернадского<br>дом 29, павильон 68</h3>
             </div>
             <div class="cloud left">
                 <p>Скоро мы открываемся на Парке культуры и Проспекте Мира</p>
@@ -467,11 +465,11 @@
         <ul>
             <li class="clearfix">
                 <div class="left"></div>
-                <p class="left">Ул. Здоровой Еды 50 дом 13, 21555</p>
+                <p class="left">Город Москва, проспект Вернадского дом 29, павильон 68</p>
             </li>
             <li class="clearfix">
                 <div class="left"></div>
-                <p class="left">+7 495 12 345 67</p>
+                <p class="left">7 (929) 509-99-85</p>
             </li>
         </ul>
         <a href="mailto:zdorovaya.eda@eda.ru">zdorovaya.eda@eda.ru</a>

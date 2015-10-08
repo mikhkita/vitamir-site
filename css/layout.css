@@ -528,6 +528,7 @@ textarea{
 							background-position: 50% 50%;
 							background-size: cover;
 							background-repeat: no-repeat;
+							cursor: pointer;
 						}
 						.b-menu-items .b-page ul li .b-image-cont .b-sale{
 							background-position: 0% 50%;
@@ -1311,9 +1312,9 @@ margin-bottom: 6px;
 				padding: 25px 23px;
 			}
 				.b-3 .radio{
-					margin-left: 5px;
+					/*margin-left: 5px;
 					margin-top: 1px;
-					margin-bottom: 22px;
+					margin-bottom: 22px;*/
 				}
 				.b-3 .radio label{
 					display: inline-block;
@@ -1564,6 +1565,7 @@ margin-bottom: 6px;
 									height: 56px;
 									margin-right: 20px;
 									max-width: 82px;
+									cursor: pointer;
 								}
 								.b-time ul.b-eat li h4{
 									line-height: 18px;
@@ -2230,6 +2232,7 @@ margin-bottom: 6px;
 				font-size: 17px;
 				text-align: left;
 				margin-top: 17px;
+				text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 			}
 		.b-7 .cloud{
 			background-image: url("../i/comment.png");
@@ -2306,7 +2309,7 @@ margin-bottom: 6px;
 					font-family: "latosemibold";
 					font-size: 13px;
 					text-align: left;
-					width: 136px;
+					width: 145px;
 					line-height: 16px;
 				}
 					.b-8 .info ul li:last-child p{

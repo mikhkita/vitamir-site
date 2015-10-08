@@ -41,14 +41,14 @@ class Dish extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, image, description, m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, category_id, daytime_id', 'required'),
-			array('m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, action', 'numerical'),
+			array('name, image, description, m_1, m_2, m_3, weight, fat, protein, carbohydrate, calories, price, category_id, daytime_id', 'required'),
+			array('m_1, m_2, m_3, fat, protein, carbohydrate, calories, price, action', 'numerical'),
 			array('name, image', 'length', 'max'=>255),
 			array('category_id', 'length', 'max'=>11),
 			array('daytime_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, image, description, m_1, m_2, m_3, w_1, w_2, w_3, fat, protein, carbohydrate, calories, price, action, category_id, daytime_id', 'safe', 'on'=>'search'),
+			array('id, name, image, description, m_1, m_2, m_3, weight, fat, protein, carbohydrate, calories, price, action, category_id, daytime_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,9 +80,6 @@ class Dish extends CActiveRecord
 			'm_1' => 'Для похудения',
 			'm_2' => 'Для набора массы',
 			'm_3' => 'Для поддержания формы',
-			'w_1' => 'Для похудения',
-			'w_2' => 'Для набора массы',
-			'w_3' => 'Для поддержания формы',
 			'fat' => 'Жиры в порции',
 			'protein' => 'Белки в порции',
 			'carbohydrate' => 'Углеводы в порции',
@@ -91,6 +88,7 @@ class Dish extends CActiveRecord
 			'action' => 'Цена по акции',
 			'category_id' => 'Категория',
 			'daytime_id' => 'Время суток',
+			'weight' => "Вес"
 		);
 	}
 
@@ -119,9 +117,7 @@ class Dish extends CActiveRecord
 		$criteria->compare('m_1',$this->m_1);
 		$criteria->compare('m_2',$this->m_2);
 		$criteria->compare('m_3',$this->m_3);
-		$criteria->compare('w_1',$this->w_1);
-		$criteria->compare('w_2',$this->w_2);
-		$criteria->compare('w_3',$this->w_3);
+		$criteria->compare('weight',$this->weight);
 		$criteria->compare('fat',$this->fat);
 		$criteria->compare('protein',$this->protein);
 		$criteria->compare('carbohydrate',$this->carbohydrate);

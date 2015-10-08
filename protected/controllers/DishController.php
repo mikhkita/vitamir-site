@@ -48,7 +48,7 @@ class DishController extends Controller
 		{
 			$this->renameImages($model);
 			if($model->daytime_id != $_POST['Dish']['daytime_id']) DishSet::model()->deleteAll("dish_id=".$model->id);
-			$model->attributes=$_POST['Dish'];
+			$model->attributes = $_POST['Dish'];
 			if($model->save())
 				$this->actionAdminIndex(true);
 		}else{
