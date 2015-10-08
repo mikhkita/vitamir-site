@@ -450,35 +450,25 @@ class LandController extends Controller
 				unset($_SESSION['order_promo']);
 				unset($_SESSION['order_id']);
 
-				$email_admin = "p_e_a_c_e@mail.ru";
+				$email_admin = "vladis1ove81@gmail.com";
 				// $email_admin = 'vitamirzakaz@gmail.com';
+
         		$from = "“Витамир”";
-        		$email_from = "robot@vitamir.club";
+        		$email_from = "robot@vitamir.ru";
 
         		$subject = "Заказ с vitamir.club";
-
-	        	$deafult = array("name"=>"Имя","phone"=>"Телефон", "email"=>"E-mail",'address' => "Адрес","date" => "Дата доставки","body"=>"Сообщение");
-
-	        	$fields = array();
-
-	        	if( count($_POST) ){
-
-	            foreach ($deafult  as $key => $value){
-	                if( isset($_POST[$key]) ){
-	                    $fields[$value] = $_POST[$key];
-	                }
-	            }
 
 	            $title = "Поступила заявка с сайта ".$from.":\n";
 
 	            $message = "<div><h3 style=\"color: #333;\">".$title."</h3>";
-
-	            foreach ($fields  as $key => $value){
-	                $message .= "<div><p><b>".$key.": </b>".$value."</p></div>";
-	            }
-	                
+	            if($user->usr_name) $message .= "<div><p><b>Имя: </b>".$user->usr_name."</p></div>";
+	            $message .= "<div><p><b>Телефон: </b>".$user->usr_login."</p></div>";
+	            if($user->usr_email) $message .= "<div><p><b>E-mail: </b>".$user->email."</p></div>";
+	            $message .= "<div><p><b>Набор: </b>".Order::model()->types[$model->type]."</p></div>";
+	            $message .= "<div><p><b>Кол-во дней: </b>".$model->day."</p></div>";   
+	            $message .= "<div><p><b>Цена: </b>".$model->price." р.</p></div>";         
 	            $message .= "</div>";
-            	$this->send_mime_mail("Сайт ".$from,$email_from,$name,$email_admin,'UTF-8','UTF-8',$subject,$message,true);
+            	$this->send_mime_mail("Сайт ".$from,$email_from,$email_admin,'UTF-8','UTF-8',$subject,$message,true);
 
 				if($_POST["payment"] == 2) {
 					$mrh_login = "vitamir";
@@ -707,7 +697,7 @@ class LandController extends Controller
 		}
 	}
 
-	public function send_mime_mail($name_from,$email_from,$name_to,$email_to,$data_charset,$send_charset,$subject,$body,$html = FALSE,$reply_to = FALSE) {
+	public function send_mime_mail($name_from,$email_from,$email_to,$data_charset,$send_charset,$subject,$body,$html = FALSE,$reply_to = FALSE) {
         $to = $email_to;
         $subject = $this->mime_header_encode($subject, $data_charset, $send_charset);
         $from =  $this->mime_header_encode($name_from, $data_charset, $send_charset).' <' . $email_from . '>';
@@ -722,6 +712,13 @@ class LandController extends Controller
             $headers .= "Reply-To: $reply_to";
         }
         return mail($to, $subject, $body, $headers);
+    }
+
+    public function mime_header_encode($str, $data_charset, $send_charset) {
+        if($data_charset != $send_charset) {
+            $str = iconv($data_charset, $send_charset, $str);
+        }
+        return '=?' . $send_charset . '?B?' . base64_encode($str) . '?=';
     }
 
 	public function loadModel($id)
