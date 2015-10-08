@@ -450,11 +450,11 @@ class LandController extends Controller
 				unset($_SESSION['order_promo']);
 				unset($_SESSION['order_id']);
 
-				$email_admin = "vladis1ove81@gmail.com";
-				// $email_admin = 'vitamirzakaz@gmail.com';
+				// $email_admin = "p_e_a_c_e@mail.ru";
+				$email_admin = 'vitamirzakaz@gmail.com';
 
         		$from = "“Витамир”";
-        		$email_from = "robot@vitamir.ru";
+        		$email_from = "robot@vitamir.club";
 
         		$subject = "Заказ с vitamir.club";
 
@@ -463,7 +463,7 @@ class LandController extends Controller
 	            $message = "<div><h3 style=\"color: #333;\">".$title."</h3>";
 	            if($user->usr_name) $message .= "<div><p><b>Имя: </b>".$user->usr_name."</p></div>";
 	            $message .= "<div><p><b>Телефон: </b>".$user->usr_login."</p></div>";
-	            if($user->usr_email) $message .= "<div><p><b>E-mail: </b>".$user->email."</p></div>";
+	            if($user->usr_email) $message .= "<div><p><b>E-mail: </b>".$user->usr_email."</p></div>";
 	            $message .= "<div><p><b>Набор: </b>".Order::model()->types[$model->type]."</p></div>";
 	            $message .= "<div><p><b>Кол-во дней: </b>".$model->day."</p></div>";   
 	            $message .= "<div><p><b>Цена: </b>".$model->price." р.</p></div>";         
