@@ -15,7 +15,7 @@ class LandController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks','setPromo','success','result'),
+				'actions'=>array('index','import','basket','getpromo','fullMenu','setShow','day','createOrder','order','updateOrder','thanks','setPromo','success','result','changeSet','header'),
 				'users'=>array('*'),
 			),
 			array('allow',
@@ -23,6 +23,15 @@ class LandController extends Controller
 				'roles'=>array('client'),
 			),
 		);
+	}
+
+	public function actionChangeSet() {
+		$file = 'set_number.txt';
+		$set_id = file_get_contents($file);
+		$count = Set::model()->count();
+		$set_id = ($set_id < ($count-1) && $set_id !== false) ? $set_id++ : 0;
+		file_put_contents($file, $set_id);
+
 	}
 
 	public function actionIndex($partial = false)
@@ -472,7 +481,7 @@ class LandController extends Controller
 
 				if($_POST["payment"] == 2) {
 					$mrh_login = "vitamir";
-					$mrh_pass1 = "qweasdzxc1";
+					$mrh_pass1 = "8R9hWBfn";
 					$inv_id = $model->id;
 					$inv_desc = Order::model()->types[$model->type];
 					$out_summ = $model->price;
@@ -480,7 +489,7 @@ class LandController extends Controller
 					$culture = "ru";
 					$encoding = "utf-8";
 					$crc  = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
-					header("Location: https://auth.robokassa.ru/Merchant/Index.aspx?MrchLogin=$mrh_login&OutSum=$out_summ&InvId=$inv_id&Desc=$inv_desc&Email=$email&Culture=$culture&Encoding=$encoding&SignatureValue=$crc&IsTest=1");
+					header("Location: https://auth.robokassa.ru/Merchant/Index.aspx?MrchLogin=$mrh_login&OutSum=$out_summ&InvId=$inv_id&Desc=$inv_desc&Email=$email&Culture=$culture&Encoding=$encoding&SignatureValue=$crc");
 					
 				} 
 			} else {
@@ -495,7 +504,7 @@ class LandController extends Controller
 	}
 
 	public function actionResult() {
-		$mrh_pass2 = "qweasdzxc2";  
+		$mrh_pass2 = "AI8dgQi7";  
 		$out_summ = $_REQUEST["OutSum"];
 		$inv_id = $_REQUEST["InvId"];
 		$crc = $_REQUEST["SignatureValue"];
@@ -516,7 +525,7 @@ class LandController extends Controller
 	}
 
 	public function actionSuccess() {
-		$mrh_pass1 = "qweasdzxc1";  
+		$mrh_pass1 = "8R9hWBfn";  
 		$out_summ = $_REQUEST["OutSum"];
 		$inv_id = $_REQUEST["InvId"];
 		$crc = $_REQUEST["SignatureValue"];
@@ -600,29 +609,89 @@ class LandController extends Controller
 			array("Паровые котлеты из индейки с макаронами","176","37.676","6.749","17.912","314.28","2","upload/images/p19upo2bir6u67kk18pr151gfvm74.jpg"),
 			array("Креветки с чесноком","110","22.553","1.099","2.599","109.75","1","upload/images/default.jpg"),
 			array("Медальоны из телятины","157","46.204","1.446","0.643","200.71","2","upload/images/p19upo361p19k8cs7eujt6n3mm7c.jpg"),
-			array("Гречка с тунцом и капустным салатом	","274","20.917","1.182","18.87","168","1","upload/images/p19upo3t9rv2q9to10q515o0j4b7h.jpg"),
+			array("Гречка с тунцом и капустным салатом","274","20.917","1.182","18.87","168","1","upload/images/p19upo3t9rv2q9to10q515o0j4b7h.jpg"),
 			array("Индейка с овощами","277","41.864","6.735","27.29","364.55","2","upload/images/p19upo4h6h1kebctt8ne9401e4r7m.jpg"),
-			array("Спагетти с кальмарами","268","39.137","3.225","25.061","280.3","1","upload/images/p19upo50vduo31gp5o1bih9t417r.jpg"),
-			array("Зеленая фасоль с курицей и рисом","433","60.889","9.769","39.968","486.2","2","upload/images/p19upo5vkc1qu61uvugjeao6cmr80.jpg"),
+			array("Спагетти с кальмарами","268","39.137","3.225","25.061","280.3","1","upload/images/p19upo50vduo31gp5o1bih9t417r.jpg")
 		);
 
 		Dish::model()->deleteAll();
-
-		foreach ($arr as $item) {
+		$price = array(
+		160,
+		160,
+		160,
+		90,
+		120,
+		120,
+		120,
+		120,
+		120,
+		230,
+		170,
+		170,
+		80,
+		140,
+		170,
+		160,
+		230,
+		230,
+		50,
+		230,
+		150,
+		180,
+		300,
+		250,
+		230,
+		300,
+		140,
+		140,
+		140,
+		50,
+		50,
+		50,
+		80,
+		80,
+		50,
+		200,
+		230,
+		200,
+		200,
+		270,
+		330,
+		270,
+		270,
+		150,
+		200,
+		230,
+		170,
+		130,
+		350,
+		350,
+		350,
+		650,
+		650,
+		200,
+		200,
+		230,
+		650,
+		250,
+		350,
+		350
+		);
+		foreach ($arr as $i => $item) {
 			$model = new Dish();
 
 			$model->name = $item[0];
 			$model->image = $item[7];
 			$model->description = $item[0];
 			$model->m_1 = "0.5";
-			$model->m_2 = "1";
-			$model->m_3 = "1.3";
+			$model->m_2 = "1.5";
+			$model->m_3 = "1";
 			$model->weight = $item[1];
 			$model->fat = $item[3];
 			$model->protein = $item[2];
 			$model->carbohydrate = $item[4];
 			$model->calories = $item[5];
-			$model->price = "0";
+			$model->price = $price[$i];
 			$model->action = "0";
 			$model->category_id = $item[6];
 			$model->daytime_id = "123";

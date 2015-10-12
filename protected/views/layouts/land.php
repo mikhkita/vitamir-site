@@ -130,11 +130,11 @@
         <div class="b-popup">
             <h2>Задайте вопрос нашему менеджеру</h2>
             <h3>В форме ниже, и мы ответим на него в течение 40 минут</h3>
-            <form action="kitsend.php" method="POST" id="b-form-3" data-block="#b-popup-2">
+            <form action="/kitsend.php" method="POST" id="b-form-3" data-block="#b-popup-2">
                 <div class="b-popup-form">
                     <input type="hidden" name="subject" value="Вопрос менеджеру"/>
                     <label for="email-1">Введите Ваш e-mail:</label>
-                    <input type="text" id="email-1" class="write" name="email" placeholder="Ivanov@mail.ru"required/>
+                    <input type="text" id="email-1" class="write" name="email" placeholder="Ivanov@mail.ru" required/>
                     <label for="question">Чем мы можем Вам помочь?</label>
                     <p><textarea id="question" name="1" required></textarea></p>
                     <input type="hidden" name="1-name" value="Вопрос" required/>
@@ -149,12 +149,12 @@
         <div class="b-popup" >
             <h2>Заказать обратный звонок</h2>
             <h3>Оставьте Ваши данные, и наш менеджер свяжется с Вами в течение 10 минут</h3>
-            <form action="kitsend.php" method="POST" id="b-form-6" data-block="#b-popup-2">
+            <form action="/kitsend.php" method="POST" id="b-form-6" data-block="#b-popup-2">
                 <div class="b-popup-form">
                     <input type="hidden" name="subject" value="Обратный звонок"/>
                     <label for="email-4">Введите Ваше имя:</label>
-                    <input type="text" id="email-4" class="write" name="email" placeholder="Иванов Иван"required/>
-                    <input type="hidden" name="subject" placeholder="Ivanov@mail.ru"/>
+                    <input type="text" id="email-4" class="write" name="name" placeholder="Иванов Иван" required/>
+                    <input type="hidden" name="subject" value="Обратный звонок"/>
                     <label for="phone-3">Введите Ваш телефон:</label>
                     <div class="clearfix">
                         <div class="left phone-img"></div>
@@ -172,7 +172,7 @@
             <h2>Получите персональную программу питания</h2>
             <h4>под Ваши цели и с учетом Ваших пожеланий</h4>
             <h3>Оставьте заявку, и наши специалисты перезвонят Вам в течение 10 минут</h3>
-            <form action="kitsend.php" method="POST" id="b-form-7" data-block="#b-popup-2">
+            <form action="/kitsend.php" method="POST" id="b-form-7" data-block="#b-popup-2">
                 <div class="b-popup-form">
                     <input type="hidden" name="subject" value="Персональная программа питания"/>
                     <label for="phone-4">Введите Ваш телефон:</label>
@@ -190,13 +190,13 @@
         <div class="b-popup">
             <h2>Получите промокод на <span>5%-ю</span> скидку прямо сейчас</h2>
             <h3>Введите телефон, и промокод автоматически будет выслан</h3>
-            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="get-promo">
+            <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" class="get-promo">
                 <div class="b-popup-form">
                     <input type="hidden" name="subject" value="Заявка на промокод"/>
                     <label for="phone-5">Введите Ваш телефон:</label>
                     <div class="clearfix">
                         <div class="left phone-img"></div>
-                        <input class="left phone" type="text" id="phone-5" name="phone" required value=""/>
+                        <input class="left phone" type="text" id="phone-5" name="phone" required placeholder="+7 (___) ___-__-__" />
                     </div>
                     <input type="submit" class="b-orange-butt rounded sys" value="получить промокод">
                 </div>
@@ -275,7 +275,7 @@
             <form action="<?=$this->createUrl('/land/getpromo')?>" method="POST" id="registration-form">
                 <div class="b-popup-form">
                     <label for="phone-reg">Введите Ваш телефон:</label>
-                    <input type="text" id="phone-reg" class="write phone" name="phone" required/>
+                    <input type="text" id="phone-reg" class="write phone" name="phone" required placeholder="+7 (___) ___-__-__"/>
                     <label for="password-reg">Придумайте пароль:</label>
                     <input type="text" id="password-reg" class="pass" name="password" required minlength="4"/>
                     <input type="submit" class="b-orange-butt rounded sys" value="зарегистрироваться">

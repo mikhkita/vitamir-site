@@ -8,10 +8,10 @@ $(document).ready(function(){
     }
     var price = $("#price").text()*1;
     $("input[name='delivery']").change(function(){
-        if($(this).val()==2 && ($("#price").text()*1) < 2900 ) {
-            $("#price").text(price+300);
-            $("input[name='price']").val(price+300);
-            $("#delivery").text(300);
+        if($(this).val()==2 && ($("#price").text()*1) < 1750 ) {
+            $("#price").text(price+250);
+            $("input[name='price']").val(price+250);
+            $("#delivery").text(250);
         } else {
             $("#price").text(price);
             $("input[name='price']").val(price);

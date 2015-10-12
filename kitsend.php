@@ -1,11 +1,13 @@
 <?php
 	require_once("phpmail.php");
 
-	$email_admin = "beatbox787@gmail.com";
-	// $email_admin = "sales@tkmotors.ru";
+	// $email_admin = "p_e_a_c_e@mail.ru";
+	$email_admin = 'vitamirzakaz@gmail.com';
 
-	$from = "“Tk-Motors”";
-	$email_from = "robot@Tk-Motors.ru";
+	$from = "“Витамир”";
+	$email_from = "robot@vitamir.club";
+
+	$subject = "Заказ с vitamir.club";
 
 	$deafult = array("name"=>"Имя","phone"=>"Телефон", "email"=>"E-mail");
 

@@ -2276,7 +2276,7 @@ margin-bottom: 6px;
 			color: #333;
 			font-family: "latoheavy";
 			font-size: 15px;
-			margin-top: 25px;
+			margin-top: 10px;
 		}
 		.b-8 .info ul{
 			margin-top: 20px;
@@ -2309,7 +2309,7 @@ margin-bottom: 6px;
 					font-family: "latosemibold";
 					font-size: 13px;
 					text-align: left;
-					width: 145px;
+					width: 200px;
 					line-height: 16px;
 				}
 					.b-8 .info ul li:last-child p{

@@ -82,16 +82,36 @@ $(document).ready(function(){
 			padding : 0
 		});
 	}
-
-	$(".b-go").click(function(){
-		var block = $( $(this).attr("data-block") ),
-			off = $(this).attr("data-offset")||0;
+	function menu(obj,animTime) {
+		var block = $( obj.attr("data-block") ),
+			off = obj.attr("data-offset")||0;
 		$("body, html").animate({
 			scrollTop : block.offset().top-off
-		},800);
+		},animTime);
 		return false;
+	}
+
+	$(".b-go").click(function(){
+		return menu($(this),800);
 	});
 
+	// $( window ).load(function() {
+		if(window.location.hash == '#1') {
+			menu($(".b-go[data-block='.b-3 .b-back']"),0);
+		}
+		if(window.location.hash == '#2') {
+			menu($(".b-go[data-block='.b-2']"),0);
+		}
+		if(window.location.hash == '#3') {
+			menu($(".b-go[data-block='.b-5']"),0);
+		}
+		if(window.location.hash == '#4') {
+			menu($(".b-go[data-block='.b-6']"),0);
+		}
+		if(window.location.hash == '#5') {
+			menu($(".b-go[data-block='#map_canvas']"),0);
+		}
+	// });
 	$(".fancy-img").fancybox({
 		padding : 0
 	});
@@ -138,7 +158,7 @@ $(document).ready(function(){
   		return false;
   	});
 	
-	$("#login-form,#registration-form,#get-promo,#promocode-form").validate({
+	$("#login-form,#registration-form,.get-promo,#promocode-form").validate({
 		validClass: "success",
 		rules: {
 			phone: 'customPhone'
@@ -173,7 +193,7 @@ $(document).ready(function(){
   		return false;
   	});
 
-	$("#change-password,#registration-form,#get-promo").submit(function(){
+	$("#change-password,#registration-form,.get-promo").submit(function(){
 		var form = $(this);
   		if( $(this).valid() ){
   			$.ajax({
@@ -243,7 +263,7 @@ $(document).ready(function(){
   		return false;
 	});
 
-	$("#b-order-form").submit(function(){
+	$("#b-order-form,.get-promo").submit(function(){
 		$("input[name='phone'].success").parent("div").removeClass("error");
 		$("input[name='phone'].error").parent("div").addClass("error");
   		if( !$(this).valid() ) return false;

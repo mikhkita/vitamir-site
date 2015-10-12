@@ -50,14 +50,14 @@
             <div class="back-call right">
                 <h3>Есть вопрос?</h3>
                 <h4>Звоните - поможем!</h4>
-                <p><span>+7(499)</span>509-99-85</p>
+                <p><span>+7(929)</span>509-99-85</p>
             </div>
         </div>
     </div>
     <div class="b-block">
         <h2>Индивидуальные наборы<br>здорового питания на весь день.<br>с доставкой по ЮЗАО</h2>
         <div class="title">
-            <h3>Новый сервис для тех, кто занимается фигурой</h3>
+            <h3>Удобный сервис для тех, кто занимается фигурой</h3>
             <img src="<?php echo Yii::app()->request->baseUrl;?>/i/arrow-1.png">
         </div>
         <div class="content clearfix">
@@ -144,11 +144,11 @@
                     <label for="female-2">Женский</label> -->
                 </div>
                 <div class="b-toggle">
-                    <input id="id-1" type="radio" name="for" checked value="1">
+                    <input id="id-1" type="radio" name="for" value="1">
                     <label for="id-1">Для похудения</label>
                     <input id="id-2" type="radio" name="for" value="2">
                     <label for="id-2">Для набора массы</label>
-                    <input id="id-3" type="radio" name="for" value="3">
+                    <input id="id-3" type="radio" name="for" checked value="3">
                     <label for="id-3">Для поддержания формы</label>
                 </div>
                 <h3>Текущий набор БЖУ:</h3>
@@ -237,12 +237,6 @@
                     <div class="right">
                         <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
                     </div>
-                   <!--  <? if(Yii::app()->user->isGuest): ?>
-                        <div class="right menu-phone clearfix">
-                            <div class="left phone-img"></div>
-                            <input class="left" type="text" id="phone-1" name="phone" placeholder="+7 (___) ___-__-__" required>
-                        </div>
-                    <? endif; ?> -->
                 </div>
             </div>
             </form>
@@ -253,12 +247,12 @@
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/1.png" alt="">
                         <h3>Экологически чистая упаковка</h3>
-                        <p>Не выделяющие вредные вещества упаковка позволяющая хранить продукты до 3х дней</p>
+                        <p>Не выделяющие вредные вещества упаковка позволяющая хранить продукты до 2х дней</p>
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/2.png" alt="">
                         <h3>Свежее. Доставляем<br>в день приготовления</h3>
-                        <p>Вся еда приготавливается ночью и хранится у нас не более суток</p>
+                        <p>Вся еда приготавливается ночью и хранится у нас не более 12 часов</p>
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/3.png" alt="">
@@ -280,13 +274,13 @@
             <div class="green-block left">
                 <h3>Получите Ваш промокод на скидку 5%</h3>
                 <h4>Введите свой номер телефона и получите персональный промокод на <b>5% скидку</b></h4>
-                <form method="POST" action="kitsend.php" id="b-form-2" data-block="#b-popup-2" class="clearfix">
+                <form method="POST" action="<?=$this->createUrl('/land/getpromo')?>" class="clearfix get-promo">
                     <input type="hidden" name="subject" value="Заявка на промокод"/>
                     <div class="clearfix">
                         <div class="left phone-img"></div>
                         <input class="left" type="text" id="phone-2" name="phone" placeholder="+7 (___) ___-__-__" required/>
                     </div>
-                    <button class="ajax b-orange-butt rectangle" type="submit">Получить промокод</button>
+                    <button class="b-orange-butt rectangle" type="submit">Получить промокод</button>
                 </form>
             </div>
             <div class="cloud">
@@ -396,7 +390,7 @@
 <div class="b b-6">
     <div class="b-block">
         <h2>Доставка в ЮЗАО за 30 минут</h2>
-        <h3>Бесплатно при заказе от 2900р. Всю еду доставляем в день приготовления</h3> 
+        <h3>Бесплатно при заказе от 1750р. Всю еду доставляем в день приготовления</h3> 
         <div class="content clearfix">
             <div class="pay right">
                 <h2>Способы оплаты:</h2>
@@ -433,7 +427,7 @@
                         <img class="left" src="<?php echo Yii::app()->request->baseUrl;?>/i/b-6/2.png">
                         <div class="left">
                             <h5>Доставка</h5>
-                            <p>от 2900р. - бесплатно<br>до 2900р. - 300руб.</p>
+                            <p>от 1750р. - бесплатно<br>до 1750р. - 250руб.</p>
                         </div>
                     </li>
                 </ul>
@@ -465,14 +459,14 @@
         <ul>
             <li class="clearfix">
                 <div class="left"></div>
-                <p class="left">Город Москва, проспект Вернадского дом 29, павильон 68</p>
+                <p class="left">Город Москва, проспект Вернадского дом 29, Бизнец Центр Лето, цокольный этаж, Магазин Витамир</p>
             </li>
             <li class="clearfix">
                 <div class="left"></div>
                 <p class="left">7 (929) 509-99-85</p>
             </li>
         </ul>
-        <a href="mailto:zdorovaya.eda@eda.ru">zdorovaya.eda@eda.ru</a>
+        <a href="mailto:vitamirzakaz@gmail.com">vitamirzakaz@gmail.com</a>
     </div>
 </div>
 <div class="b b-9">
