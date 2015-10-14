@@ -6,7 +6,7 @@
         </a>
         <ul class="left clearfix">
             <li class="left">
-                <a href="/#1">
+                <a href="/#eat-select">
                     <div class="pict"></div>
                     <div class="text">
                         <p>выбрать еду</p>
@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="left">
-                <a href="/#2">
+                <a href="/#healthy-food">
                     <div class="pict"></div>
                     <div class="text">
                         <p>100% здоровая пища</p>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="left">
-                <a href="/#3">
+                <a href="/#diet">
                     <div class="pict"></div>
                     <div class="text">
                         <p>составить режим питания</p>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="left">
-                <a href="/#4">
+                <a href="/#delivery">
                     <div class="pict"></div>
                     <div class="text">
                         <p>доставка</p>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="left">
-                <a href="/#5">
+                <a href="/#address">
                     <div class="pict"></div>
                     <div class="text">
                         <p>адреса клубов</p>

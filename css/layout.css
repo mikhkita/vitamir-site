@@ -1747,7 +1747,7 @@ margin-bottom: 6px;
 }
 	.b-4 .b-block{
 
-	}
+	padding-bottom: 45px;}
 		.b-4 h2{
 			color: #3B3F3E;
 			font-family: "latoblack";
@@ -1759,9 +1759,9 @@ margin-bottom: 6px;
 		}
 		.b-4 .green{
 			position: relative;
-			display: inline-block;
+			display: block;
 			margin-top: 10px;
-			margin-bottom: 11px;
+			text-align: center;
 		}
 		.b-4 .green .cloud{
 			background-image: url("../i/comment.png");
@@ -1792,6 +1792,7 @@ margin-bottom: 6px;
 			.b-4 .green .green-block{
 				background-image: url("../i/green-pattern.jpg");
 				width: 374px;
+				display: inline-block;
 				border-radius: 0px 5px 5px 0px;
 				margin-top: 26px;
 			}

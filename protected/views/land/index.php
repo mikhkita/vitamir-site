@@ -270,8 +270,7 @@
         для отличных результатов<br> 
         в зале</h2>
         <div class="green clearfix">
-            <div class="coffee left"></div>
-            <div class="green-block left">
+            <div class="green-block">
                 <h3>Получите Ваш промокод на скидку 5%</h3>
                 <h4>Введите свой номер телефона и получите персональный промокод на <b>5% скидку</b></h4>
                 <form method="POST" action="<?=$this->createUrl('/land/getpromo')?>" class="clearfix get-promo">
@@ -282,9 +281,6 @@
                     </div>
                     <button class="b-orange-butt rectangle" type="submit">Получить промокод</button>
                 </form>
-            </div>
-            <div class="cloud">
-                <p>По самой низкой на рынке цене. Мы не тратимся на масла, соусы и неоправданно дорогие специи</p>
             </div>
         </div>
     </div>
@@ -389,7 +385,7 @@
 </div>
 <div class="b b-6">
     <div class="b-block">
-        <h2>Доставка в ЮЗАО за 30 минут</h2>
+        <h2>Доставка в ЮЗАО в течение часа</h2>
         <h3>Бесплатно при заказе от 1750р. Всю еду доставляем в день приготовления</h3> 
         <div class="content clearfix">
             <div class="pay right">

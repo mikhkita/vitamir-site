@@ -17,7 +17,7 @@ $(document).ready(function(){
     resize();
     
     if( $("#map_canvas").length ){
-    	var myPlace = new google.maps.LatLng(55.754407, 37.625151);
+    	var myPlace = new google.maps.LatLng(55.681779, 37.516405);
         var myOptions = {
             zoom: 16,
             center: myPlace,

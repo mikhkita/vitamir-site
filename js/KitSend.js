@@ -96,19 +96,19 @@ $(document).ready(function(){
 	});
 
 	// $( window ).load(function() {
-		if(window.location.hash == '#1') {
+		if(window.location.hash == '#eat-select') {
 			menu($(".b-go[data-block='.b-3 .b-back']"),0);
 		}
-		if(window.location.hash == '#2') {
+		if(window.location.hash == '#healthy-food') {
 			menu($(".b-go[data-block='.b-2']"),0);
 		}
-		if(window.location.hash == '#3') {
+		if(window.location.hash == '#diet') {
 			menu($(".b-go[data-block='.b-5']"),0);
 		}
-		if(window.location.hash == '#4') {
+		if(window.location.hash == '#delivery') {
 			menu($(".b-go[data-block='.b-6']"),0);
 		}
-		if(window.location.hash == '#5') {
+		if(window.location.hash == '#address') {
 			menu($(".b-go[data-block='#map_canvas']"),0);
 		}
 	// });
