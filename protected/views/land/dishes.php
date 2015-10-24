@@ -1,8 +1,6 @@
-<? $inc = 0; $page = 0; foreach($dishes as $key => $item): ?>
-    <?if($inc == 0): $page++; ?>
-        <div class="b-page" data-page="<?=$page?>">
+        <div class="b-page">
             <ul class="clearfix">
-    <? endif; ?>
+                <?foreach($dishes as $key => $item): ?>
                 <li class="dish-item clearfix" data-dish-id="<?=$item['id']?>" data-img="<?=$item['image']?>" data-name="<?=$item['name']?>" data-m-1="<?=$item['m_1']?>" data-m-2="<?=$item['m_2']?>" data-m-3="<?=$item['m_3']?>" data-weight="<?=$item['weight']?>" data-fat="<?=$item['fat']?>" data-pro="<?=$item['protein']?>" data-car="<?=$item['carbohydrate']?>" data-cal="<?=$item['calories']?>" data-pri="<?=$item['price']?>">
                     <h3><?=$item['name']?></h3>
                     <div class="b-image-cont">
@@ -18,18 +16,11 @@
                     </div>
                     <div style="text-align: center;" class="clearfix"><a href="#" class="b-add-cart">В корзину</a></div>
                 </li>
-    <? $inc++; if($inc == 9 || $key == $count-1): ?>        
+                <? endforeach; ?>        
             </ul>
         </div>
-    <? $inc = 0; endif; ?>
-<? endforeach; ?>
+
 <div class="b-menu-nav clearfix">
-    <div class="b-menu-pages left">
-        Страницы:
-        <? for ($i=1; $i < $pages+1; $i++): ?> 
-            <a href="#" onclick="return false;"><?=$i?></a>
-        <? endfor; ?>
-    </div>
     <div class="b-find-items right">
         Найдено товаров: <span><?=$count?></span>
     </div>

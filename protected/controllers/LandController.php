@@ -473,10 +473,76 @@ class LandController extends Controller
 	            if($user->usr_name) $message .= "<div><p><b>Имя: </b>".$user->usr_name."</p></div>";
 	            $message .= "<div><p><b>Телефон: </b>".$user->usr_login."</p></div>";
 	            if($user->usr_email) $message .= "<div><p><b>E-mail: </b>".$user->usr_email."</p></div>";
-	            $message .= "<div><p><b>Набор: </b>".Order::model()->types[$model->type]."</p></div>";
+	            $message .= ($model->delivery==2) ? "<div><p><b>Доставка: </b>".$user->usr_email."</p></div>" : "<div><p><b>Доставка: </b>Самовывоз</p></div>";
 	            $message .= "<div><p><b>Кол-во дней: </b>".$model->day."</p></div>";   
-	            $message .= "<div><p><b>Цена: </b>".$model->price." р.</p></div>";         
-	            $message .= "</div>";
+	            $message .= "<div><p><b>Цена: </b>".$model->price." р.</p></div>";  
+
+	            $days = array();
+				for ($i=1; $i <= $model->day; $i++) { 
+					$dishes = OrderDish::model()->findAll('order_id='.$model->id.' AND day='.$i);
+					array_push($days,$this->actionSetShow($dishes));
+				}
+				foreach($days as $number => $daytime) {
+						$message .= '<h2 style="text-align: center; max-width: 500px; margin-top: 30px;">День '.($number+1).'</h2>';
+					    $message .= '<div >';
+					        $message .='<h3>Утро</h3>';
+					        $message .='<table style="width:100%; max-width: 500px; margin-bottom:20px; text-align:center;" border="1">';
+					        	$message .='<tbody>';
+					        	$message .='<tr>';
+					        		$message .='<th style="text-align:left; padding-left:10px;">Название</th>';
+					        		$message .='<th style="width:100px;">Количество</th>';
+					        	$message .='</tr>';
+					            if(isset($daytime[1])) {
+					                foreach($daytime[1] as $item) {
+										$message .='<tr>';
+					                        $message .='<td style="text-align:left; padding-left:10px;">'.$item['name'].'</td>';
+					                    	$message .='<td>'.$item['count'].'</td>';
+					                    $message .='</tr>';
+					                } 
+					            }
+					            $message .='</tbody>';
+					        $message .='</table>';
+					    $message .='</div>';
+					    $message .='<div>';
+					        $message .='<h3>День</h3>';
+					        $message .='<table style="width:100%; max-width: 500px; margin-bottom:20px; text-align:center;" border="1">';
+					        	$message .='<tbody>';
+					        	$message .='<tr>';
+					        		$message .='<th style="text-align:left; padding-left:10px;">Название</th>';
+					        		$message .='<th style="width:100px;">Количество</th>';
+					        	$message .='</tr>';
+					            if(isset($daytime[2])) {
+					                foreach($daytime[2] as $item){
+										$message .='<tr>';
+					                        $message .='<td style="text-align:left; padding-left:10px;">'.$item['name'].'</td>';
+					                    	$message .='<td>'.$item['count'].'</td>';
+					                    $message .='</tr>'; 
+					                }  
+					            }
+					            $message .='</tbody>';
+					        $message .='</table>';
+					    $message .='</div>';
+					    $message .='<div>';
+					        $message .='<h3>Вечер</h3>';
+					        $message .='<table style="width:100%; max-width: 500px; margin-bottom:20px; text-align:center;" border="1">';
+					        	$message .='<tbody>';
+					        	$message .='<tr>';
+					        		$message .='<th style="text-align:left; padding-left:10px;">Название</th>';
+					        		$message .='<th style="width:100px;">Количество</th>';
+					        	$message .='</tr>';
+					            if(isset($daytime[3])) {
+					                foreach($daytime[3] as $item) {
+										$message .='<tr>';
+					                        $message .='<td style="text-align:left; padding-left:10px;">'.$item['name'].'</td>';
+					                    	$message .='<td>'.$item['count'].'</td>';
+					                    $message .='</tr>';
+					                }
+					            }
+					            $message .='</tbody>';
+					        $message .='</table>';
+					    $message .='</div>';
+				}
+				$message .= "</div>";
             	$this->send_mime_mail("Сайт ".$from,$email_from,$email_admin,'UTF-8','UTF-8',$subject,$message,true);
 
 				if($_POST["payment"] == 2) {
@@ -683,8 +749,8 @@ class LandController extends Controller
 			$model->name = $item[0];
 			$model->image = $item[7];
 			$model->description = $item[0];
-			$model->m_1 = "0.5";
-			$model->m_2 = "1.5";
+			$model->m_1 = "1";
+			$model->m_2 = "1";
 			$model->m_3 = "1";
 			$model->weight = $item[1];
 			$model->fat = $item[3];

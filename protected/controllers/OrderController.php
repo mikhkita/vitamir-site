@@ -140,9 +140,6 @@ class OrderController extends Controller
 			$temp['m_1'] = $dish->dish->m_1;
 			$temp['m_2'] = $dish->dish->m_2;
 			$temp['m_3'] = $dish->dish->m_3;
-			$temp['w_1'] = $dish->dish->w_1;
-			$temp['w_2'] = $dish->dish->w_2;
-			$temp['w_3'] = $dish->dish->w_3;
 			$temp['weight'] = $dish->dish->weight;
 			$temp['fat'] = $dish->dish->fat;
 			$temp['pro'] = $dish->dish->protein;

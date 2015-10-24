@@ -12,7 +12,12 @@ $(document).ready(function(){
             $("#price").text(price+250);
             $("input[name='price']").val(price+250);
             $("#delivery").text(250);
+            $("h3.location,#location").show();
+            $("#location").prop("required",true);
+
         } else {
+            $("h3.location,#location").hide();
+            $("#location").prop("required",false).removeClass("error");
             $("#price").text(price);
             $("input[name='price']").val(price);
             $("#delivery").text(0);
@@ -76,12 +81,12 @@ function roundPlus(x, n) { //x - число, n - количество знако
 }
 function menuFilter() {
     
-    $('body').on('click',".b-menu-pages a:not(.active)",function() {
-        $(".b-menu-pages a.active").removeClass("active");
-        $(this).addClass('active');
-        $(".b-page").hide();
-        $(".b-page[data-page="+$(this).text()+"]").fadeIn();
-    });
+    // $('body').on('click',".b-menu-pages a:not(.active)",function() {
+    //     $(".b-menu-pages a.active").removeClass("active");
+    //     $(this).addClass('active');
+    //     $(".b-page").hide();
+    //     $(".b-page[data-page="+$(this).text()+"]").fadeIn();
+    // });
 
     $("#fullmenu input").change(function(){
         $.ajax({
@@ -90,7 +95,8 @@ function menuFilter() {
             data:  $("#fullmenu").serialize()+"&coef="+$(".b-filter input[name='sex-2']:checked").val()+"_"+$(".b-filter input[name='for']:checked").val(),
             success: function(msg){
                $(".b-menu-items").empty().append(msg);
-               $(".b-menu-pages a").eq(0).click();
+               // $(".b-menu-pages a").eq(0).click();
+               $.fancybox.update();
             }
         });
     });

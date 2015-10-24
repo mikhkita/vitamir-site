@@ -3,7 +3,6 @@
 	<table class="b-table" border="1">
 		<tr>
 			<th><? echo $labels['id']; ?></th>
-			<th><? echo $labels['type']; ?></th>
 			<th><? echo $labels['date']; ?></th>
 			<th><? echo $labels['user_id']; ?></th>
 			<th><? echo $labels['delivery']; ?></th>
@@ -28,7 +27,6 @@
 			<? foreach ($data as $i => $item): ?>
 				<tr>
 					<td><?=$item->id?></td>
-					<td class="align-left"><?=Order::model()->types[$item->type]?></td>
 					<td class="align-left"><? $date = new DateTime($item->date); echo date_format($date, 'd.m.Y H:i:s'); ?></td>
 					<td class="align-left"><a class="phone ajax-form ajax-update" href="<?php echo Yii::app()->createUrl('/'.$this->adminMenu["cur"]->code.'/adminUserUpdate',array('id'=>$item->user_id))?>"><? $m = User::model()->findByPk($item->user_id); echo $m['usr_login']; if($m['usr_name'] && $m['usr_name']!="дорогой клиент") echo " (".$m['usr_name'].")"; ?></a></td>
 					<td class="align-left"><?=Order::model()->delivery[$item->delivery]?></td>

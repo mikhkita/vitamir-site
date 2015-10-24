@@ -16,8 +16,7 @@
             <? if($user->usr_name && $user->usr_email): ?>
                 <input type="hidden" id="sale-name" class="write" name="name" placeholder="Иванов Иван" value="<?=$user->usr_name?>"/>
                 <input type="hidden" id="sale-email" class="write" name="email" placeholder="" required value="<?=$user->usr_email?>"/>   
-            <? endif; ?> 
-            <? if(!$user->usr_name): ?>
+            <? elseif(!$user->usr_name): ?>
                     <div class="b-sale-block">
                         <h3 class="edit">Введите Ваши контактные данные:</h3>
                         <label for="sale-name">Введите Ваше имя:</label>
@@ -64,8 +63,8 @@
                         <input id="sale-courier" type="radio" name="delivery" value="2">
                         <label for="sale-courier">Курьерская доставка до дома или офиса</label>
                     </div>
-                    <h3 class="location">Введите адрес</h3>
-                    <input type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1"  value="<? if(isset($user)) echo $user->usr_address; ?>" required/> 
+                    <h3 style="display:none;" class="location">Введите адрес</h3>
+                    <input style="display:none;" type="text" id="location" class="write" name="location" placeholder="Например, Проспект Мира, 101 с 1"  value="<? if(isset($user)) echo $user->usr_address; ?>"/> 
                 </div>
                 <div class="right">
                     <h3 class="payment">Оплата</h3>

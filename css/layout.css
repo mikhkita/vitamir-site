@@ -492,9 +492,7 @@ textarea{
 	.b-menu-items{
 		width: 570px;
 	}
-		.b-menu-items .b-page{
-			display: none;
-		}
+
 			.b-menu-items .b-page ul{
 				text-align: left;
 				font-size: 0px;
@@ -1281,16 +1279,13 @@ margin-bottom: 6px;
 						margin-bottom: 39px;
 					}
 .b-3{
-	/*height: 1357px;*/
-	margin-top: 30px;
+	margin-top: 45px;
 }
 	.b-3>.b-block{
 
 	}
 	.b-3 .b-back{
-		/*height: 1218px;*/
 		width: 100%;
-		margin-top: 45px;
 		background-position: 50% 50%;
 		background-size: cover;
 		background-image: url('../i/back-3.jpg');
@@ -1437,7 +1432,7 @@ margin-bottom: 6px;
 					font-size: 18px;
 					color: #333;
 					font-family: "latoblack";
-					text-align: left;
+					text-align: center;
 					margin-top: 14px;
 				}
 					.b-3 .b-filter h5 p {
@@ -1702,11 +1697,13 @@ margin-bottom: 6px;
 					.b-green-bottom .right .b-orange-butt:active:before{
 						top: 8px;
 					}
-			.b-3 h2{
+			.b-2 h2.abc{
 				color: #3B3F3E;
 				font-family: "elektra_text_probold";
 				font-size: 40px;
 				text-transform: uppercase;
+				margin-top: 30px;
+				margin-bottom: 45px;
 			}
 		.b-3 .b-triangles{
 			background-position: 50% 50%;

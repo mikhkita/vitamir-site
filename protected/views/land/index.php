@@ -129,160 +129,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="b b-3">
     <div class="b-block">
-        <h2>6-разовое питание</h2>
-    </div>
-    <div class="b-back">
-        <div class="b-block b-calc-cont clearfix">
-            <div class="b-filter left">
-                <div class="radio">
-                    <input style="display:none;" id="male-2" type="radio" name="sex-2" checked value="m">
-                    <!-- <label for="male-2">Мужской</label>
-                    <input id="female-2" type="radio" name="sex-2" value="w">
-                    <label for="female-2">Женский</label> -->
-                </div>
-                <div class="b-toggle">
-                    <input id="id-1" type="radio" name="for" value="1">
-                    <label for="id-1">Для похудения</label>
-                    <input id="id-2" type="radio" name="for" value="2">
-                    <label for="id-2">Для набора массы</label>
-                    <input id="id-3" type="radio" name="for" checked value="3">
-                    <label for="id-3">Для поддержания формы</label>
-                </div>
-                <h3>Текущий набор БЖУ:</h3>
-                <ul class="b-attr">
-                    <li class="clearfix b-time-1">
-                        <h4 class="left">Утро:</h4>
-                        <div class="right">
-                            <ul class="dark clearfix">
-                                <li>Белки</li>
-                                <li>Жиры</li>
-                                <li>Углеводы</li>
-                            </ul>
-                            <ul class="light clearfix">
-                                <li class="pro"></li>
-                                <li class="fat"></li>
-                                <li class="car"></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="clearfix b-time-2">
-                        <h4 class="left">День:</h4>
-                        <div class="right">
-                            <ul class="dark clearfix">
-                                <li>Белки</li>
-                                <li>Жиры</li>
-                                <li>Углеводы</li>
-                            </ul>
-                            <ul class="light clearfix">
-                                <li class="pro"></li>
-                                <li class="fat"></li>
-                                <li class="car"></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="clearfix b-time-3">
-                        <h4 class="left">Вечер:</h4>
-                        <div class="right">
-                            <ul class="dark clearfix">
-                                <li>Белки</li>
-                                <li>Жиры</li>
-                                <li>Углеводы</li>
-                            </ul>
-                            <ul class="light clearfix">
-                                <li class="pro"></li>
-                                <li class="fat"></li>
-                                <li class="car"></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="clearfix b-time-all">
-                        <h4 class="left" style="margin-top: 0px;">Всего за<br>сутки:</h4>
-                        <div class="right">
-                            <ul class="dark clearfix">
-                                <li>Белки</li>
-                                <li>Жиры</li>
-                                <li>Углеводы</li>
-                            </ul>
-                            <ul class="light clearfix">
-                                <li class="pro"></li>
-                                <li class="fat"></li>
-                                <li class="car"></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-                <h5 class="b-time-all"><font class="cal">2450 </font> <p> кКал.</p> <span>+ 1,8 л воды</span></h5>
-                <a href="#" class="ajax b-orange-butt rounded fancy" href="#" data-block="#b-popup-programm">Получить персональную<br>программу питания</a>
-            </div>
-            <form action="<?=$this->createUrl('/land/createorder')?>" method="POST" id="menu-order">
-            <div class="b-menu right">
-                <div class="b-padding">
-                    <div class="clearfix b-header">
-                        <h3 class="left">Меню на день</h3>
-                        <button type="button" class="right b-add-day">Добавить еще день</button>
-                        <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
-                        <button class="right b-del-day">удалить текущий день</button>
-                        <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
-
-                    </div>
-                    <?php $this->renderPartial('day', array('days'=> $days, 'set_id' => $set_id)); ?>          
-                </div>
-                <div class="b-green-bottom b-time-all clearfix">
-                    <div class="left">
-                        <h3>Цена: <span class="pri" id="main-price">1202</span> руб.</h3>
-                    </div>
-                    <div class="right">
-                        <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-        <div class="b-triangles">
-            <div class="b-block">
-                <div class="b-advantages clearfix">
-                    <li>
-                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/1.png" alt="">
-                        <h3>Экологически чистая упаковка</h3>
-                        <p>Не выделяющие вредные вещества упаковка позволяющая хранить продукты до 2х дней</p>
-                    </li>
-                    <li>
-                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/2.png" alt="">
-                        <h3>Свежее. Доставляем<br>в день приготовления</h3>
-                        <p>Вся еда приготавливается ночью и хранится у нас не более 12 часов</p>
-                    </li>
-                    <li>
-                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/3.png" alt="">
-                        <h3>Вкусно. Разнообразная еда каждый день</h3>
-                        <p>Более 65 вариантов блюд!</p>
-                    </li>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="b b-4">
-    <div class="b-block">
-        <h2>Простые и здоровые блюда 
-        для отличных результатов<br> 
-        в зале</h2>
-        <div class="green clearfix">
-            <div class="green-block">
-                <h3>Получите Ваш промокод на скидку 5%</h3>
-                <h4>Введите свой номер телефона и получите персональный промокод на <b>5% скидку</b></h4>
-                <form method="POST" action="<?=$this->createUrl('/land/getpromo')?>" class="clearfix get-promo">
-                    <input type="hidden" name="subject" value="Заявка на промокод"/>
-                    <div class="clearfix">
-                        <div class="left phone-img"></div>
-                        <input class="left" type="text" id="phone-2" name="phone" placeholder="+7 (___) ___-__-__" required/>
-                    </div>
-                    <button class="b-orange-butt rectangle" type="submit">Получить промокод</button>
-                </form>
-            </div>
-        </div>
+        <h2 class="abc">6-разовое питание</h2>
     </div>
 </div>
 <div class="b b-5">
@@ -379,6 +227,158 @@
                     </table>
                 </div>
                 <!-- <a href="#">Отправить на почту</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b b-3">
+    <div class="b-back">
+        <div class="b-block b-calc-cont clearfix">
+            <div class="b-filter left">
+                <div class="radio">
+                    <input style="display:none;" id="male-2" type="radio" name="sex-2" checked value="m">
+                    <!-- <label for="male-2">Мужской</label>
+                    <input id="female-2" type="radio" name="sex-2" value="w">
+                    <label for="female-2">Женский</label> -->
+                </div>
+                <div class="b-toggle">
+                   <!--  <input id="id-1" type="radio" name="for" value="1">
+                    <label for="id-1">Для похудения</label>
+                    <input id="id-2" type="radio" name="for" value="2">
+                    <label for="id-2">Для набора массы</label> -->
+                    <input id="id-3" style="display:none;" type="radio" name="for" checked value="3">
+                    <!-- <label for="id-3">Для поддержания формы</label> -->
+                </div>
+                <h3>Текущий набор БЖУ:</h3>
+                <ul class="b-attr">
+                    <li class="clearfix b-time-1">
+                        <h4 class="left">Утро:</h4>
+                        <div class="right">
+                            <ul class="dark clearfix">
+                                <li>Белки</li>
+                                <li>Жиры</li>
+                                <li>Углеводы</li>
+                            </ul>
+                            <ul class="light clearfix">
+                                <li class="pro"></li>
+                                <li class="fat"></li>
+                                <li class="car"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="clearfix b-time-2">
+                        <h4 class="left">День:</h4>
+                        <div class="right">
+                            <ul class="dark clearfix">
+                                <li>Белки</li>
+                                <li>Жиры</li>
+                                <li>Углеводы</li>
+                            </ul>
+                            <ul class="light clearfix">
+                                <li class="pro"></li>
+                                <li class="fat"></li>
+                                <li class="car"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="clearfix b-time-3">
+                        <h4 class="left">Вечер:</h4>
+                        <div class="right">
+                            <ul class="dark clearfix">
+                                <li>Белки</li>
+                                <li>Жиры</li>
+                                <li>Углеводы</li>
+                            </ul>
+                            <ul class="light clearfix">
+                                <li class="pro"></li>
+                                <li class="fat"></li>
+                                <li class="car"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="clearfix b-time-all">
+                        <h4 class="left" style="margin-top: 0px;">Всего за<br>сутки:</h4>
+                        <div class="right">
+                            <ul class="dark clearfix">
+                                <li>Белки</li>
+                                <li>Жиры</li>
+                                <li>Углеводы</li>
+                            </ul>
+                            <ul class="light clearfix">
+                                <li class="pro"></li>
+                                <li class="fat"></li>
+                                <li class="car"></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <h5 class="b-time-all"><font class="cal">2450 </font> <p>кКал.</p></h5>
+                <a href="#" class="ajax b-orange-butt rounded fancy" href="#" data-block="#b-popup-programm">Получить персональную<br>программу питания</a>
+            </div>
+            <form action="<?=$this->createUrl('/land/createorder')?>" method="POST" id="menu-order">
+            <div class="b-menu right">
+                <div class="b-padding">
+                    <div class="clearfix b-header">
+                        <h3 class="left">Меню на день</h3>
+                        <button type="button" class="right b-add-day">Добавить еще день</button>
+                        <? echo CHtml::dropDownList('day-select', "1", $day_select, array("id" => "day-select", "class" => "right")) ?>
+                        <button class="right b-del-day">удалить текущий день</button>
+                        <input type="hidden" name="day-count" id="day-count" value="<?=count($day_select)?>">
+
+                    </div>
+                    <?php $this->renderPartial('day', array('days'=> $days, 'set_id' => $set_id)); ?>          
+                </div>
+                <div class="b-green-bottom b-time-all clearfix">
+                    <div class="left">
+                        <h3>Цена: <span class="pri" id="main-price">1202</span> руб.</h3>
+                    </div>
+                    <div class="right">
+                        <input type="submit" class="b-orange-butt rounded" value="Заказать набор">
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="b-triangles">
+            <div class="b-block">
+                <div class="b-advantages clearfix">
+                    <li>
+                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/1.png" alt="">
+                        <h3>Экологически чистая упаковка</h3>
+                        <p>Не выделяющие вредные вещества упаковка позволяющая хранить продукты до 2х дней</p>
+                    </li>
+                    <li>
+                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/2.png" alt="">
+                        <h3>Свежее. Доставляем<br>в день приготовления</h3>
+                        <p>Вся еда приготавливается ночью и хранится у нас не более 12 часов</p>
+                    </li>
+                    <li>
+                        <img src="<?php echo Yii::app()->request->baseUrl;?>/i/b-3/3.png" alt="">
+                        <h3>Вкусно. Разнообразная еда каждый день</h3>
+                        <p>Более 65 вариантов блюд!</p>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b b-4">
+    <div class="b-block">
+        <h2>Простые и здоровые блюда 
+        для отличных результатов<br> 
+        в зале</h2>
+        <div class="green clearfix">
+            <div class="green-block">
+                <h3>Получите Ваш промокод на скидку 5%</h3>
+                <h4>Введите свой номер телефона и получите персональный промокод на <b>5% скидку</b></h4>
+                <form method="POST" action="<?=$this->createUrl('/land/getpromo')?>" class="clearfix get-promo">
+                    <input type="hidden" name="subject" value="Заявка на промокод"/>
+                    <div class="clearfix">
+                        <div class="left phone-img"></div>
+                        <input class="left" type="text" id="phone-2" name="phone" placeholder="+7 (___) ___-__-__" required/>
+                    </div>
+                    <button class="b-orange-butt rectangle" type="submit">Получить промокод</button>
+                </form>
             </div>
         </div>
     </div>
