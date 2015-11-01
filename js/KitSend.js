@@ -269,7 +269,12 @@ $(document).ready(function(){
   		if( !$(this).valid() ) return false;
 	});
 	
-	$('#calc').find("input[type=text]").mask('99?9',{placeholder:" "});
+	$('#calc input[type=text]').bind("change keyup input click", function() {
+        if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
+	// $('#calc').find("input[type=text]").mask('99?9',{placeholder:" "});
 	$("#calc").submit(function(){
   		if( $(this).valid() ){
   			if($("input[name=sex]:checked").val()=='male') {
@@ -320,10 +325,10 @@ $(document).ready(function(){
 
 			$("#HB").text(HB);
 			$("#MG").text(MG);
-			$("#cal").text(MG_min+"-"+MG_max);
-			$("#protein").text(protein_min+"-"+protein_max+" гр.");
-			$("#carbo").text(carbo_min+"-"+carbo_max+" гр.");
-			$("#fat").text(fat_min+"-"+fat_max+" гр.");
+			$("#cal,#cal-2").text(MG_min+"-"+MG_max);
+			$("#protein,#protein-2").text(protein_min+"-"+protein_max+" гр.");
+			$("#carbo,#carbo-2").text(carbo_min+"-"+carbo_max+" гр.");
+			$("#fat,#fat-2").text(fat_min+"-"+fat_max+" гр.");
 			$("#water").text((0.94*parseInt($("input[name=weight]").val())/30).toFixed(1)+" л.");
   		}
   		return false;

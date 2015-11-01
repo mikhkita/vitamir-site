@@ -150,11 +150,11 @@
                     </div>
                     <div class="b-dimensions">
                         <label class="for-form" for="age">Введите Ваш возраст (лет):</label>
-                        <input type="text" id="age" name="age" placeholder="Например, 21"required/>
+                        <input type="text" id="age" name="age" maxlength="2" placeholder="Например, 21"required/>
                         <label class="for-form" for="weight">Введите Ваш вес, кг:</label>
-                        <input type="text" id="weight" name="weight" placeholder="Например, 63"required/>
+                        <input type="text" id="weight" name="weight" maxlength="3" placeholder="Например, 63"required/>
                         <label class="for-form" for="growth">Введите Ваш рост, см:</label>
-                        <input type="text" id="growth" name="growth" placeholder="Например, 180"required/>
+                        <input type="text" id="growth" name="growth" maxlength="3" placeholder="Например, 180"required/>
                         <label class="for-form" for="lifestyle">Выберите Ваш образ жизни</label>
                         <select name="lifestyle">
                             <option value="1.2" selected>Сидячий, малоподвижный</option>
@@ -235,20 +235,39 @@
     <div class="b-back">
         <div class="b-block b-calc-cont clearfix">
             <div class="b-filter left">
-                <div class="radio">
-                    <input style="display:none;" id="male-2" type="radio" name="sex-2" checked value="m">
+                <div class="radio" style="display:none;">
+                    <input  id="male-2" type="radio" name="sex-2" checked value="m">
                     <!-- <label for="male-2">Мужской</label>
                     <input id="female-2" type="radio" name="sex-2" value="w">
                     <label for="female-2">Женский</label> -->
                 </div>
-                <div class="b-toggle">
+                <div class="b-toggle" style="display:none;">
                    <!--  <input id="id-1" type="radio" name="for" value="1">
                     <label for="id-1">Для похудения</label>
                     <input id="id-2" type="radio" name="for" value="2">
                     <label for="id-2">Для набора массы</label> -->
-                    <input id="id-3" style="display:none;" type="radio" name="for" checked value="3">
+                    <input id="id-3"  type="radio" name="for" checked value="3">
                     <!-- <label for="id-3">Для поддержания формы</label> -->
                 </div>
+                <h3 class="first">Суточная норма калорий:</h3>
+                <ul class="b-attr calc-attr">
+                    <li class="clearfix">
+                        <h4 class="left">Диапазон калорий:</h4>
+                        <span id="cal-2" class="right">—</sapn>
+                    </li>
+                    <li class="clearfix">
+                        <h4 class="left">Суточная норма белка:</h4>
+                        <span id="protein-2" class="right">—</sapn>
+                    </li>
+                    <li class="clearfix">
+                        <h4 class="left">Суточная норма жиров:</h4>
+                        <span id="fat-2" class="right">—</sapn>
+                    </li>
+                    <li class="clearfix">
+                        <h4 class="left">Суточная норма углеводов:</h4>
+                        <span id="carbo-2" class="right">—</sapn>
+                    </li>
+                </ul>
                 <h3>Текущий набор БЖУ:</h3>
                 <ul class="b-attr">
                     <li class="clearfix b-time-1">
